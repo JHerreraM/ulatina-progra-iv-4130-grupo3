@@ -16,5 +16,5 @@ all:
 
   javascripts:    []
 
-  has_layout:     true
+  has_layout:     false
   layout:         layout
