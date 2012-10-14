@@ -15,10 +15,6 @@ class reservacionActions extends sfActions
   *
   * @param sfRequest $request A request object
   */
-  public function executeHome(sfWebRequest $request)
-  {
-  }
-  
   public function executeSafety(sfWebRequest $request)
   {
   }
