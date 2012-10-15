@@ -19,6 +19,14 @@ class reservacionActions extends sfActions
   {
   }
   
+  public function executeAgregar(sfWebRequest $request)
+  {
+  }
+  
+  public function executeList(sfWebRequest $request)
+  {
+  }
+  
   public function executeLogin(sfWebRequest $request)
   {
       $this->username = $request->getParameter("username");
