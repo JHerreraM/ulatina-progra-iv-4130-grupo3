@@ -7,6 +7,7 @@
     <link rel="shortcut icon" href="/favicon.ico" />
     <link rel="stylesheet" href="../css/reset.css" type="text/css" media="all">
     <link rel="stylesheet" href="../css/layout.css" type="text/css" media="all">
+
     <link rel="stylesheet" href="../css/style.css" type="text/css" media="all">
     <script type="text/javascript" src="../js/jquery-1.4.2.js" ></script>
     <script type="text/javascript" src="../js/cufon-yui.js"></script>
@@ -29,7 +30,7 @@
 		<header>
 			<div class="wrapper">
 				<h1>
-					<a href="home" id="logo">Air Lines</a><span id="slogan">International Travel</span>
+					<a href="home" id="logo">AirLines</a><span id="slogan">Viajes de Confianza</span>
 				</h1>
 				<div class="right">
 					<nav>
@@ -56,93 +57,46 @@
 <div class="main">
 	<div id="banner">
 		<div class="text1">
-			COMFORT<span>Guaranteed</span><p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+			Comodidad<span>Garantizada</span><p></p>
 		</div>
-		<a href="#" class="button_top">Order Tickets Online</a>
+		<a href="../reservacion/list" class="button_top">Reservacion de Tiqutes</a>
 	</div>
 </div>
 <!-- / header -->
 <div class="main">
 <!-- content -->
 	<section id="content">
-		<article class="col1">
-			<div class="pad_1">
-				<h2>Your Flight Planner</h2>
-				<form id="form_1" action="" method="post">
-					<div class="wrapper pad_bot1">
-						<div class="radio marg_right1">
-							<input type="radio" name="name1">Round Trip<br>
-							<input type="radio" name="name1">One Way
-						</div>
-						<div class="radio">
-							<input type="radio" name="name1">Empty-Leg<br>
-							<input type="radio" name="name1">Multi-Leg
-						</div>
-					</div>
-					<div class="wrapper">
-						Leaving From:
-						<div class="bg"><input type="text" class="input input1" value="Enter City or Airport Code" onblur="if(this.value=='') this.value='Enter City or Airport Code'" onFocus="if(this.value =='Enter City or Airport Code' ) this.value=''"></div>
-					</div>
-					<div class="wrapper">
-						Going To:
-						<div class="bg"><input type="text" class="input input1" value="Enter City or Airport Code" onblur="if(this.value=='') this.value='Enter City or Airport Code'" onFocus="if(this.value =='Enter City or Airport Code' ) this.value=''"></div>
-					</div>
-					<div class="wrapper">
-						Departure Date and Time:
-						<div class="wrapper">
-							<div class="bg left"><input type="text" class="input input2" value="mm/dd/yyyy " onblur="if(this.value=='') this.value='mm/dd/yyyy '" onFocus="if(this.value =='mm/dd/yyyy ' ) this.value=''"></div>
-							<div class="bg right"><input type="text" class="input input2" value="12:00am" onblur="if(this.value=='') this.value='12:00am'" onFocus="if(this.value =='12:00am' ) this.value=''"></div>
-						</div>
-					</div>
-					<div class="wrapper">
-						Return Date and Time:
-						<div class="wrapper">
-							<div class="bg left"><input type="text" class="input input2" value="mm/dd/yyyy " onblur="if(this.value=='') this.value='mm/dd/yyyy '" onFocus="if(this.value =='mm/dd/yyyy ' ) this.value=''"></div>
-							<div class="bg right"><input type="text" class="input input2" value="12:00am" onblur="if(this.value=='') this.value='12:00am'" onFocus="if(this.value =='12:00am' ) this.value=''"></div>
-						</div>
-					</div>
-					<div class="wrapper">
-						<p>Passenger(s):</p>
-						<div class="bg left"><input type="text" class="input input2" value="# passengers" onblur="if(this.value=='') this.value='# passengers'" onFocus="if(this.value =='# passengers' ) this.value=''"></div>
-						<a href="#" class="button2" onClick="document.getElementById('form_1').submit()">go!</a>
-					</div>
-				</form>
-				<h2>Recent News</h2>
-				<p class="under"><a href="#" class="link1">Nemo enim ipsam voluptatem quia</a><br>November 5, 2010</p>
-				<p class="under"><a href="#" class="link1">Voluptas aspernatur autoditaut fjugit</a><br>November 1, 2010</p>
-				<p><a href="#" class="link1">Sed quia consequuntur magni</a><br>October 23, 2010</p>
-			</div>
-		</article>
+		
 		<article class="col2 pad_left1">
-			<h2>Welcome to our Website!</h2>
-			<p class="color1">Air Lines is a free web template created by TemplateMonster.com team. This website template is optimized for 1024X768 screen resolution. </p>
+			<h2>Bienvenido a Aero Destinos!</h2>
+			
 			<div class="marker">
 				<div class="wrapper">
-					<p class="pad_bot2"><strong>Aircraft</strong></p>
-					<p class="pad_bot2">Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione.</p>
+					<p class="pad_bot2"><strong>Aeronaves</strong></p>
+					<p class="pad_bot2">Contamos con las mejores aeronaves de diferentes capacidades para el Transporte Aéreo de Pasajeros. Contamos con servicios especiales. Contáctanos, no encontrarás en Costa Rica una empresa que te pueda brindar lo que nosotros podemos ofrecerte.</p>
 				</div>
 			</div>
-			<div class="wrapper pad_bot2"><a href="#" class="button1">Read More</a></div>
+			<div class="wrapper pad_bot2"><a href="#" class="button1">Leer Mas</a></div>
 			<div class="marker">
 				<div class="wrapper">
 					<p class="pad_bot2"><strong>Charters</strong></p>
-					<p class="pad_bot2">Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem.</p>
+					<p class="pad_bot2">Aero Destinos es uno de los proveedores de vuelos privados tipo chárter más grande de Costa Rica y ofreciendo a sus clientes la mejor calidad en aviones, confianza y servicio por 5 años.</p>
 				</div>
 			</div>
 			<div class="wrapper pad_bot2">
-				<a href="#" class="button1">Reservation</a>
-				<a href="#" class="button2">Fleet</a>
+				<a href="#" class="button1">Reservacion</a>
+				<a href="#" class="button2">Flota</a>
 			</div>
 			<div class="wrapper">
 				<article class="cols">
-					<h2>Our Clients</h2>
-					<p><strong>Avero eoset</strong> accusamus et iusto odio dig- nissimos ducimus qui blanditiis praesentium voluptatum deleniti.</p>
-					<p>Atque corrupti quos dolores et quas moles- tias excepturi sint <a href="#">occaecati cupiditate</a> non provident, similique sunt in culpa qui officia deserunt mollitia animi, id est laborum et dolorum fuga.</p>
+					<h2>Nuestros Clientes</h2>
+					<p>La calidad de nuestro servicio se basa en la profunda especialización. Nuestros clientes confían en la habilidad y experiencia de nuestros profesionales.</p>
+					<p>Nuestro único objetivo es velar por la satisfacción del cliente.</p>
 				</article>
 				<div class="box1">
 					<div class="pad_1">
 						<div class="wrapper">
-							<p class="pad_bot2">Lorem ipsum dolor sit amet, consectetur adip- isicing elit, sed do eius- mod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis </p>
+							<p class="pad_bot2">Recomiendo seriamente al equipo de Aero Destinos. Muy profesionales, con una gran idoneidad y un excelente trato a nivel personal, no existe ni una sola queja acerca del servicio.</p>
 							<p><span class="right">Mr. Thomas Lloyd</span>&nbsp;<br></p>
 						</div>
 					</div>
@@ -157,7 +111,7 @@
 	<div class="main">
 <!-- footer -->
 		<footer>
-			Website template designed by <a href="" target="_blank" rel="nofollow">Grupo 3 Progra 4 ULatina</a><br>
+			Website designed by <a href="" target="_blank" rel="nofollow">Grupo 3 Progra 4 ULatina</a><br>
 			
 		</footer>
 <!-- / footer -->
