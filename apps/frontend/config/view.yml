@@ -1,20 +1,20 @@
 # You can find more information about this file on the symfony website:
 # http://www.symfony-project.org/reference/1_4/en/13-View
 
-homeSuccess:
+default:
   http_metas:
     content-type: text/html
 
   metas:
-    #title:        symfony project
+    title:        symfony project
     #description:  symfony project
     #keywords:     symfony, project
     #language:     en
     #robots:       index, follow
 
-  stylesheets:    []
+  stylesheets:    [test, test2]
 
   javascripts:    []
 
-  has_layout:     false
+  has_layout:     true
   layout:         layout
