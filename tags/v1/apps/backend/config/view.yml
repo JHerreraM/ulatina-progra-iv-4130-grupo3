@@ -1,7 +1,7 @@
 # You can find more information about this file on the symfony website:
 # http://www.symfony-project.org/reference/1_4/en/13-View
 
-indexSuccess:
+default:
   http_metas:
     content-type: text/html
 
@@ -12,9 +12,9 @@ indexSuccess:
     #language:     en
     #robots:       index, follow
 
-  stylesheets:    []
+  stylesheets:    [test, test2]
 
-  javascripts:    [Myriad_Pro_400.font]
+  javascripts:    []
 
   has_layout:     true
   layout:         layout

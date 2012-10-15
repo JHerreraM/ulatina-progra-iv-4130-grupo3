@@ -15,9 +15,25 @@ class principalActions extends sfActions
   *
   * @param sfRequest $request A request object
   */
+
   public function executeHome(sfWebRequest $request)
   {
+      $this->setLayout('layout');
   }
   
+  public function executeAviones(sfWebRequest $request)
+  {
+      $this->setLayout('layout');
+  }
+  
+  public function executeSeguridad(sfWebRequest $request)
+  {
+      $this->setLayout('layout');
+  }
+  
+  public function executeContacto(sfWebRequest $request)
+  {
+      $this->setLayout('layout');
+  }
   
 }
