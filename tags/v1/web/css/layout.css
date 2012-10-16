@@ -1,8 +1,7 @@
-.col1, .col2, .col3, .cols, cols2 {float:left}
+.col1, .col2, .col3, .cols {float:left}
 .col1 {width:346px;background:#f4f4f4;height:100%} 
 .col2 {width:544px}
-.cols {width:580px}
-.cols2 {width:180px}
+.cols {width:280px}
 /* index.html */
 #page1 h1 {padding-top:33px}
 #page1 #top_nav {padding-top:33px}

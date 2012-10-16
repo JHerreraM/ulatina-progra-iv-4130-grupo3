@@ -20,7 +20,7 @@ p {padding-bottom:20px}
 /* header */
 header {width:100%;overflow:hidden;height:106px}
 header .right {width:600px}
-#logo {display:block;background:url(../images/logo.jpg) 0 0 no-repeat;width:195px;height:39px;text-indent:-5000px}
+#logo {display:block;background:url(../images/logo.jpg) 0 0 no-repeat;width:176px;height:39px;text-indent:-5000px}
 #slogan {display:block}
 #top_nav {float:right;padding:25px 60px 0 0}
 #top_nav li {float:left;padding-right:21px;margin-right:20px;background:url(../images/line_top.gif) right 0 no-repeat;padding-top:2px;padding-bottom:3px}
@@ -33,13 +33,12 @@ header .right {width:600px}
 .text1 {font-weight:600;color:#f0f0f0;font-size:50px;line-height:60px;width:330px;letter-spacing:-2px}
 .text1 span {font-size:45px;line-height:50px;display:block;padding-left:80px;margin-top:-12px;font-weight:400;letter-spacing:-2px}
 .text1 p {font-size:18px;line-height:20px;font-weight:400;padding:13px 0 25px 0;letter-spacing:-1px}
-.button_top {display:inline-block;background:url(../images/button_top.jpg) 0 0 no-repeat;font-size:15px;text-transform:uppercase;color:#fff;text-decoration:none;line-height:31px;padding-right:40px;text-align:center;width:196px}
+.button_top {display:inline-block;background:url(../images/button_top.jpg) 0 0 no-repeat;font-size:16px;text-transform:uppercase;color:#fff;text-decoration:none;line-height:31px;padding-right:40px;text-align:center;width:196px}
 .button_top:hover {background:url(../images/button_top_active.jpg) 0 0 no-repeat}
 /* content */
-#content {width:1000px;overflow:hidden}
+#content {width:100%;overflow:hidden}
 .pad_1 {padding:0 50px 35px 60px}
-.pad_left1 {padding-left:10px;width:1000px}
-.pad_left2 {padding-left:10px;width:750px}
+.pad_left1 {padding-left:50px}
 .pad_bot1 {padding-bottom:20px}
 .pad_bot2 {padding-bottom:10px}
 .marg_left1 {margin-left:25px}
