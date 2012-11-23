@@ -36,4 +36,19 @@ class principalActions extends sfActions
       $this->setLayout('layout');
   }
   
+  public function executeLogin(sfWebRequest $request)
+  {
+      $this->setLayout('layout');
+  }
+  
+  public function executeNosotros(sfWebRequest $request)
+  {
+      $this->setLayout('layout');
+  }
+  
+  public function executeCharters(sfWebRequest $request)
+  {
+      $this->setLayout('layout');
+  }
+  
 }
