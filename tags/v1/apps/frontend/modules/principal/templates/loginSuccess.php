@@ -1,6 +1,8 @@
+
 <div style="width:300px; heigth: 500px; background: lightgrey; padding-top: 25px; padding-bottom: 25px; padding-left: 25px; padding-right: 25px">
 <form method="post" action="login">
     <input type="hidden" name="action" value="login" />
+    <h2>Login</h2>
     <table>
         <tr>
             <td width="100px;" valign="center">
