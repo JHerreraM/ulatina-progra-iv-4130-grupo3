@@ -42,7 +42,7 @@
 						<a href="#" class="button2" onClick="document.getElementById('form_1').submit()">go!</a>
 					</div>
 				</form>
-				<h2>Recent News</h2>
+				<h2>Noticias</h2>
 				<p class="under"><a href="#" class="link1">Nemo enim ipsam voluptatem quia</a><br>November 5, 2010</p>
 				<p class="under"><a href="#" class="link1">Voluptas aspernatur autoditaut fjugit</a><br>November 1, 2010</p>
 				<p><a href="#" class="link1">Sed quia consequuntur magni</a><br>October 23, 2010</p>
