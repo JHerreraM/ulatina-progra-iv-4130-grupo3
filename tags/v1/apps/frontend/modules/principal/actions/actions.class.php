@@ -33,6 +33,11 @@ class principalActions extends sfActions
   
   public function executeContacto(sfWebRequest $request)
   {
+      $accion = $request->getParameter("accion");
+      if($accion == "insertar"){
+          $test = new Test();
+          $test::message();
+      }
       $this->setLayout('layout');
   }
   
