@@ -57,10 +57,16 @@ class backendActions extends sfActions
           $this->setLayout('layoutBackend');
           
           $db = DB::Instance();
-          $sql = "select * from vuelos";
-          
+          $sql = "select codigo_vuelo as codigo,  
+                        codigo_aeropuerto_origen as nombreOrigen, 
+                        codigo_aeropuerto_destino as nombreDestino,  
+                        tiempo_salida, 
+                        tiempo_llegada,
+                        duracion_estimada,
+                        placa_avion from vuelos";
+
           $this->vuelos = $db->queryArray($sql);
-          
+   
   }
   
   
