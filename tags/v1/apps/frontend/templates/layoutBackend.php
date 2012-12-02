@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 	<head>
 		<meta http-equiv="content-type" content="text/html; charset=utf-8" />
-		<title>Magic Admin. Advanced, Beautiful and Customizable Admin Template.</title>
+		<title>Aerolinea Backend</title>
                 
 <?php include_stylesheets() ?>
 <?php include_javascripts() ?>
@@ -32,7 +32,7 @@
                         <div id="logo">
                             <ul id="nav">
                                 <li <?php if($this->menuCurrent == "principal"){ echo 'id="current"';} ?> ><a href="index">Principal</a></li>
-                                <li <?php if($this->menuCurrent == "destinos"){ echo 'id="current"';} ?>><a href="">Destinos</a></li>
+                                <li <?php if($this->menuCurrent == "destinos"){ echo 'id="current"';} ?>><a href="destinos">Destinos</a></li>
                                 <li <?php if($this->menuCurrent == "aviones"){ echo 'id="current"';} ?>><a href="aviones">Aviones</a></li>
                                 <li <?php if($this->menuCurrent == "vuelos"){ echo 'id="current"';} ?>><a href="vuelos">Vuelos</a></li>
                                 <li <?php if($this->menuCurrent == "configuracion"){ echo 'id="current"';} ?>><a href="">Configuracion</a></li>

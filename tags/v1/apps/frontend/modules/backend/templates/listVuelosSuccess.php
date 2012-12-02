@@ -43,9 +43,9 @@
                                 <tr>
                                     <th style="width:5%">#</th>
                                     <th style="width:13%">Codigo Vuelo</th>
-                                    <th style="width:13%">Aeropuerto Origen</th>
-                                    <th style="width:13%">Aeropuerto Destino</th>
-                                    <th style="width:5%">Avion</th>
+                                    <th style="width:13%">Origen</th>
+                                    <th style="width:13%">Destino</th>
+                                    <th style="width:13%">Avion</th>
                                     <th style="width:8%">Salida</th>
                                     <th style="width:8%">Llegada</th>
                                     <th style="width:13%">Duracion Estimada</th>
@@ -58,13 +58,13 @@
                                 <tr>
                                     <td class="align-center">1</td>
                                     <td><?php echo $vuelo["codigo"] ?></td>
-                                    <td><?php echo $avion["nombreOrigen"] ?></td>
-                                    <td><?php echo $avion["nombreDestino"] ?></td>
-                                    <td><?php echo $avion["placa_avion"] ?></td>
-                                    <td><?php echo $avion["salida"] ?></td>
-                                    <td><?php echo $avion["llegada"] ?></td>
-                                    <td><?php echo $avion["duracion"] ?></td>
-                                    <td><?php echo $avion["numeroTripulacion"] ?></td>
+                                    <td><?php echo $vuelo["nombreOrigen"] ?></td>
+                                    <td><?php echo $vuelo["nombreDestino"] ?></td>
+                                    <td><?php echo $vuelo["placa_avion"] ?></td>
+                                    <td><?php echo $vuelo["tiempo_salida"] ?></td>
+                                    <td><?php echo $vuelo["tiempo_llegada"] ?></td>
+                                    <td><?php echo $vuelo["duracion_estimada"] ?></td>
+                                    <td><?php echo $vuelo["numeroTripulacion"] ?></td>
                                    
                                     <td>
                                     	<input type="checkbox" />
