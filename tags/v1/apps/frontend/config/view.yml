@@ -12,9 +12,9 @@ default:
     #language:     en
     #robots:       index, follow
 
-  stylesheets:    [test, test2]
+  stylesheets:    [test, test2, reset]
 
-  javascripts:    []
+  javascripts:    [jquery.wysiwyg]
 
   has_layout:     true
   layout:         layout
