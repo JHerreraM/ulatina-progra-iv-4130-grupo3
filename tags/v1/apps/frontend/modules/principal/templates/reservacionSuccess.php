@@ -1,9 +1,3 @@
-<script>
-    function submitReservacion(){
-        document.reservacion.submit();
-    }
-</script>
-
         <section id="content">
 
 		<article class="col1">
@@ -46,56 +40,14 @@
 						<a href="javascript:submitReservacion();" class="button2" onClick="document.getElementById('form_1').submit()">go!</a>
 					</div>
 				</form>
-                                <h2>Noticias</h2>
-                                <?php foreach($noticias as $noticia){ ?> 
-                                    <p class="under"><a href="#" class="link1"><?php echo $noticia["titulo"] ?></a><br>
-                                     <?php 
-                                            $oDate = new DateTime($noticia["fecha"]);
-                                            $sDate = $oDate->format("F j, Y");
-                                            echo $sDate;
-                                     ?>
-                                    </p>
-                                <?php } ?>
-				
+
 			</div>
 		</article>
 
 		<article class="col2 pad_left1">
-			<h2>Bienvenido a Aero Destinos!</h2>
+			<h2>Resultados</h2>
 			
-			<div class="marker">
-				<div class="wrapper">
-					<p class="pad_bot2"><strong>Aeronaves</strong></p>
-					<p class="pad_bot2">Contamos con las mejores aeronaves de diferentes capacidades para el Transporte Aéreo de Pasajeros. Contamos con servicios especiales. Contáctanos, no encontrarás en Costa Rica una empresa que te pueda brindar lo que nosotros podemos ofrecerte.</p>
-				</div>
-			</div>
-                        <div class="wrapper pad_bot2"></div>
-			<div class="marker">
-				<div class="wrapper">
-					<p class="pad_bot2"><strong>Charters</strong></p>
-					<p class="pad_bot2">Aero Destinos es uno de los proveedores de vuelos privados tipo chárter más grande de Costa Rica y ofreciendo a sus clientes la mejor calidad en aviones, confianza y servicio por 5 años.</p>
-				</div>
-			</div>
-			<div class="wrapper pad_bot2">
-				<a href="#" class="button1">Reservacion</a>
-				<a href="#" class="button2">Flota</a>
-			</div>
-			<div class="wrapper">
-				<article class="cols">
-					<h2>Nuestros Clientes</h2>
-					<p>La calidad de nuestro servicio se basa en la profunda especialización. Nuestros clientes confían en la habilidad y experiencia de nuestros profesionales.</p>
-					<p>Nuestro único objetivo es velar por la satisfacción del cliente.</p>
-				</article>
-				<div class="box1">
-					<div class="pad_1">
-						<div class="wrapper">
-							<p class="pad_bot2">Recomiendo seriamente al equipo de Aero Destinos. Muy profesionales, con una gran idoneidad y un excelente trato a nivel personal, no existe ni una sola queja acerca del servicio.</p>
-							<p><span class="right">Mr. Thomas Lloyd</span>&nbsp;<br></p>
-						</div>
-					</div>
-				</div>
-			</div>
-		</article>
-<
-	</section>
 
+		</article>
+
+	</section>

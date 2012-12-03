@@ -52,7 +52,7 @@ class backendActions extends sfActions
           
   }
   
-    public function executeListVuelos(sfWebRequest $request)
+  public function executeListVuelos(sfWebRequest $request)
   {
           $this->setLayout('layoutBackend');
           
@@ -66,8 +66,9 @@ class backendActions extends sfActions
                         placa_avion from vuelos";
 
           $this->vuelos = $db->queryArray($sql);
-   
   }
+  
+
   
   
 }

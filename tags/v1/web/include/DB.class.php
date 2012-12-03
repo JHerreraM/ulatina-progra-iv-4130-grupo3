@@ -28,6 +28,11 @@ class DB
             return $temp->fetchAll();
         }
         
+        public function query($sql){            
+            return $this->conn->query($sql);
+        }
+        
+        
         public function exec($sql){            
             return $this->conn->exec($sql);
         }

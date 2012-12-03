@@ -66,7 +66,7 @@ footer a {color:#3e96b4}
 #form_1 .input1 {width:205px}
 #form_1 .input2 {width:83px}
 #form_1 .bg {background:#fff;border-top:1px solid #ccc;border-left:1px solid #ccc;border-radius:3px;-moz-border-radius:3px;-webkit-border-radius:3px;behavior:url(js/PIE.htc);position:relative;margin-bottom:8px}
-#form_1 .radio {width:92px;float:left}
+#form_1 .radio {float:left}
 #form_1 .radio input {vertical-align:middle;float:left;line-height:20px}
 #ContactForm {}
 #ContactForm .bg {float:right;background:#f8f8f8;border-top:1px solid #c6c6c6;border-left:1px solid #c6c6c6;margin-bottom:8px;border-radius:3px;-moz-border-radius:3px;-webkit-border-radius:3px;behavior:url(js/PIE.htc);position:relative}

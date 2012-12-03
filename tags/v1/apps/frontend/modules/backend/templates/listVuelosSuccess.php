@@ -54,7 +54,7 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                <?php foreach($vuelos as $vuelo){ ?>      
+                                <?php foreach($vuelos as $vuelo){  ?>      
                                 <tr>
                                     <td class="align-center">1</td>
                                     <td><?php echo $vuelo["codigo"] ?></td>
