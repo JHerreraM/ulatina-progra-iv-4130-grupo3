@@ -14,27 +14,13 @@
     $sf_response->addJavascript('jquery.pstrength-min.1.2.js');
     $sf_response->addJavascript('thickbox');
 
-    $this->sublinks = Array( Array("Principal", "vuelos" ), Array("Listado", "listVuelos" ) );
-    $this->menuCurrent = "vuelos";
+    $this->sublinks = Array( Array("Principal", "ciudades" ), Array("Listado", "listCiudades" ) );
+    $this->menuCurrent = "ciudades";
 ?>  
-         <div class="grid_12"> 
-                <div class="bottom-spacing">
-                
-                    
-                    <!-- Table records filtering -->
-                    Filtro: 
-                    <select class="input-short">
-                    	<option value="1" selected="selected">Seleccione Filtro</option>
-                        <option value="2">Hoy</option>
-                        <option value="3">Ultima Semana</option>
-                        <option value="4">Ultimo Mes</option>
-                    </select>
-                    
-                </div>
 
                 <!-- Example table -->
                 <div class="module">
-                	<h2><span>Listado de Vuelos</span></h2>
+                	<h2><span>Listado de Ciudades</span></h2>
                     
                     <div class="module-table-body">
                     	<form action="">
@@ -42,30 +28,19 @@
                         	<thead>
                                 <tr>
                                     <th style="width:5%">#</th>
-                                    <th style="width:13%">Codigo Vuelo</th>
-                                    <th style="width:13%">Origen</th>
-                                    <th style="width:13%">Destino</th>
-                                    <th style="width:13%">Avion</th>
-                                    <th style="width:8%">Salida</th>
-                                    <th style="width:8%">Llegada</th>
-                                    <th style="width:13%">Duracion Estimada</th>
-                                    <th style="width:13%">Tripulacion</th>
-                                    <th style="width:13%">Acciones</th>
+                                    <th style="width:15%">Cod. País</th>
+                                    <th style="width:15%">Cod. Ciudad</th>
+                                    <th style="width:40%">Nombre Ciudad</th>
+                                    <th style="width:15%">Acciones</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                <?php foreach($vuelos as $vuelo){  ?>      
+                                <?php foreach($ciudades as $ciudad){ ?>      
                                 <tr>
                                     <td class="align-center">1</td>
-                                    <td><?php echo $vuelo["codigo"] ?></td>
-                                    <td><?php echo $vuelo["nombreOrigen"] ?></td>
-                                    <td><?php echo $vuelo["nombreDestino"] ?></td>
-                                    <td><?php echo $vuelo["placa_avion"] ?></td>
-                                    <td><?php echo $vuelo["tiempo_salida"] ?></td>
-                                    <td><?php echo $vuelo["tiempo_llegada"] ?></td>
-                                    <td><?php echo $vuelo["duracion_estimada"] ?></td>
-                                    <td><?php echo $vuelo["numeroTripulacion"] ?></td>
-                                   
+                                    <td><?php echo $ciudad["codigo_pais"] ?></td>
+                                    <td><?php echo $ciudad["codigo_ciudad"] ?></td>
+                                    <td><?php echo $ciudad["nombre_ciudad"] ?></td>
                                     <td>
                                     	<input type="checkbox" />
                                         <a href=""><img src="../images/tick-circle.gif" tppabs="http://www.xooom.pl/work/magicadmin/images/tick-circle.gif" width="16" height="16" alt="published" /></a>
@@ -112,4 +87,3 @@
                         <div style="clear: both"></div>
                      </div> <!-- End .module-table-body -->
                 </div> <!-- End .module -->
-         </div>

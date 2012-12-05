@@ -14,58 +14,47 @@
     $sf_response->addJavascript('jquery.pstrength-min.1.2.js');
     $sf_response->addJavascript('thickbox');
 
-    $this->sublinks = Array( Array("Principal", "vuelos" ), Array("Listado", "listVuelos" ) );
-    $this->menuCurrent = "vuelos";
+    $this->sublinks = Array( Array("Principal", "clientes" ), Array("Listado", "listClientes" ) );
+    $this->menuCurrent = "clientes";
 ?>  
-         <div class="grid_12"> 
-                <div class="bottom-spacing">
-                
-                    
-                    <!-- Table records filtering -->
-                    Filtro: 
-                    <select class="input-short">
-                    	<option value="1" selected="selected">Seleccione Filtro</option>
-                        <option value="2">Hoy</option>
-                        <option value="3">Ultima Semana</option>
-                        <option value="4">Ultimo Mes</option>
-                    </select>
-                    
-                </div>
 
                 <!-- Example table -->
                 <div class="module">
-                	<h2><span>Listado de Vuelos</span></h2>
+                	<h2><span>Listado de Clientes</span></h2>
                     
                     <div class="module-table-body">
                     	<form action="">
                         <table id="myTable" class="tablesorter">
                         	<thead>
                                 <tr>
-                                    <th style="width:5%">#</th>
-                                    <th style="width:13%">Codigo Vuelo</th>
-                                    <th style="width:13%">Origen</th>
-                                    <th style="width:13%">Destino</th>
-                                    <th style="width:13%">Avion</th>
-                                    <th style="width:8%">Salida</th>
-                                    <th style="width:8%">Llegada</th>
-                                    <th style="width:13%">Duracion Estimada</th>
-                                    <th style="width:13%">Tripulacion</th>
-                                    <th style="width:13%">Acciones</th>
+                                    <th style="width:2%">#</th>
+                                    <th style="width:8%">Identificación</th>
+                                    <th style="width:8%">Fecha Nacimiento</th>
+                                    <th style="width:5%">Gnro.</th>
+                                    <th style="width:15%">Nombre</th>
+                                    <th style="width:15%">Dirección</th>
+                                    <th style="width:10%">Email</th>
+                                    <th style="width:7%">Tel Principal</th>
+                                    <th style="width:7%">Tel Secundario</th>
+                                    <th style="width:3%">Pais</th>
+                                    <th style="width:5%">Tipo Sangre</th>
+                                    <th style="width:15%">Acciones</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                <?php foreach($vuelos as $vuelo){  ?>      
+                                <?php foreach($personal as $person){ ?>      
                                 <tr>
                                     <td class="align-center">1</td>
-                                    <td><?php echo $vuelo["codigo"] ?></td>
-                                    <td><?php echo $vuelo["nombreOrigen"] ?></td>
-                                    <td><?php echo $vuelo["nombreDestino"] ?></td>
-                                    <td><?php echo $vuelo["placa_avion"] ?></td>
-                                    <td><?php echo $vuelo["tiempo_salida"] ?></td>
-                                    <td><?php echo $vuelo["tiempo_llegada"] ?></td>
-                                    <td><?php echo $vuelo["duracion_estimada"] ?></td>
-                                    <td><?php echo $vuelo["numeroTripulacion"] ?></td>
-                                   
+                                    <td><?php echo $person["identificacion"] ?></td>
+                                    <td><?php echo $person["fecha_nacimiento"] ?></td>
+                                    <td><?php echo $person["genero"] ?></td>
+                                    <td><?php echo $person["nombre_completo"] ?></td>
+                                    <td><?php echo $person["direccion"] ?></td>
+                                    <td><?php echo $person["email"] ?></td>
+                                    <td><?php echo $person["tel_principal"] ?></td>
+                                    <td><?php echo $person["tel_secundario"] ?></td>
+                                    <td><?php echo $person["codigo_pais"] ?></td>
+                                    <td><?php echo $person["tipo_sangre"] ?></td>
                                     <td>
                                     	<input type="checkbox" />
                                         <a href=""><img src="../images/tick-circle.gif" tppabs="http://www.xooom.pl/work/magicadmin/images/tick-circle.gif" width="16" height="16" alt="published" /></a>
@@ -112,4 +101,3 @@
                         <div style="clear: both"></div>
                      </div> <!-- End .module-table-body -->
                 </div> <!-- End .module -->
-         </div>

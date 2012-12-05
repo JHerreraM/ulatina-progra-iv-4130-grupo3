@@ -32,7 +32,11 @@
                         <div id="logo">
                             <ul id="nav">
                                 <li <?php if($this->menuCurrent == "principal"){ echo 'id="current"';} ?> ><a href="index">Principal</a></li>
-                                <li <?php if($this->menuCurrent == "destinos"){ echo 'id="current"';} ?>><a href="destinos">Destinos</a></li>
+                                <li <?php if($this->menuCurrent == "personal"){ echo 'id="current"';} ?>><a href="personal">Personal</a></li>
+                                <li <?php if($this->menuCurrent == "clientes"){ echo 'id="current"';} ?>><a href="clientes">Clientes</a></li>
+                                <li <?php if($this->menuCurrent == "paises"){ echo 'id="current"';} ?>><a href="paises">Paises</a></li>
+                                <li <?php if($this->menuCurrent == "ciudades"){ echo 'id="current"';} ?>><a href="ciudades">Ciudades</a></li>
+                                <li <?php if($this->menuCurrent == "aeropuertos"){ echo 'id="current"';} ?>><a href="aeropuertos">Aeropuertos</a></li>
                                 <li <?php if($this->menuCurrent == "aviones"){ echo 'id="current"';} ?>><a href="aviones">Aviones</a></li>
                                 <li <?php if($this->menuCurrent == "vuelos"){ echo 'id="current"';} ?>><a href="vuelos">Vuelos</a></li>
                                 <li <?php if($this->menuCurrent == "configuracion"){ echo 'id="current"';} ?>><a href="">Configuracion</a></li>
@@ -86,7 +90,6 @@
                 	<img src="../images/Crystal_Clear_calendar.gif" tppabs="http://www.xooom.pl/work/magicadmin/images/Crystal_Clear_calendar.gif" width="64" height="64" alt="edit" />
                 	<span>Calendar</span>
                 </a>
-                -->
                 <a href="" class="dashboard-module">
                 	<img src="../images/Crystal_Clear_user.gif" tppabs="http://www.xooom.pl/work/magicadmin/images/Crystal_Clear_user.gif" width="64" height="64" alt="edit" />
                 	<span>My profile</span>
@@ -102,7 +105,9 @@
                 	<span>Settings</span>
                 </a>
                 <div style="clear: both"></div>
-            </div> <!-- End .grid_7 -->
+                -->
+
+                </div> <!-- End .grid_7 -->
 
             
 <?php echo $sf_content ?>  
