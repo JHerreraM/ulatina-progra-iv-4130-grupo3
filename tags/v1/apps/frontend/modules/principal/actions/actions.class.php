@@ -70,17 +70,7 @@ class principalActions extends sfActions
   
   public function executeReservacion(sfWebRequest $request){
       $this->setLayout('layout');
-      
-      $sentidoReservacion = $request->getParameter("sentido");
-      $salida = $request->getParameter("salida");
-      $llegada = $request->getParameter("llegada");
-      $fechaSalida = $request->getParameter("fechaSalida");
-      $horaSalida = $request->getParameter("horaSalida");
-      $horaLlegada = $request->getParameter("horaLlegada");
-      $fechaLlegada = $request->getParameter("fechaLlegada"); 
-      $numPasajeros = $request->getParameter("numPasajeros"); 
-      
-      echo $this->sentidoReservacion;
+
   }
   
 }
