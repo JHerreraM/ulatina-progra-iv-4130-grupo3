@@ -2,14 +2,24 @@
     function submitReservacion(){
         document.reservacion.submit();
     }
-    $(document).ready(function () {
+    $(document).ready( function () {
         $(function() {
             $( "#fechasalida" ).datepicker();
         });
         $(function() {
             $( "#fechallegada" ).datepicker();
         });
-    }
+        $('#tiemposalida').timepicker({
+            hourGrid: 4,
+            minuteGrid: 10,
+            timeFormat: 'hh:mm tt'
+        });
+        $('#tiempollegada').timepicker({
+            hourGrid: 4,
+            minuteGrid: 10,
+            timeFormat: 'hh:mm tt'
+        });
+    } );
 </script>
 
         <section id="content">
@@ -38,14 +48,14 @@
 						Fecha y Hora de Salida:
 						<div class="wrapper">
 							<div class="bg left"><input id="fechasalida" type="text" name="fechaSalida"  class="input input2" value="mm/dd/yyyy " onblur="if(this.value=='') this.value='mm/dd/yyyy '" onFocus="if(this.value =='mm/dd/yyyy ' ) this.value=''"></div>
-							<div class="bg right"><input id="fechallegada" type="text" name="horaSalida" class="input input2" value="12:00am" onblur="if(this.value=='') this.value='12:00am'" onFocus="if(this.value =='12:00am' ) this.value=''"></div>
+							<div class="bg right"><input id="tiemposalida"  type="text" name="horaSalida" class="input input2" value="12:00am" onblur="if(this.value=='') this.value='12:00am'" onFocus="if(this.value =='12:00am' ) this.value=''"></div>
 						</div>
 					</div>
 					<div class="wrapper">
 						Fecha y Hora de Regreso:
 						<div class="wrapper">
-							<div class="bg left"><input type="text" name="fechaRegreso"  class="input input2" value="mm/dd/yyyy " onblur="if(this.value=='') this.value='mm/dd/yyyy '" onFocus="if(this.value =='mm/dd/yyyy ' ) this.value=''"></div>
-							<div class="bg right"><input type="text" name="horaRegreso"  class="input input2" value="12:00am" onblur="if(this.value=='') this.value='12:00am'" onFocus="if(this.value =='12:00am' ) this.value=''"></div>
+							<div class="bg left"><input type="text" id="fechallegada" name="fechaRegreso"  class="input input2" value="mm/dd/yyyy " onblur="if(this.value=='') this.value='mm/dd/yyyy '" onFocus="if(this.value =='mm/dd/yyyy ' ) this.value=''"></div>
+							<div class="bg right"><input type="text" id="tiempollegada" name="horaRegreso"  class="input input2" value="12:00am" onblur="if(this.value=='') this.value='12:00am'" onFocus="if(this.value =='12:00am' ) this.value=''"></div>
 						</div>
 					</div>
 					<div class="wrapper">
