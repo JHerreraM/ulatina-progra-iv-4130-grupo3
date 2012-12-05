@@ -2,6 +2,14 @@
     function submitReservacion(){
         document.reservacion.submit();
     }
+    $(document).ready(function () {
+        $(function() {
+            $( "#fechasalida" ).datepicker();
+        });
+        $(function() {
+            $( "#fechallegada" ).datepicker();
+        });
+    }
 </script>
 
         <section id="content">
@@ -9,7 +17,7 @@
 		<article class="col1">
 			<div class="pad_1">
 				<h2>Planificador Vuelo</h2>
-				<form name="reservacion" id="form_1" action="reservacion" method="post">
+				<form name="reservacion" id="form_1" action="../reservacion/inicial" method="post">
 					<div class="wrapper pad_bot1">
 						<div class="radio marg_right1">
 							<input type="radio" name="sentido" value="roundtrip">Ida y Vuelta<br>
@@ -29,8 +37,8 @@
 					<div class="wrapper">
 						Fecha y Hora de Salida:
 						<div class="wrapper">
-							<div class="bg left"><input type="text" name="fechaSalida"  class="input input2" value="mm/dd/yyyy " onblur="if(this.value=='') this.value='mm/dd/yyyy '" onFocus="if(this.value =='mm/dd/yyyy ' ) this.value=''"></div>
-							<div class="bg right"><input type="text" name="horaSalida" class="input input2" value="12:00am" onblur="if(this.value=='') this.value='12:00am'" onFocus="if(this.value =='12:00am' ) this.value=''"></div>
+							<div class="bg left"><input id="fechasalida" type="text" name="fechaSalida"  class="input input2" value="mm/dd/yyyy " onblur="if(this.value=='') this.value='mm/dd/yyyy '" onFocus="if(this.value =='mm/dd/yyyy ' ) this.value=''"></div>
+							<div class="bg right"><input id="fechallegada" type="text" name="horaSalida" class="input input2" value="12:00am" onblur="if(this.value=='') this.value='12:00am'" onFocus="if(this.value =='12:00am' ) this.value=''"></div>
 						</div>
 					</div>
 					<div class="wrapper">
