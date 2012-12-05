@@ -32,7 +32,7 @@
 		<header>
 			<div class="wrapper">
 				<h1>
-					<a href="home" id="logo">Air Lines</a><span id="slogan">Viajes Locales</span>
+					<a href="../principal/home" id="logo">Air Lines</a><span id="slogan">Viajes Locales</span>
 				</h1>
 				<div class="right">
 					<nav>
@@ -44,7 +44,7 @@
 					</nav>
 					<nav>
 						<ul id="menu">
-							<li id="menu_active"><a href="home">Home</a></li>
+							<li id="menu_active"><a href="../principal/home">Home</a></li>
 							<li><a href="../principal/nosotros">Nosotros</a></li>
 							<li><a href="../principal/seguridad">Seguridad</a></li>
 							<li><a href="../principal/charters">Charters</a></li>

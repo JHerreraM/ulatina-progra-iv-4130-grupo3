@@ -41,7 +41,7 @@ class reservacionActions extends sfActions
       }
   }
   
-  public function executeInicial(sfWebRequest $request){
+  public function executeVueloSalida(sfWebRequest $request){
 
       $this->setLayout('layoutReservacion');
             
@@ -56,24 +56,31 @@ class reservacionActions extends sfActions
       
       $db = DB::Instance();
       $sql = "CALL `p_ci_s_cod_ciudad`('$salida') ;";
-   
+      
       $this->ciudadesSalida = $db->queryArray($sql);
+
       
       $sql2 = "CALL `p_ci_s_cod_ciudad`('$destino') ;";
-      
+            
       $this->ciudadesLlegada = $db->queryArray($sql2);
       
-      if( ( sizeOf( $this->ciudadesSalida) == 1) && ( sizeOf( !$this->ciudadesLlegada) == 1) ){
-           $this->forward("reservacion", "error");
+      if( ( sizeOf( $this->ciudadesSalida) != 1) && ( sizeOf( !$this->ciudadesLlegada) != 1) ){
+           echo "Error";
       }
       
-      $sql3 = " SET @p0 =  '$this->ciudadesSalida[0]';
-                SET @p1 =  '$this->ciudadesLlegada[0]';
-                SET @p2 =  '2012-12-11 00:00:00';
-                SET @p3 =  '2012-12-13 00:00:00';
-                
-                CALL `p_vu_s_vuelos` ( @p0 , @p1 , @p2 , @p3 );";
+      $fechaSalida2 = date("Y-m-d", strtotime($fechaSalida));
+      $horaSalida2 =  date("H:i", STRTOTIME($horaSalida));
       
+      $fechaRegreso2 = date("Y-m-d", strtotime($fechaLlegada));
+      $horaRegreso2 =  date("H:i", STRTOTIME($horaSalida));
+
+      $ciudadSalida = $this->ciudadesSalida[0][0];
+      $cuidadLlegada = $this->ciudadesLlegada[0][0];
+      
+      $sql3 = "CALL `p_vu_s_vuelos` ( '$ciudadSalida' , '$cuidadLlegada' , '$fechaSalida2 $horaSalida2' );";
+      
+     $this->vuelos = $db->queryArray($sql3);
+
   }
   
   public function executeError(sfWebRequest $request){
