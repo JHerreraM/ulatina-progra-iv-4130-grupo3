@@ -5,9 +5,9 @@
     <?php include_metas() ?>
     <?php include_title() ?>
     <link rel="shortcut icon" href="/favicon.ico" />
-    <link rel="stylesheet" href="../css/reset.css" type="text/css" media="all">
-    <link rel="stylesheet" href="../css/layout.css" type="text/css" media="all">
-    <link rel="stylesheet" href="../css/style.css" type="text/css" media="all">
+    <link rel="stylesheet" href="../css/reset.css" type="text/css" media="all"/>
+    <link rel="stylesheet" href="../css/layout.css" type="text/css" media="all"/>
+    <link rel="stylesheet" href="../css/style.css" type="text/css" media="all"/>
         
     <script type="text/javascript" src="../js/jquery-1.4.2.js" ></script>
     <script type="text/javascript" src="../js/cufon-yui.js"></script>
