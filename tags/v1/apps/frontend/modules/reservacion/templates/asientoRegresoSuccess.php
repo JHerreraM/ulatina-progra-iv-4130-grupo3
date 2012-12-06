@@ -17,7 +17,7 @@
 		<article class="col2 pad_left1">
 			<h2>Resultados Vuelo</h2>
 			<div class="wrapper" style="padding-top: 20px;">
-                            <form action="vueloRegreso" method="POST">
+                            <form action="confirmacion" method="POST">
                             <?php
                                 foreach($asientos as $asiento){
                                     $codAsiento = $asiento["codigo_campo"];
