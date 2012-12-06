@@ -55,7 +55,7 @@
 						Fecha y Hora de Regreso:
 						<div class="wrapper">
 							<div class="bg left"><input type="text" id="fechallegada" name="fechaLlegada"  class="input input2" value="mm/dd/yyyy " onblur="if(this.value=='') this.value='mm/dd/yyyy '" onFocus="if(this.value =='mm/dd/yyyy ' ) this.value=''"></div>
-							<div class="bg right"><input type="text" id="tiempollegada" name="fechaLlegada"  class="input input2" value="12:00am" onblur="if(this.value=='') this.value='12:00am'" onFocus="if(this.value =='12:00am' ) this.value=''"></div>
+							<div class="bg right"><input type="text" id="tiempollegada" name="horaLlegada"  class="input input2" value="12:00am" onblur="if(this.value=='') this.value='12:00am'" onFocus="if(this.value =='12:00am' ) this.value=''"></div>
 						</div>
 					</div>
 					<div class="wrapper">
