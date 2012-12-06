@@ -1,7 +1,7 @@
 <?php
 
 
-    $this->sublinks = Array( Array("Principal", "aviones" ), Array("Listado", "listAviones" ) );
+    $this->sublinks = Array( Array("Principal", "vuelos" ), Array("Listado", "listVuelos" ) );
     $this->menuCurrent = "vuelos";
 ?>  
          <div class="grid_12"> 
@@ -48,15 +48,15 @@
                                     <td><?php echo $vuelo["nombreOrigen"] ?></td>
                                     <td><?php echo $vuelo["nombreDestino"] ?></td>
                                     <td><?php echo $vuelo["placa_avion"] ?></td>
-                                    <td><?php echo $vuelo["tiempo_salida"] ?></td>
-                                    <td><?php echo $vuelo["tiempo_llegada"] ?></td>
+                                    <td><?php echo $vuelo["hora_salida"] ?></td>
+                                    <td><?php echo $vuelo["hora_llegada"] ?></td>
                                     <td><?php echo $vuelo["duracion_estimada"] ?></td>
                                     <td><?php echo $vuelo["numeroTripulacion"] ?></td>
                                    
                                     <td>
                                     	<input type="checkbox" />
                                         <a href=""><img src="../images/tick-circle.gif" tppabs="http://www.xooom.pl/work/magicadmin/images/tick-circle.gif" width="16" height="16" alt="published" /></a>
-                                        <a href=""><img src="../images/pencil.gif" tppabs="http://www.xooom.pl/work/magicadmin/images/pencil.gif" width="16" height="16" alt="edit" /></a>
+                                        <a href="editVuelos?vueloEdit=<?php echo $vuelo["codigo"] ?>"><img src="../images/pencil.gif" tppabs="http://www.xooom.pl/work/magicadmin/images/pencil.gif" width="16" height="16" alt="edit" /></a>
                                         <a href=""><img src="../images/balloon.gif" tppabs="http://www.xooom.pl/work/magicadmin/images/balloon.gif" width="16" height="16" alt="comments" /></a>
                                         <a href=""><img src="../images/bin.gif" tppabs="http://www.xooom.pl/work/magicadmin/images/bin.gif" width="16" height="16" alt="delete" /></a>
                                     </td>

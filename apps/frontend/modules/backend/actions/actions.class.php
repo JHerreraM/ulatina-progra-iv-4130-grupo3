@@ -145,8 +145,8 @@ class backendActions extends sfActions
           $sql = "select codigo_vuelo as codigo,  
                         codigo_aeropuerto_origen as nombreOrigen, 
                         codigo_aeropuerto_destino as nombreDestino,  
-                        tiempo_salida, 
-                        tiempo_llegada,
+                        hora_salida, 
+                        hora_llegada,
                         duracion_estimada,
                         placa_avion from vuelos";
 
@@ -179,19 +179,6 @@ class backendActions extends sfActions
       $sql = "select * from paises order by codigo_pais";
           
       $this->paises = $db->queryArray($sql);
-          
-  }
-  
-  public function executeEditAviones(sfWebRequest $request)
-  {
-      $this->setLayout('layoutBackend');
-      $db = DB::Instance();
-      $codAvion = $request->getParameter("avionEdit");
-      
-      $sql = "select * from aviones
-              where codigo_pais = '$codAvion'
-                order by codigo_avion";
-      $this->aviones = $db->queryArray($sql);
           
   }
   
@@ -255,6 +242,74 @@ class backendActions extends sfActions
       $sql = "select * from paises order by codigo_pais";
           
       $this->paises = $db->queryArray($sql);
+          
+  }
+  
+  public function executeEditAviones(sfWebRequest $request)
+  {
+      $this->setLayout('layoutBackend');
+      $db = DB::Instance();
+      $avEdit = $request->getParameter("avionEdit");
+      
+      $sql = "select * from aviones
+              where placa = '$avEdit'   
+               order by placa";
+      $this->aviones = $db->queryArray($sql);
+      /*
+      $sql = "select * from campos_x_avion
+              where placa = '$avEdit'   
+               order by fila, columna";
+      $this->campos = $db->queryArray($sql);*/
+  }
+  
+  public function executeEditVuelos(sfWebRequest $request)
+  {
+      $this->setLayout('layoutBackend');
+      $db = DB::Instance();
+      $vuEdit = $request->getParameter("vueloEdit");
+      
+      $sql = "select * from vuelos
+               where codigo_vuelo = $vuEdit
+              order by codigo_vuelo";
+      $this->vuelos = $db->queryArray($sql);
+      
+      $sql = "select * from aviones   
+              order by placa";
+      $this->aviones = $db->queryArray($sql);
+      
+      $sql = "select * from aeropuertos
+               order by codigo_aeropuerto";
+      $this->aeropuertos = $db->queryArray($sql);
+      
+      $sql = "select vu.tipo_id_personal, vu.identificacion_presonal, pe.nombre_completo
+                from personal_x_vuelo vu,
+                     personal pe
+               where vu.codigo_vuelo = '$vuEdit'
+                 and vu.tipo_id_personal = pe.tipo_id_personal
+                 and vu.identificacion_presonal = pe.identificacion
+               order by pe.identificacion";
+      //$this->personal = $db->queryArray($sql);
+      echo $sql;
+      /*
+      $sql = "select * from campos_x_avion
+              where placa = '$avEdit'   
+               order by fila, columna";
+      $this->campos = $db->queryArray($sql);*/
+  }
+  
+  public function executeEditPersonalXVuelo(sfWebRequest $request)
+  {
+      $this->setLayout('layoutBackend');
+      $db = DB::Instance();
+      $tipIdentif = $request->getParameter("tipIdEdit");
+      $numIdentif = $request->getParameter("numIdEdit");
+      $codVuelo = $request->getParameter("codVuelo");
+      $sql = "select * from personal_x_vuelo
+              where tipo_identificacion = '$tipIdentif'
+                and identificacion = '$numIdentif'
+                and codigo_vuelo = '$codVuelo'
+               order by identificacion";
+      $this->personal = $db->queryArray($sql);
           
   }
   
@@ -437,5 +492,106 @@ class backendActions extends sfActions
       }
 //echo $sql;
       $this->clientes = $db->exec($sql);
+  }
+  
+  public function executeGuardaAviones(sfWebRequest $request)
+  {
+      $this->setLayout('layoutBackend');
+      
+      $cantReg = $request->getParameter("cantReg");
+      
+      $avPlaca = $request->getParameter("avPlaca");
+      $avMarca = $request->getParameter("avMarca");
+      $avModelo = $request->getParameter("avModelo");
+      $avCantPas = $request->getParameter("cantPas");
+      $avEstado = $request->getParameter("avEstado");
+      $avDist = $request->getParameter("distRecorr");
+      $detallesN = $request->getParameter("DetallesNuevo");
+      
+      $db = DB::Instance();
+      //echo $cantPais;
+      IF ($cantReg == 1)
+      {
+        $sql = "update aviones
+                set marca = '$avMarca',
+                    modelo = '$avModelo',
+                    cantidad_pasajeros = '$avCantPas',
+                    estado = '$avEstado',
+                    distancia_recorrida = '$avDist',
+                    detalles = '$detallesN'
+                where placa = '$avPlaca'";
+      }
+      else 
+      {
+         $sql = "insert into aviones values ('$avPlaca','$avMarca'
+                ,$avModelo,$avCantPas,'$avEstado',$avDist
+                ,'$detallesN')";   
+      }
+//echo $sql;
+      $this->aviones = $db->exec($sql);
+  }
+  
+  public function executeGuardaVuelos(sfWebRequest $request)
+  {
+      $this->setLayout('layoutBackend');
+      
+      $cantReg = $request->getParameter("cantReg");
+      
+      $avPlaca = $request->getParameter("avPlaca");
+      $avMarca = $request->getParameter("avMarca");
+      $avModelo = $request->getParameter("avModelo");
+      $avCantPas = $request->getParameter("cantPas");
+      $avEstado = $request->getParameter("avEstado");
+      $avDist = $request->getParameter("distRecorr");
+      $detallesN = $request->getParameter("DetallesNuevo");
+      
+      $db = DB::Instance();
+      //echo $cantPais;
+      IF ($cantReg == 1)
+      {
+        $sql = "update aviones
+                set marca = '$avMarca',
+                    modelo = '$avModelo',
+                    cantidad_pasajeros = '$avCantPas',
+                    estado = '$avEstado',
+                    distancia_recorrida = '$avDist',
+                    detalles = '$detallesN'
+                where placa = '$avPlaca'";
+      }
+      else 
+      {
+         $sql = "insert into aviones values ('$avPlaca','$avMarca'
+                ,$avModelo,$avCantPas,'$avEstado',$avDist
+                ,'$detallesN')";   
+      }
+//echo $sql;
+      $this->aviones = $db->exec($sql);
+  }
+  
+  public function executeGuardaPersonalXVuelo(sfWebRequest $request)
+  {
+      $this->setLayout('layoutBackend');
+      
+      $cantReg = $request->getParameter("cantReg");
+      
+      $vuCodigo = $request->getParameter("codVuelo");
+      $tipoId = $request->getParameter("tipoId");
+      $idPers = $request->getParameter("idPersonal");
+      
+      $db = DB::Instance();
+      //echo $cantPais;
+      IF ($cantReg == 1)
+      {
+        $sql = "update personal_x_vuelo
+                set tipo_id_personal = '$tipoId',
+                    identificacion_personal = '$idPers'
+                where placa = '$vuCodigo'";
+      }
+      else 
+      {
+         $sql = "insert into personal_x_vuelo values ('$vuCodigo','$tipoId','$idPers')";   
+      }
+//echo $sql;
+      $this->persxav = $db->exec($sql);
   }
 }

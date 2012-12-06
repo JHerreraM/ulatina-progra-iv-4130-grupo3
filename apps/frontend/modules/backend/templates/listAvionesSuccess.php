@@ -34,7 +34,7 @@
                                     <td>
                                     	<input type="checkbox" />
                                         <a href=""><img src="../images/tick-circle.gif" tppabs="http://www.xooom.pl/work/magicadmin/images/tick-circle.gif" width="16" height="16" alt="published" /></a>
-                                        <a href="editAviones?avionEdit=<?php echo $avion["codigo_pais"] ?>"><img src="../images/pencil.gif" tppabs="http://www.xooom.pl/work/magicadmin/images/pencil.gif" width="16" height="16" alt="edit" /></a>
+                                        <a href="editAviones?avionEdit=<?php echo $avion["placa"] ?>"><img src="../images/pencil.gif" tppabs="http://www.xooom.pl/work/magicadmin/images/pencil.gif" width="16" height="16" alt="edit" /></a>
                                         <a href=""><img src="../images/balloon.gif" tppabs="http://www.xooom.pl/work/magicadmin/images/balloon.gif" width="16" height="16" alt="comments" /></a>
                                         <a href=""><img src="../images/bin.gif" tppabs="http://www.xooom.pl/work/magicadmin/images/bin.gif" width="16" height="16" alt="delete" /></a>
                                     </td>
@@ -42,7 +42,9 @@
                               <?php } ?>      
 
                             </tbody>
+                        
                         </table>
+                            <a href="editAviones"><input class="submit-green" type="button" value="Agregar"></a></br></br>
                         </form>
                         <div class="pager" id="pager">
                             <form action="">
