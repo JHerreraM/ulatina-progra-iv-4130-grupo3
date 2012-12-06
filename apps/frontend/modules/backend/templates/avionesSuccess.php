@@ -5,3 +5,4 @@
     $this->menuCurrent = "aviones";
 ?>  
 
+<a href="editAviones"><input class="submit-green" type="button" value="Agregar"></a></br></br>

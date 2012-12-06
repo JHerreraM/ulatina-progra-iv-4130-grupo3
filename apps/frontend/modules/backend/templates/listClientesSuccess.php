@@ -1,19 +1,4 @@
 <?php
-    $sf_response->addStylesheet('reset');
-    $sf_response->addStylesheet('grid');
-    $sf_response->addStylesheet('styles');
-    $sf_response->addStylesheet('jquery.wysiwyg.css');
-    $sf_response->addStylesheet('tablesorter.css');
-    $sf_response->addStylesheet('thickbox.css');
-    $sf_response->addStylesheet('theme-blue.css');
-    $sf_response->addStylesheet('jquery.wysiwyg.css');
-    $sf_response->addStylesheet('tablesorter.css');
-    $sf_response->addJavascript('jquery-1.3.2.min.js');
-    $sf_response->addJavascript('jquery.tablesorter.min.js');
-    $sf_response->addJavascript('jquery.tablesorter.pager.js');
-    $sf_response->addJavascript('jquery.pstrength-min.1.2.js');
-    $sf_response->addJavascript('thickbox');
-
     $this->sublinks = Array( Array("Principal", "clientes" ), Array("Listado", "listClientes" ) );
     $this->menuCurrent = "clientes";
 ?>  
@@ -58,7 +43,7 @@
                                     <td>
                                     	<input type="checkbox" />
                                         <a href=""><img src="../images/tick-circle.gif" tppabs="http://www.xooom.pl/work/magicadmin/images/tick-circle.gif" width="16" height="16" alt="published" /></a>
-                                        <a href=""><img src="../images/pencil.gif" tppabs="http://www.xooom.pl/work/magicadmin/images/pencil.gif" width="16" height="16" alt="edit" /></a>
+                                        <a href="editClientes?tipIdEdit=<?php echo $person["tipo_identificacion"] ?>&numIdEdit=<?php echo $person["identificacion"] ?>"><img src="../images/pencil.gif" tppabs="http://www.xooom.pl/work/magicadmin/images/pencil.gif" width="16" height="16" alt="edit" /></a>
                                         <a href=""><img src="../images/balloon.gif" tppabs="http://www.xooom.pl/work/magicadmin/images/balloon.gif" width="16" height="16" alt="comments" /></a>
                                         <a href=""><img src="../images/bin.gif" tppabs="http://www.xooom.pl/work/magicadmin/images/bin.gif" width="16" height="16" alt="delete" /></a>
                                     </td>
@@ -67,6 +52,7 @@
 
                             </tbody>
                         </table>
+                            <a href="editClientes"><input class="submit-green" type="button" value="Agregar"></a></br></br>
                         </form>
                         <div class="pager" id="pager">
                             <form action="">
