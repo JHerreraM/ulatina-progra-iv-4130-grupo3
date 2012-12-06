@@ -21,7 +21,7 @@
                             
                             <p>
                                 <label>Marca</label>
-                                <input type="text" class="input-short" value="<?php echo $avion["marca"] ?>" name="avMarca" disabled="disabled" maxlength="20"/>
+                                <input type="text" class="input-short" value="<?php echo $avion["marca"] ?>" name="avMarca" maxlength="20"/>
                                 <!-- Form elements <span class="notification-input ni-correct">This is correct, thanks!</span>--> 
                             </p>
                             
@@ -39,31 +39,27 @@
                             
                             <p>
                                 <label>Estado</label>
-                                <select class="input-short">
-                                    <option <?php $avion["estado"] == "E" ?> value="E">En Taller</option>
-                                    <option value="A">Activo</option>
+                                <select class="input-short" name="avEstado">
+                                    <option  <?php if ($avion["estado"] == "E")
+                                                      {
+                                                          echo "selected";
+                                                      }
+                                              ?> value="E">En Taller</option>
+                                    <option  <?php if ($avion["estado"] == "A")
+                                                      {
+                                                          echo "selected";
+                                                      }
+                                              ?> value="A">Activo</option>
                                 </select>
                                 <!-- Form elements <span class="notification-input ni-correct">This is correct, thanks!</span>--> 
                             </p>
                                 
                             <p>
-                                <label>E-Mail</label>
-                                <input type="text" class="input-short" value="<?php echo $avion["email"] ?>" name="eMail" maxlength="75"/>
+                                <label>Distancia Recorrida</label>
+                                <input type="text" class="input-short" value="<?php echo $avion["distancia_recorrida"] ?>" name="distRecorr" maxlength="11"/>
                                 <!-- Form elements <span class="notification-input ni-correct">This is correct, thanks!</span>--> 
                             </p>
-                            
-                            <p>
-                                <label>Telefono Principal</label>
-                                <input type="text" class="input-short" value="<?php echo $avion["tel_principal"] ?>" name="telPrincipal" maxlength="20"/>
-                                <!-- Form elements <span class="notification-input ni-correct">This is correct, thanks!</span>--> 
-                            </p>
-                            
-                            <p>
-                                <label>Telefono Secundario</label>
-                                <input type="text" class="input-short" value="<?php echo $avion["tel_secundario"] ?>" name="telSecundario" maxlength="20"/>
-                                <!-- Form elements <span class="notification-input ni-correct">This is correct, thanks!</span>--> 
-                            </p>
-                            
+                                                        
                             <p>
                                 <label>Detalles</label>
                                 <textarea rows="7" cols="90" class="input-medium"  name="DetallesNuevo" >
@@ -78,81 +74,48 @@
                                 {
                             ?>
                                 <p>
-                                    <label>Tipo Identificacion</label>
-                                    <input type="text" class="input-short" name="tipoIdentif" maxlength="1" value ="C"/>
+                                    <label>Placa</label>
+                                    <input type="text" class="input-short" name="avPlaca" maxlength="15"/>
                                     <!-- Form elements <span class="notification-input ni-correct">This is correct, thanks!</span>--> 
                                 </p>
 
                                 <p>
-                                    <label>Numero Identificacion</label>
-                                    <input type="text" class="input-short" name="numIdentif" maxlength="30"/>
+                                    <label>Marca</label>
+                                    <input type="text" class="input-short" name="avMarca" maxlength="20"/>
                                     <!-- Form elements <span class="notification-input ni-correct">This is correct, thanks!</span>--> 
                                 </p>
 
                                 <p>
-                                    <label>Nombre</label>
-                                    <input type="text" class="input-short" name="nomCompleto" maxlength="150"/>
+                                    <label>Modelo</label>
+                                    <input type="text" class="input-short" name="avModelo" maxlength="4"/>
                                     <!-- Form elements <span class="notification-input ni-correct">This is correct, thanks!</span>--> 
                                 </p>
 
                                 <p>
-                                    <label>Fecha Nacimiento</label>
-                                    <input type="date" class="input-short" name="fecNacimiento" maxlength="10"/>
+                                    <label>Cantidad Pasajeros</label>
+                                    <input type="text" class="input-short" name="cantPas" maxlength="4"/>
                                     <!-- Form elements <span class="notification-input ni-correct">This is correct, thanks!</span>--> 
                                 </p>
 
                                 <p>
-                                    <label>Genero</label>
-                                    <input type="text" class="input-short" name="tipoGenero" maxlength="1"/>
-                                    <!-- Form elements <span class="notification-input ni-correct">This is correct, thanks!</span>--> 
-                                </p>
-                                
-                                <p>
-                                    <label>Codigo Pais</label>
-                                    
-                                    <select class="input-short" name="codPais" maxlength="5">
-                                        <?php foreach($paises as $pais){?>
-                                        <option value="<?php echo $pais["codigo_pais"] ?>"><?php echo $pais["nacionalidad"] ?></option>
-                                    
-                                        <?php } ?>
+                                    <label>Estado</label>
+                                    <select class="input-short" name="avEstado">
+                                        <option   value="E">En Taller</option>
+                                        <option   value="A">Activo</option>
                                     </select>
-                                    <!--<input type="text" class="input-short" name="codPaisAnt" maxlength="5"/>
-                                     Form elements <span class="notification-input ni-correct">This is correct, thanks!</span>--> 
-                                </p>
-                                
-                                <p>
-                                    <label>E-Mail</label>
-                                    <input type="text" class="input-short" name="eMail" maxlength="75"/>
                                     <!-- Form elements <span class="notification-input ni-correct">This is correct, thanks!</span>--> 
                                 </p>
 
                                 <p>
-                                    <label>Telefono Principal</label>
-                                    <input type="text" class="input-short" name="telPrincipal" maxlength="20"/>
+                                    <label>Distancia Recorrida</label>
+                                    <input type="text" class="input-short" name="distRecorr" maxlength="11"/>
                                     <!-- Form elements <span class="notification-input ni-correct">This is correct, thanks!</span>--> 
                                 </p>
 
-                                <p>
-                                    <label>Telefono Secundario</label>
-                                    <input type="text" class="input-short" name="telSecundario" maxlength="20"/>
-                                    <!-- Form elements <span class="notification-input ni-correct">This is correct, thanks!</span>--> 
-                                </p>
-
-                                <p>
-                                    <label>Tipo Sangre</label>
-                                    <input type="text" class="input-short" name="tipoSangre" maxlength="3"/>
-                                    <!-- Form elements <span class="notification-input ni-correct">This is correct, thanks!</span>--> 
-                                </p>
-
-                                <p>
-                                    <label>Direccion</label>
-                                    <textarea rows="7" cols="90" class="input-medium"  name="direcEsp" >
-                                    </textarea>
-                                </p>
-                                
                                 <p>
                                     <label>Detalles</label>
                                     <textarea rows="7" cols="90" class="input-medium"  name="DetallesNuevo" >
+                                    
                                     </textarea>
                                 </p>
                             <?php } ?>
@@ -164,7 +127,7 @@
                             -->
                             
                             <input class="submit-green" type="submit" value="Guardar"></a>
-                            <a href="listClientes"><input class="submit-gray" type="button" value="Cancelar"></a>
+                            <a href="listAviones"><input class="submit-gray" type="button" value="Cancelar"></a>
                             
                         </form>
                      </div> <!-- End .module-body -->
