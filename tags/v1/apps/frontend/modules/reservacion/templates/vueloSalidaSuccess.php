@@ -5,13 +5,14 @@
 				<h2>Planificador Vuelo</h2>
 				<form name="reservacion" id="form_1" action="../reservacion/vueloSalida" method="post">
 					<div class="wrapper pad_bot1">
+                                                
 						<div class="radio marg_right1">
 							<input type="radio" name="sentido" value="roundtrip">Ida y Vuelta<br>
 							<input type="radio" name="sentido" value="oneleg">Unico Sentido
 						</div>
 						<div class="radio">
 						</div>
-					</div>
+					
 					<div class="wrapper">
 						Salida:
 						<div class="bg"><input type="text" name="salida" class="input input1" value="Digite una Ciudad" onblur="if(this.value=='') this.value='Digite una Ciudad'" onFocus="if(this.value =='Digite una Ciudad' ) this.value=''"></div>
@@ -39,24 +40,15 @@
 						<div class="bg left"><input type="text" name="numPasajeros" class="input input2" value="# Pasajeros" onblur="if(this.value=='') this.value='# Pasajeros'" onFocus="if(this.value =='# Pasajeros' ) this.value=''"></div>
 						<a href="javascript:submitReservacion();" class="button2" onClick="document.getElementById('form_1').submit()">go!</a>
 					</div>
-				</form>
-                                <h2>Noticias</h2>
-                                <?php foreach($noticias as $noticia){ ?> 
-                                    <p class="under"><a href="#" class="link1"><?php echo $noticia["titulo"] ?></a><br>
-                                     <?php 
-                                            $oDate = new DateTime($noticia["fecha"]);
-                                            $sDate = $oDate->format("F j, Y");
-                                            echo $sDate;
-                                     ?>
-                                    </p>
-                                <?php } ?>
-				
+                                       </div>
+				</form>	
 			</div>
 		</article>
 
 		<article class="col2 pad_left1">
 			 <h2>Resultados Vuelo</h2>
 			<div class="wrapper">
+                            <form action="asientoSalida" method="post" >
                                 <div style="padding-top: 20px; ">
                                    
                                 <table class="table_reserva" style="border-color: black; " width="500px">
@@ -68,7 +60,7 @@
                                                 <td rowspan="4">
                                                     vuelo<br>
                                                     <?php echo "A" . $vuelo["Vuelo"] ?><br>
-                                                    <input type="radio" />
+                                                    <input type="radio" name="idVuelo" value="<?php echo $vuelo["Vuelo"] ?>" />
                                                 </td>
                                                 <td colspan="2">Salida</td>
                                                 <td>Llegada</td>
@@ -88,13 +80,18 @@
                                                 <td><?php echo $vuelo["Duracion"] ?></td>
                                             </tr>
                                         </table>
+
                                         </td>
                                     </tr> 
                                     <?php } ?>
                                 </table>
-                                </div>
-                            
+                                    <div style="float:right">
+                                        
+                                        <input type="submit" value="Siguiente"/>
+                                    </div>
+                            </form>
                             </div>
+                        </div>
 		</article>
 
 	</section>
