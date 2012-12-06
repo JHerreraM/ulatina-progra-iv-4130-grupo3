@@ -21,7 +21,7 @@
 
                 <!-- Example table -->
                 <div class="module">
-                	<h2><span>Listado de Vuelos</span></h2>
+                <h2><span>Listado de Vuelos</span></h2>
                     
                     <div class="module-table-body">
                     	<form action="">
@@ -65,6 +65,7 @@
 
                             </tbody>
                         </table>
+                        <a href="editVuelos"><input class="submit-green" type="button" value="Agregar"></a></br></br>
                         </form>
                         <div class="pager" id="pager">
                             <form action="">

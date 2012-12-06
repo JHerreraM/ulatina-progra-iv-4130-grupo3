@@ -267,11 +267,13 @@ class backendActions extends sfActions
       $this->setLayout('layoutBackend');
       $db = DB::Instance();
       $vuEdit = $request->getParameter("vueloEdit");
-      
+      if (isset($vuEdit))
+      {
       $sql = "select * from vuelos
                where codigo_vuelo = $vuEdit
               order by codigo_vuelo";
       $this->vuelos = $db->queryArray($sql);
+      }
       
       $sql = "select * from aviones   
               order by placa";
@@ -281,20 +283,21 @@ class backendActions extends sfActions
                order by codigo_aeropuerto";
       $this->aeropuertos = $db->queryArray($sql);
       
-      $sql = "select vu.tipo_id_personal, vu.identificacion_presonal, pe.nombre_completo
+      $sql = "select pe.tipo_identificacion, pe.identificacion, pe.nombre_completo
                 from personal_x_vuelo vu,
                      personal pe
                where vu.codigo_vuelo = '$vuEdit'
-                 and vu.tipo_id_personal = pe.tipo_id_personal
-                 and vu.identificacion_presonal = pe.identificacion
+                 and vu.tipo_id_presonal = pe.tipo_identificacion
+                 and vu.identificacion_personal = pe.identificacion
                order by pe.identificacion";
-      //$this->personal = $db->queryArray($sql);
-      echo $sql;
+      $this->personal = $db->queryArray($sql);
+      //echo $sql;
       /*
       $sql = "select * from campos_x_avion
               where placa = '$avEdit'   
                order by fila, columna";
       $this->campos = $db->queryArray($sql);*/
+      $this->varCodVuel = $vuEdit;
   }
   
   public function executeEditPersonalXVuelo(sfWebRequest $request)
@@ -305,12 +308,19 @@ class backendActions extends sfActions
       $numIdentif = $request->getParameter("numIdEdit");
       $codVuelo = $request->getParameter("codVuelo");
       $sql = "select * from personal_x_vuelo
-              where tipo_identificacion = '$tipIdentif'
-                and identificacion = '$numIdentif'
+              where tipo_id_presonal = '$tipIdentif'
+                and identificacion_personal = '$numIdentif'
                 and codigo_vuelo = '$codVuelo'
-               order by identificacion";
-      $this->personal = $db->queryArray($sql);
-          
+               order by identificacion_personal";
+//      echo $sql;      
+$this->personal = $db->queryArray($sql);
+      
+      $sql = "select * from personal order by identificacion";
+      $this->personallist = $db->queryArray($sql); 
+      
+      
+      $this->varCodVuelPer = $codVuelo;
+      $this->vartipId = "C";
   }
   
   public function executeGuardaPaises(sfWebRequest $request)
@@ -537,35 +547,35 @@ class backendActions extends sfActions
       
       $cantReg = $request->getParameter("cantReg");
       
-      $avPlaca = $request->getParameter("avPlaca");
-      $avMarca = $request->getParameter("avMarca");
-      $avModelo = $request->getParameter("avModelo");
-      $avCantPas = $request->getParameter("cantPas");
-      $avEstado = $request->getParameter("avEstado");
-      $avDist = $request->getParameter("distRecorr");
-      $detallesN = $request->getParameter("DetallesNuevo");
+      $vuelo = $request->getParameter("codVuelo");
+      $aeOr = $request->getParameter("aeroOrig");
+      $aeDs = $request->getParameter("aeroDest");
+      $avPlaca = $request->getParameter("placaAvion");
+      $hrSalida = $request->getParameter("horSalida");
+      $hrLLegada = $request->getParameter("horLLegada");
+      $durEst = $request->getParameter("durEstimada");
       
       $db = DB::Instance();
       //echo $cantPais;
       IF ($cantReg == 1)
       {
-        $sql = "update aviones
-                set marca = '$avMarca',
-                    modelo = '$avModelo',
-                    cantidad_pasajeros = '$avCantPas',
-                    estado = '$avEstado',
-                    distancia_recorrida = '$avDist',
-                    detalles = '$detallesN'
-                where placa = '$avPlaca'";
+        $sql = "update vuelos
+                set codigo_aeropuerto_origen = '$aeOr',
+                    codigo_aeropuerto_destino = '$aeOr',
+                    placa_avion = '$avPlaca',
+                    hora_salida = '$hrSalida',
+                    hora_llegada = '$hrLLegada',
+                    duracion_estimada = $durEst
+                where codigo_vuelo = $vuelo";
       }
       else 
       {
-         $sql = "insert into aviones values ('$avPlaca','$avMarca'
-                ,$avModelo,$avCantPas,'$avEstado',$avDist
-                ,'$detallesN')";   
+         $sql = "insert into vuelos values (null,'$aeOr'
+                ,'$aeDs','$avPlaca','$hrSalida','$hrLLegada'
+                ,$durEst)";   
       }
-//echo $sql;
-      $this->aviones = $db->exec($sql);
+echo $sql;
+      $this->vuelos = $db->exec($sql);
   }
   
   public function executeGuardaPersonalXVuelo(sfWebRequest $request)
@@ -583,9 +593,8 @@ class backendActions extends sfActions
       IF ($cantReg == 1)
       {
         $sql = "update personal_x_vuelo
-                set tipo_id_personal = '$tipoId',
-                    identificacion_personal = '$idPers'
-                where placa = '$vuCodigo'";
+                set identificacion_personal = '$idPers'
+                where codigo_vuelo = '$vuCodigo'";
       }
       else 
       {
