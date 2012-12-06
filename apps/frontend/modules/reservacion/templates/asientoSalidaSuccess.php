@@ -5,7 +5,7 @@
 				<h2>Planificador Vuelo</h2>
 				<form name="reservacion" id="form_1" action="../reservacion/vueloSalida" method="post">
 					<div class="wrapper pad_bot1">
-                                            Numero de Vuelo <br>
+                                            Detalle Reserva <br/><br/>
                                             <?php echo  "A" . $_SESSION["codVueloSalida"] ; 
                                                   echo  " " . $_SESSION["ciudadSalida"] . " -> " . $_SESSION["ciudadLlegada"];
                                             ?>
@@ -17,7 +17,7 @@
 		<article class="col2 pad_left1">
 			<h2>Resultados Vuelo</h2>
 			<div class="wrapper" style="padding-top: 20px;">
-                            <form action="vueloRegreso" method="POST">
+                            <form action="confirmacion" method="POST">
                             <?php
                                 foreach($asientos as $asiento){
                                     $codAsiento = $asiento["codigo_campo"];

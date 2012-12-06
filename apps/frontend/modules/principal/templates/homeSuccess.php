@@ -30,7 +30,7 @@
 				<form name="reservacion" id="form_1" action="../reservacion/vueloSalida" method="post">
 					<div class="wrapper pad_bot1">
 						<div class="radio marg_right1">
-							<input type="radio" name="sentido" value="roundtrip">Ida y Vuelta<br>
+							<input type="radio" name="sentido" value="roundtrip" disabled>Ida y Vuelta<br>
 							<input type="radio" name="sentido" value="oneleg">Unico Sentido
 						</div>
 						<div class="radio">
@@ -114,6 +114,5 @@
 				</div>
 			</div>
 		</article>
-<
 	</section>
 

@@ -17,10 +17,7 @@ class reservacionActions extends sfActions
   *
   * @param sfRequest $request A request object
   */
-  public function executeSafety(sfWebRequest $request)
-  {
-  }
-  
+
   public function executeAgregar(sfWebRequest $request)
   {
   }
@@ -31,14 +28,36 @@ class reservacionActions extends sfActions
   
   public function executeLogin(sfWebRequest $request)
   {
-      $this->username = $request->getParameter("username");
-      $this->password = $request->getParameter("password");
+      $this->setLayout('layoutReservacion');
+            
+      $username = $request->getParameter("username");
+      $password = $request->getParameter("password");
       
-      if($this->username == "admin" && $this->password == "12345"){
-          $this->message = "Login Success";
+      $db = DB::Instance();
+      
+      $sql = "select count(*) As login from usuarios where codigo_usuario = '$username' AND password = '$password';";
+      
+      $login = $db->queryArray($sql);
+      if($login[0]["login"] != 1){
+          
       } else {
-          $this->message = "Login Fail";
-      }
+          
+          $sql2 = "select identificacion from clientes where fk_codigo_usuario = '$username'";
+          $clientes = $db->queryArray($sql2);
+          $idCliente = $clientes[0]["identificacion"];
+          
+          $asientoSalida = $_SESSION["asientoSalida"];
+          $vueloSalida = $_SESSION["codVueloSalida"];
+          
+          $sql3 = "insert into reservacion_tiquete(codigo_vuelo, codigo_asiento, identificacion_cliente ) 
+              values('$vueloSalida','$asientoSalida','$idCliente')";
+          
+          $db->exec($sql3);
+          
+          $this->reserveFlag = true;
+          
+      }    
+      
   }
   
   public function executeVueloSalida(sfWebRequest $request){
@@ -55,7 +74,6 @@ class reservacionActions extends sfActions
       
       $horaLlegada = $request->getParameter("horaLlegada");
       $fechaLlegada = $request->getParameter("fechaLlegada"); 
-      echo   $fechaLlegada; 
       
       $numPasajeros = $request->getParameter("numPasajeros"); 
       $_SESSION["numPasajeros"] = $numPasajeros; 
@@ -124,6 +142,7 @@ class reservacionActions extends sfActions
 
       $this->setLayout('layoutReservacion');
       
+      $_SESSION["asientoSalida"] = $request->getParameter("asiento");
       $db = DB::Instance();
       
       $salida = $_SESSION["ciudadLlegada"];
@@ -132,13 +151,12 @@ class reservacionActions extends sfActions
       $fechaRegreso = $_SESSION["fechaLlegada"];
       
       $sql3 = "CALL `p_vu_s_vuelos` ( '$salida' , '$destino' , '$fechaRegreso' );";
-      echo $sql3;
       
       $this->vuelos = $db->queryArray($sql3);
 
   }
   
-    public function executeAsientoRegreso(sfWebRequest $request){
+  public function executeAsientoRegreso(sfWebRequest $request){
       
       $this->setLayout('layoutReservacion');
       $vuelo = $request->getParameter("idVuelo");
@@ -162,7 +180,25 @@ class reservacionActions extends sfActions
       $this->asientos = $db->queryArray($sql2);
       
   }
-  
+    
+  public function executeConfirmacion(sfWebRequest $request){
+      
+      $this->setLayout('layoutReservacion');
+            
+      $_SESSION["asientoSalida"] = $request->getParameter("asiento");
+            
+      $_SESSION["asientoRegreso"] = $request->getParameter("asiento");
+      $confirmacion =  $request->getParameter("confirmacion");
+      
+      $this->asientoRegreso  = $_SESSION["asientoRegreso"];
+      $this->asientoSalida  = $_SESSION["asientoSalida"];
+      $this->vueloSalida = $_SESSION["codVueloSalida"];
+      $this->vueloRegreso = $_SESSION["codVueloRegreso"];
+      
+      
+      
+  }
+         
   
   
 }
