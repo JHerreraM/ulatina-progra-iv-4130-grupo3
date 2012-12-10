@@ -71,11 +71,49 @@ class backendActions extends sfActions
           
   }
   
+  public function executeNoticias(sfWebRequest $request)
+  {
+          $this->setLayout('layoutBackend');
+          
+  }
+  
+  public function executeUsuarios(sfWebRequest $request)
+  {
+          $this->setLayout('layoutBackend');
+          
+  }
+  
+  public function executeReservar(sfWebRequest $request)
+  {
+          $this->setLayout('layoutBackend');
+          
+  }
+  
   public function executeListPersonal(sfWebRequest $request)
   {
           $this->setLayout('layoutBackend');
           
           $db = DB::Instance();
+          
+          $accionSel = $request->getParameter("accionSelec");
+                      
+            //echo $accionSelAsg;
+            if (isset($accionSel))
+            {
+                //Preguntar RT $arrPerBorra[] = $request->getParameter('perBorrar');
+                $tipIdE = $request->getParameter("tipIdEdit");
+                $idE = $request->getParameter("numIdEdit");
+
+                if ($accionSel == '4')
+                {    
+                      $sql = "delete from personal
+                               where tipo_identificacion = '$tipIdE'
+                                 and identificacion = '$idE'";
+                      $this->clteBor = $db->exec($sql);
+                      $this->mensajeCorr = "Se elimino correctamente el empleado ".$idE;
+                }
+            }
+            
           $sql = "select * from personal";
           
           $this->personal = $db->queryArray($sql);
@@ -87,6 +125,26 @@ class backendActions extends sfActions
           $this->setLayout('layoutBackend');
           
           $db = DB::Instance();
+          
+          $accionSel = $request->getParameter("accionSelec");
+                      
+            //echo $accionSelAsg;
+            if (isset($accionSel))
+            {
+                //Preguntar RT $arrPerBorra[] = $request->getParameter('perBorrar');
+                $tipIdE = $request->getParameter("tipIdEdit");
+                $idE = $request->getParameter("numIdEdit");
+
+                if ($accionSel == '4')
+                {    
+                      $sql = "delete from clientes
+                               where tipo_identificacion = '$tipIdE'
+                                 and identificacion = '$idE'";
+                      $this->clteBor = $db->exec($sql);
+                      $this->mensajeCorr = "Se elimino correctamente el cliente ".$idE;
+                }
+            }
+            
           $sql = "select * from clientes";
           
           $this->personal = $db->queryArray($sql);
@@ -98,6 +156,24 @@ class backendActions extends sfActions
           $this->setLayout('layoutBackend');
           
           $db = DB::Instance();
+          
+          $accionSel = $request->getParameter("accionSelec");
+                      
+            //echo $accionSelAsg;
+            if (isset($accionSel))
+            {
+                //Preguntar RT $arrPerBorra[] = $request->getParameter('perBorrar');
+                $paisE = $request->getParameter("paisEdit");
+
+                if ($accionSel == '4')
+                {    
+                      $sql = "delete from paises
+                               where codigo_pais = '$paisE'";
+                      $this->paisBor = $db->exec($sql);
+                      $this->mensajeCorr = "Se elimino correctamente el pais ".$paisE;
+                }
+            }
+            
           $sql = "select * from paises order by codigo_pais";
           
           $this->paises = $db->queryArray($sql);
@@ -109,6 +185,26 @@ class backendActions extends sfActions
           $this->setLayout('layoutBackend');
           
           $db = DB::Instance();
+          
+          $accionSel = $request->getParameter("accionSelec");
+                      
+            //echo $accionSelAsg;
+            if (isset($accionSel))
+            {
+                //Preguntar RT $arrPerBorra[] = $request->getParameter('perBorrar');
+                $paisE = $request->getParameter("paisEdit");
+                $ciudadE = $request->getParameter("ciudadEdit");
+
+                if ($accionSel == '4')
+                {    
+                      $sql = "delete from ciudades
+                               where codigo_pais = '$paisE'
+                                 and codigo_ciudad = '$ciudadE'";
+                      $this->ciudadBor = $db->exec($sql);
+                      $this->mensajeCorr = "Se elimino correctamente la ciudad ".$ciudadE;
+                }
+            }
+            
           $sql = "select * from ciudades order by codigo_pais, codigo_ciudad";
           
           $this->ciudades = $db->queryArray($sql);
@@ -117,9 +213,30 @@ class backendActions extends sfActions
   
   public function executeListAeropuertos(sfWebRequest $request)
   {
-          $this->setLayout('layoutBackend');
-          
-          $db = DB::Instance();
+            $this->setLayout('layoutBackend');
+            $db = DB::Instance();
+            
+            $accionSel = $request->getParameter("accionSelec");
+                      
+            //echo $accionSelAsg;
+            if (isset($accionSel))
+            {
+                //Preguntar RT $arrPerBorra[] = $request->getParameter('perBorrar');
+                $paisE = $request->getParameter("paisEdit");
+                $ciudadE = $request->getParameter("ciudadEdit");
+                $aeroE = $request->getParameter("aeroEdit");
+
+                if ($accionSel == '4')
+                {    
+                      $sql = "delete from aeropuertos
+                               where codigo_aeropuerto = '$aeroE'
+                                 and codigo_pais = '$paisE'
+                                 and codigo_ciudad = '$ciudadE'";
+                      $this->aeroBor = $db->exec($sql);
+                      $this->mensajeCorr = "Se elimino correctamente el aeropuerto ".$aeroE;
+                }
+            }
+            
           $sql = "select * from aeropuertos order by codigo_pais, codigo_ciudad, codigo_aeropuerto";
           
           $this->aeropuertos = $db->queryArray($sql);
@@ -131,6 +248,23 @@ class backendActions extends sfActions
           $this->setLayout('layoutBackend');
           
           $db = DB::Instance();
+          
+          $accionSel = $request->getParameter("accionSelec");
+            //echo $accionSelAsg;
+            if (isset($accionSel))
+            {
+                //Preguntar RT $arrPerBorra[] = $request->getParameter('perBorrar');
+                $avionE = $request->getParameter("avionEdit");
+
+                if ($accionSel == '4')
+                {    
+                      $sql = "delete from aviones
+                               where placa = '$avionE'";
+                      $this->avionBor = $db->exec($sql);
+                      $this->mensajeCorr = "Se elimino correctamente el avion ".$avionE;
+                }
+            }
+            
           $sql = "select * from aviones";
           
           $this->aviones = $db->queryArray($sql);
@@ -142,15 +276,62 @@ class backendActions extends sfActions
           $this->setLayout('layoutBackend');
           
           $db = DB::Instance();
+          
+          $accionSel = $request->getParameter("accionSelec");
+            //echo $accionSelAsg;
+            if (isset($accionSel))
+            {
+                //Preguntar RT $arrPerBorra[] = $request->getParameter('perBorrar');
+                $vuCodigo = $request->getParameter("vueloEdit");
+
+                if ($accionSel == '4')
+                {    
+                      $sql = "delete from vuelos
+                               where codigo_vuelo = '$vuCodigo'";
+                      $this->vueloBor = $db->exec($sql);
+                      $this->mensajeCorr = "Se elimino correctamente el vuelo ".$vuCodigo;
+                }
+            }
+            
           $sql = "select codigo_vuelo as codigo,  
                         codigo_aeropuerto_origen as nombreOrigen, 
                         codigo_aeropuerto_destino as nombreDestino,  
                         hora_salida, 
                         hora_llegada,
                         duracion_estimada,
-                        placa_avion from vuelos";
+                        placa_avion from vuelos
+                        order by codigo_vuelo desc";
 
           $this->vuelos = $db->queryArray($sql);
+  }
+  
+   public function executeListNoticias(sfWebRequest $request)
+  {
+          $this->setLayout('layoutBackend');
+          
+          $db = DB::Instance();
+          
+          $accionSel = $request->getParameter("accionSelec");
+                      
+            //echo $accionSelAsg;
+            if (isset($accionSel))
+            {
+                //Preguntar RT $arrPerBorra[] = $request->getParameter('perBorrar');
+                $notiId = $request->getParameter("noticiaId");
+
+                if ($accionSel == '4')
+                {    
+                      $sql = "delete from noticias
+                               where pkid = '$notiId'";
+                      $this->notiBor = $db->exec($sql);
+                      $this->mensajeCorr = "Se elimino correctamente la noticia ".$notiId;
+                }
+            }
+            
+          $sql = "select * from noticias order by fecha desc, pkid desc";
+          
+          $this->noticias = $db->queryArray($sql);
+          
   }
   
   public function executeEditPaises(sfWebRequest $request)
@@ -250,22 +431,168 @@ class backendActions extends sfActions
       $this->setLayout('layoutBackend');
       $db = DB::Instance();
       $avEdit = $request->getParameter("avionEdit");
+      $campo = $request->getParameter("caCampo");
+      $fila = $request->getParameter("caFila");
+      $columna = $request->getParameter("caColumna");
+      $tipCam = $request->getParameter("caTipoCam");
+      $accionSel = $request->getParameter("accCampos");
+      $cantReg = $request->getParameter("cantRegCa");
       
+            //echo $accionSelAsg;
+            if (isset($accionSel))
+            {
+                //Preguntar RT $arrPerBorra[] = $request->getParameter('perBorrar');
+
+                if ($accionSel == '1')
+                {    
+                    if ($cantReg == 0)
+                    {
+                      $sql = "insert into campos_x_avion
+                              values ('$avEdit','$campo','$tipCam',$columna,$fila)";
+                      $this->campoAg = $db->exec($sql);
+                      $this->mensajeCorr = "Se agrego correctamente el campo ".$campo;
+                    }
+                    if ($cantReg == 1)
+                    {
+                      $sql = "update campos_x_avion
+                                 set tipo_campo = '$tipCam',
+                                     fila = '$fila',
+                                     columna = '$columna'
+                               where placa_avion = '$avEdit'
+                                 and codigo_campo = '$campo'";
+                      $this->campoAg = $db->exec($sql);
+                      $this->mensajeCorr = "Se actualizo correctamente el campo ".$campo;
+                    }  
+                }
+                if ($accionSel == '4')
+                {    
+                    
+                      $sql = "delete from campos_x_avion
+                               where placa_avion = '$avEdit'
+                                 and codigo_campo = '$campo'";
+                      $this->campoAg = $db->exec($sql);
+                      $this->mensajeCorr = "Se elimino correctamente el campo ".$campo;
+                      
+                }
+            }
+            
       $sql = "select * from aviones
               where placa = '$avEdit'   
                order by placa";
       $this->aviones = $db->queryArray($sql);
-      /*
+      
       $sql = "select * from campos_x_avion
-              where placa = '$avEdit'   
+              where placa_avion = '$avEdit'   
                order by fila, columna";
-      $this->campos = $db->queryArray($sql);*/
+      $this->campos = $db->queryArray($sql);
+  }
+  
+  public function executeEditCampos(sfWebRequest $request)
+  {
+      $this->setLayout('layoutBackend');
+      $db = DB::Instance();
+      
+      $avEdit = $request->getParameter("avionEdit");
+      $caEdit = $request->getParameter("campoEdit");
+      
+      $sql = "select * from campos_x_avion
+              where placa_avion = '$avEdit'
+                and codigo_campo = '$caEdit'
+               order by fila, columna";
+      
+      $this->caPlacaAvion = $avEdit; 
+      $this->campos = $db->queryArray($sql);
   }
   
   public function executeEditVuelos(sfWebRequest $request)
   {
       $this->setLayout('layoutBackend');
       $db = DB::Instance();
+      
+      //Variable para definir si se debe insertar o actualizar
+      $cantReg = $request->getParameter("cantReg");
+      
+      //Se seleccional los valores de los campos del vuelo
+      $vuelo = $request->getParameter("vueloEdit");
+      //echo $vuelo;
+      $aeOr = $request->getParameter("aeroOrig");
+      $aeDs = $request->getParameter("aeroDest");
+      $avPlaca = $request->getParameter("placaAvion");
+      //$hrSalida = $request->getParameter("horSalida");
+      $hrSalida = date("Y-m-d H:i", strtotime($request->getParameter("horSalida")));
+      //$hrLLegada = $request->getParameter("horLLegada");
+      $hrLLegada = date("Y-m-d H:i", strtotime($request->getParameter("horLLegada")));
+      $durEst = $request->getParameter("durEstimada");
+      UNSET($this->mensajeCorr);
+      //Si existe un registro lo actualiza
+      IF ($cantReg == 1)
+      {
+        $sql = "update vuelos
+                set codigo_aeropuerto_origen = '$aeOr',
+                    codigo_aeropuerto_destino = '$aeDs',
+                    placa_avion = '$avPlaca',
+                    hora_salida = '$hrSalida',
+                    hora_llegada = '$hrLLegada',
+                    duracion_estimada = $durEst
+                where codigo_vuelo = $vuelo";
+        $this->mensajeCorr = "Se actualizo correctamente el vuelo ".$vuelo;
+      }
+      //de lo contrario lo inserta
+      else 
+      {
+         $sql = "insert into vuelos values (null,'$aeOr'
+                ,'$aeDs','$avPlaca','$hrSalida','$hrLLegada'
+                ,$durEst)";
+         $this->mensajeCorr = "Se agrego correctamente el vuelo ";
+      }
+        //echo $sql;
+      $this->vuelos = $db->exec($sql);
+      
+      $accionSelAsg = $request->getParameter("accionSelecAsg");
+      //echo $accionSelAsg;
+      if (isset($accionSelAsg))
+      {
+          //Preguntar RT $arrPerBorra[] = $request->getParameter('perBorrar');
+          $vuCodigo = $request->getParameter("vueloEdit");
+          $tipoId = $request->getParameter("tipIdEdit");
+          $idPers = $request->getParameter("numIdEdit");
+          
+          if ($accionSelAsg == '4')
+          {    
+            
+                $sql = "delete from personal_x_vuelo  
+                         where codigo_vuelo = '$vuCodigo'
+                           and tipo_id_presonal = '$tipoId'
+                           and identificacion_personal = '$idPers'";
+                $this->persxav = $db->exec($sql);
+            
+          }
+      }
+            //echo $sql;
+      
+      
+      $accionSelDisp = $request->getParameter("accionSelecDisp");
+      
+      if (isset($accionSelDisp))
+      {
+          $arrPerAgrega = $request->getParameter("perAgregar[]");
+          $vuCodigo = $request->getParameter("vueloEdit");
+          $tipoId = $request->getParameter("tipIdEdit");
+          $idPers = $request->getParameter("numIdEdit");
+          
+          if ($accionSelDisp == '1')
+          {
+            //echo $cantPais;
+            $sql = "insert into personal_x_vuelo values ('$vuCodigo','$tipoId','$idPers')";  
+            $this->persxav = $db->exec($sql);
+            
+          }
+          
+      }
+      
+      
+      //$this->setLayout('layoutBackend');
+      //$db = DB::Instance();
       $vuEdit = $request->getParameter("vueloEdit");
       if (isset($vuEdit))
       {
@@ -291,12 +618,16 @@ class backendActions extends sfActions
                  and vu.identificacion_personal = pe.identificacion
                order by pe.identificacion";
       $this->personal = $db->queryArray($sql);
+      
+      $sql = "select pe.tipo_identificacion, pe.identificacion, pe.nombre_completo
+                from personal pe
+               where pe.identificacion not in (select vu.identificacion_personal 
+                                                 from personal_x_vuelo vu 
+                                                where vu.codigo_vuelo = '$vuEdit')
+               order by pe.identificacion";
+      $this->personaldisp = $db->queryArray($sql);
+      
       //echo $sql;
-      /*
-      $sql = "select * from campos_x_avion
-              where placa = '$avEdit'   
-               order by fila, columna";
-      $this->campos = $db->queryArray($sql);*/
       $this->varCodVuel = $vuEdit;
   }
   
@@ -321,6 +652,18 @@ $this->personal = $db->queryArray($sql);
       
       $this->varCodVuelPer = $codVuelo;
       $this->vartipId = "C";
+  }
+  
+  public function executeEditNoticias(sfWebRequest $request)
+  {
+      $this->setLayout('layoutBackend');
+      $db = DB::Instance();
+      
+      $notiId = $request->getParameter("noticiaId");
+      $sql = "select * from noticias
+              where pkid = '$notiId'
+               order by pkid";
+      $this->noticias = $db->queryArray($sql);
   }
   
   public function executeGuardaPaises(sfWebRequest $request)
@@ -551,8 +894,10 @@ $this->personal = $db->queryArray($sql);
       $aeOr = $request->getParameter("aeroOrig");
       $aeDs = $request->getParameter("aeroDest");
       $avPlaca = $request->getParameter("placaAvion");
-      $hrSalida = $request->getParameter("horSalida");
-      $hrLLegada = $request->getParameter("horLLegada");
+      //$hrSalida = $request->getParameter("horSalida");
+      $hrSalida = date("Y-m-d H:i", strtotime($request->getParameter("horSalida")));
+      //$hrLLegada = $request->getParameter("horLLegada");
+      $hrLLegada = date("Y-m-d H:i", strtotime($request->getParameter("horLLegada")));
       $durEst = $request->getParameter("durEstimada");
       
       $db = DB::Instance();
@@ -561,7 +906,7 @@ $this->personal = $db->queryArray($sql);
       {
         $sql = "update vuelos
                 set codigo_aeropuerto_origen = '$aeOr',
-                    codigo_aeropuerto_destino = '$aeOr',
+                    codigo_aeropuerto_destino = '$aeDs',
                     placa_avion = '$avPlaca',
                     hora_salida = '$hrSalida',
                     hora_llegada = '$hrLLegada',
@@ -602,5 +947,55 @@ echo $sql;
       }
 //echo $sql;
       $this->persxav = $db->exec($sql);
+  }
+  
+  public function executeBorraPerXVuelo(sfWebRequest $request)
+  {
+      $this->setLayout('layoutBackend');
+      
+      $cantReg = $request->getParameter("cantReg");
+      
+      $vuCodigo = $request->getParameter("codVuelo");
+      $tipoId = $request->getParameter("tipoId");
+      $idPers = $request->getParameter("idPersonal");
+      
+      $db = DB::Instance();
+      //echo $cantPais;
+      $sql = "delete personal_x_vuelo
+                set  tipo_id_presonal = '$tipoId'
+                     identificacion_personal = '$idPers'
+               where codigo_vuelo = '$vuCodigo'";
+      
+//echo $sql;
+      $this->persxav = $db->exec($sql);
+  }
+  
+  public function executeGuardaNoticias(sfWebRequest $request)
+  {
+      $this->setLayout('layoutBackend');
+      
+      $cantR = $request->getParameter("cantReg");
+      
+      $fecNot = $request->getParameter("noFecha");
+      $idNot = $request->getParameter("noticiaId");
+      $titNot = $request->getParameter("noTitulo");
+      $contNot = $request->getParameter("noContenido");
+      
+      $db = DB::Instance();
+      //echo $cantR;
+      IF ($cantR == 1)
+      {
+        $sql = "update noticias
+                set fecha = '$fecNot',
+                    titulo = '$titNot',
+                    titulo = '$contNot'
+                where pkid = '$idNot'";
+      }
+      else 
+      {
+         $sql = "insert into noticias values ('$idNot','$titNot','$fecNot','$contNot')";   
+      }
+//echo $sql;
+      $this->noticias = $db->exec($sql);
   }
 }

@@ -6,16 +6,22 @@
 ?>  
 <!-- Form elements -->                
                 <div class="module">
+                    <?php if (isset($mensajeCorr)){  ?>      
+                        <div>
+                            <span class="notification n-success"><?php echo $mensajeCorr?></span>
+                        </div>
+                    <?php } ?>
+                    
                      <h2><span>Vuelos</span></h2>
                         
                      <div class="module-body">
-                        <form action="guardaVuelos" method="POST">
+                        <form action="editVuelos" method="POST">
                         <?$vcantReg=0?>    
                         <?php foreach($vuelos as $vuelo){ $vcantReg=1?>
                             <p>
                                 <label>Codigo Vuelo</label>
                                 <input type="text" class="input-short" value="<?php echo $vuelo["codigo_vuelo"] ?>" disabled="disabled" maxlength="5"/>
-                                <input type="hidden"  value="<?php echo $vuelo["codigo_vuelo"] ?>" name="codVuelo"  maxlength="5"/>
+                                <input type="hidden"  value="<?php echo $vuelo["codigo_vuelo"] ?>" name="vueloEdit"  maxlength="5"/>
                                 <!-- Form elements <span class="notification-input ni-correct">This is correct, thanks!</span>--> 
                             </p>
                             
@@ -63,7 +69,7 @@
                                                           echo "selected";
                                                       }
                                               ?>
-                                                      value="<?php echo $avion["placa"] ?>"><?php echo $aero["codigo_aeropuerto"]?></option>
+                                                      value="<?php echo $avion["placa"] ?>"><?php echo $avion["placa"]?></option>
                                                       
                                       
                                       <?php } ?>
@@ -72,13 +78,13 @@
                             
                             <p>
                                 <label>Hora Salida</label>
-                                <input type="datetime" class="input-short" value="<?php echo $vuelo["hora_salida"] ?>" name="horSalida" />
+                                <input type="text" class="input-short" value="<?php echo date('d-m-Y H:i',strtotime($vuelo["hora_salida"]));?>" name="horSalida" onblur="if(this.value=='') this.value='dd-mm-yyyy 24:00'" onFocus="if(this.value =='dd-mm-yyyy 24:00' ) this.value=''"/>
                                 <!-- Form elements <span class="notification-input ni-correct">This is correct, thanks!</span>--> 
                             </p>
                             
                             <p>
                                 <label>Hora LLegada</label>
-                                <input type="datetime" class="input-short" value="<?php echo $vuelo["hora_llegada"] ?>" name="horLLegada" />
+                                <input type="text" class="input-short" value="<?php echo date('d-m-Y H:i',strtotime($vuelo["hora_llegada"]));?>" name="horLLegada" onblur="if(this.value=='') this.value='dd-mm-yyyy 24:00'" onFocus="if(this.value =='dd-mm-yyyy 24:00' ) this.value=''"/>
                                 <!-- Form elements <span class="notification-input ni-correct">This is correct, thanks!</span>--> 
                             </p>
                             
@@ -90,9 +96,11 @@
                             <?php } ?>
                             <input type="hidden" value="<?php echo $vcantReg?>"name="cantReg"/>
                             <?php 
+                                
                                 if ($vcantReg==0) 
                                 {
                             ?>
+                            
                                 <p>
                                     <label>Codigo Vuelo</label>
                                     <input type="text" class="input-short" disabled="disabled" maxlength="5" name="codVuelo"/>
@@ -125,7 +133,7 @@
 
                                     <select class="input-short" name="placaAvion" maxlength="5" >
                                           <?php foreach($aviones as $avion){?>
-                                          <option value="<?php echo $avion["placa"] ?>"><?php echo $aero["codigo_aeropuerto"]?></option>
+                                          <option value="<?php echo $avion["placa"] ?>"><?php echo $avion["placa"]?></option>
 
                                           <?php } ?>
                                       </select>
@@ -133,13 +141,13 @@
 
                                 <p>
                                     <label>Hora Salida</label>
-                                    <input type="datetime" class="input-short" name="horSalida" />
+                                    <input type="datetime" class="input-short" name="horSalida" value="dd-mm-yyyy 24:00" onblur="if(this.value=='') this.value='dd-mm-yyyy 24:00'" onFocus="if(this.value =='dd-mm-yyyy 24:00' ) this.value=''"/>
                                     <!-- Form elements <span class="notification-input ni-correct">This is correct, thanks!</span>--> 
                                 </p>
 
                                 <p>
                                     <label>Hora LLegada</label>
-                                    <input type="datetime" class="input-short" name="horLLegada" />
+                                    <input type="datetime" class="input-short" name="horLLegada" value="dd-mm-yyyy 24:00" onblur="if(this.value=='') this.value='dd-mm-yyyy 24:00'" onFocus="if(this.value =='dd-mm-yyyy 24:00' ) this.value=''"/>
                                     <!-- Form elements <span class="notification-input ni-correct">This is correct, thanks!</span>--> 
                                 </p>
 
@@ -156,20 +164,23 @@
                             <!--<a href="listClientes"><input class="submit-green" value="Guardar"></a>
                             <a href="listClientes"><input class="submit-gray" value="Cancelar"></a>
                             <input class="submit-gray" type="submit" value="Cancel">
-                            
+                            <?php 
+                                if ($vcantReg>0) 
+                                {
+                            ?>
                             -->
                              <div class="module">
                                 <h2><span>Personal Asignado</span></h2>
 
                                     <div class="module-table-body">
-                                        <form action="">
+                                        <form action="editVuelos" method="post">
                                         <table id="myTable" class="tablesorter">
                                                 <thead>
                                                 <tr>
                                                     <th style="width:5%">#</th>
                                                     <th style="width:13%">Identificacion</th>
                                                     <th style="width:13%">Nombre</th>
-                                                    <th style="width:13%">Acciones</th>
+                                                    <th style="width:2%">Acciones</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
@@ -180,19 +191,86 @@
                                                     <td><?php echo $per["nombre_completo"] ?></td>
                                                     
                                                 <td>
-                                                        <input type="checkbox" />
-                                                        <a href=""><img src="../images/tick-circle.gif" tppabs="http://www.xooom.pl/work/magicadmin/images/tick-circle.gif" width="16" height="16" alt="published" /></a>
+                                                        <input type="checkbox" name="perBorrar[]" value ="<?php echo $per["identificacion"] ?>"/>
+                                                        <a href="editVuelos?vueloEdit=<?php echo $varCodVuel ?>&tipIdEdit=<?php echo $per["tipo_identificacion"] ?>&numIdEdit=<?php echo $per["identificacion"] ?>&accionSelecAsg=4"><img src="../images/minus-circle.gif" tppabs="http://www.xooom.pl/work/magicadmin/images/minus-circle.gif" width="16" height="16" alt="not published"></a>
                                                         <a href="editPersonalXVuelo?codVuelo=<?php echo $varCodVuel ?>&tipIdEdit=<?php echo $per["tipo_identificacion"] ?>&numIdEdit=<?php echo $per["identificacion"] ?>"><img src="../images/pencil.gif" tppabs="http://www.xooom.pl/work/magicadmin/images/pencil.gif" width="16" height="16" alt="edit" /></a>
-                                                        <a href=""><img src="../images/balloon.gif" tppabs="http://www.xooom.pl/work/magicadmin/images/balloon.gif" width="16" height="16" alt="comments" /></a>
-                                                        <a href=""><img src="../images/bin.gif" tppabs="http://www.xooom.pl/work/magicadmin/images/bin.gif" width="16" height="16" alt="delete" /></a>
-                                                    </td>
+                                                </td>
+                                                </tr>
+                                                
+                                              <?php } ?>      
+                                               
+                                            </tbody>
+                                        </table>
+                                        </form>
+                                        <div class="pager" id="pager">
+                                            <form action="">
+                                                <div>
+                                                <img class="first" src="../images/arrow-stop-180.gif" tppabs="http://www.xooom.pl/work/magicadmin/images/arrow-stop-180.gif" alt="first"/>
+                                                <img class="prev" src="../images/arrow-180.gif" tppabs="http://www.xooom.pl/work/magicadmin/images/arrow-180.gif" alt="prev"/> 
+                                                <input type="text" class="pagedisplay input-short align-center"/>
+                                                <img class="next" src="../images/arrow.gif" tppabs="http://www.xooom.pl/work/magicadmin/images/arrow.gif" alt="next"/>
+                                                <img class="last" src="../images/arrow-stop.gif" tppabs="http://www.xooom.pl/work/magicadmin/images/arrow-stop.gif" alt="last"/> 
+                                                <select class="pagesize input-short align-center">
+                                                    <option value="10" selected="selected">10</option>
+                                                    <option value="20">20</option>
+                                                    <option value="30">30</option>
+                                                    <option value="40">40</option>
+                                                </select>
+                                                </div>
+                                            </form>
+                                        </div>
+                                        <div class="table-apply">
+                                            <form action="">
+                                                <input type="hidden"  value="<?php echo $varCodVuel ?>" name="vueloEdit"  maxlength="5"/>
+                                                <input type="hidden" value="1"name="cantReg"/>
+                                            <div>
+                                            <span>Aplicar Accion:</span> 
+                                            <select class="input-medium" name="accionSelecAsg">
+                                                <option value="0" selected="selected">Seleccione Accion</option>
+                                                <option value="4">Eliminar</option>
+                                                
+                                            </select>
+                                            </div>
+                                                
+                                            </br><input class="submit-green" type="submit" value="Aceptar"></a>
+                                            </form>
+                                        </div>
+                                        <div style="clear: both"></div>
+                                     </div> <!-- End .module-table-body -->
+                                </div> 
+                            
+                             <div class="module">
+                                <h2><span>Personal Disponible</span></h2>
+
+                                    <div class="module-table-body">
+                                        <form action="">
+                                        <table id="myTable" class="tablesorter">
+                                                <thead>
+                                                <tr>
+                                                    <th style="width:5%">#</th>
+                                                    <th style="width:13%">Identificacion</th>
+                                                    <th style="width:13%">Nombre</th>
+                                                    <th style="width:2%">Acciones</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <?php foreach($personaldisp as $perd){  ?>      
+                                                <tr>
+                                                    <td class="align-center">1</td>
+                                                    <td><?php echo $perd["identificacion"] ?></td>
+                                                    <td><?php echo $perd["nombre_completo"] ?></td>
+                                                    
+                                                <td>
+                                                        <input type="checkbox" name="perasignar[]" value =<?php echo $perd["identificacion"] ?>/>
+                                                        <a href="editVuelos?vueloEdit=<?php echo $varCodVuel ?>&tipIdEdit=<?php echo $perd["tipo_identificacion"] ?>&numIdEdit=<?php echo $perd["identificacion"] ?>&accionSelecDisp=1"><img src="../images/tick-circle.gif" tppabs="http://www.xooom.pl/work/magicadmin/images/tick-circle.gif" width="16" height="16" alt="published" /></a>
+                                                        <a href="editPersonalXVuelo?codVuelo=<?php echo $varCodVuel ?>&tipIdEdit=<?php echo $perd["tipo_identificacion"] ?>&numIdEdit=<?php echo $perd["identificacion"] ?>"><img src="../images/pencil.gif" tppabs="http://www.xooom.pl/work/magicadmin/images/pencil.gif" width="16" height="16" alt="edit" /></a>
+                                                </td>
                                                 </tr>
                                               <?php } ?>      
 
                                             </tbody>
                                         </table>
-                                            
-                                        <a href="editPersonalXVuelo?codVuelo=<?php echo $varCodVuel ?>"><input class="submit-green" type="button" value="Agregar"></a></br></br>
+                                        
                                         </form>
                                         <div class="pager" id="pager">
                                             <form action="">
@@ -214,21 +292,18 @@
                                         <div class="table-apply">
                                             <form action="">
                                             <div>
-                                            <span>Apply action to selected:</span> 
-                                            <select class="input-medium">
-                                                <option value="1" selected="selected">Select action</option>
-                                                <option value="2">Publish</option>
-                                                <option value="3">Unpublish</option>
-                                                <option value="4">Delete</option>
+                                            <span>Aplicar Acción:</span> 
+                                            <select class="input-medium" value="accionSeleccionada">
+                                                <option value="0" selected="selected">Seleccione Accion</option>
+                                                <option value="1">Agregar</option>
                                             </select>
                                             </div>
                                             </form>
                                         </div>
                                         <div style="clear: both"></div>
                                      </div> <!-- End .module-table-body -->
-                                </div> 
-                            
-                            
+                                </div>
+                            <?php } ?>      
                         </form>
                      </div> <!-- End .module-body -->
 

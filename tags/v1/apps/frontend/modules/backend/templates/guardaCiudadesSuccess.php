@@ -5,4 +5,6 @@
     $this->menuCurrent = "ciudades";
     
 ?>  
-<h><span>Registro Almacenado Correctamente!</span></h>
+<div>
+    <span class="notification n-success" >Registro Almacenado Correctamente!</span>
+</div>
