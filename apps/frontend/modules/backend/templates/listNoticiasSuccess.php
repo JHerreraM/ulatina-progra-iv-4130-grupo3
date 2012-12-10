@@ -1,30 +1,17 @@
 <?php
-
-
-    $this->sublinks = Array( Array("Principal", "vuelos" ), Array("Listado", "listVuelos" ) );
-    $this->menuCurrent = "vuelos";
+    $this->sublinks = Array( Array("Principal", "noticias" ), Array("Listado", "listNoticias" ) );
+    $this->menuCurrent = "noticias";
 ?>  
-         <div class="grid_12"> 
-                <div class="bottom-spacing">
+                
+                <!-- Example table -->
+                <div class="module">
                     <?php if (isset($mensajeCorr)){  ?>      
                     <div>
                         <span class="notification n-success"><?php echo $mensajeCorr?></span>
                     </div>
-                    <?php } ?>         
-                    <!-- Table records filtering -->
-                    Filtro: 
-                    <select class="input-short">
-                    	<option value="1" selected="selected">Seleccione Filtro</option>
-                        <option value="2">Hoy</option>
-                        <option value="3">Ultima Semana</option>
-                        <option value="4">Ultimo Mes</option>
-                    </select>
+                    <?php } ?> 
                     
-                </div>
-
-                <!-- Example table -->
-                <div class="module">
-                <h2><span>Listado de Vuelos</span></h2>
+                	<h2><span>Listado de Noticias</span></h2>
                     
                     <div class="module-table-body">
                     	<form action="">
@@ -32,42 +19,31 @@
                         	<thead>
                                 <tr>
                                     <th style="width:5%">#</th>
-                                    <th style="width:10%">Codigo</th>
-                                    <th style="width:5%">Origen</th>
-                                    <th style="width:5%">Destino</th>
-                                    <th style="width:5%">Avion</th>
-                                    <th style="width:30%">Salida</th>
-                                    <th style="width:30%">Llegada</th>
-                                    <th style="width:5%">Duracion</th>
-                                    <th style="width:5%">Acciones</th>
+                                    <th style="width:15%">Fecha</th>
+                                    <th style="width:40%">Titulo</th>
+                                    <th style="width:15%">Acciones</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 <?php 
                                    $cont = 0;
-                                ?>  
-                                <?php foreach($vuelos as $vuelo){  $cont = $cont + 1;?>      
+                                ?> 
+                                <?php foreach($noticias as $noticia){ $cont = $cont + 1;?>      
                                 <tr>
                                     <td class="align-center"><?php echo $cont ?></td>
-                                    <td><?php echo $vuelo["codigo"] ?></td>
-                                    <td><?php echo $vuelo["nombreOrigen"] ?></td>
-                                    <td><?php echo $vuelo["nombreDestino"] ?></td>
-                                    <td><?php echo $vuelo["placa_avion"] ?></td>
-                                    <td><?php echo date('d-m-Y H:i',strtotime($vuelo["hora_salida"]));?></td>
-                                    <td><?php echo date('d-m-Y H:i',strtotime($vuelo["hora_llegada"]));?></td>
-                                    <td><?php echo $vuelo["duracion_estimada"] ?></td>
-                                   
+                                    <td><?php echo $noticia["fecha"] ?></td>
+                                    <td><?php echo $noticia["titulo"] ?></td>
                                     <td>
-                                    	<input type="checkbox" name="perBorrar[]" value ="<?php echo $per["identificacion"] ?>"/>
-                                        <a href="listVuelos?vueloEdit=<?php echo $vuelo["codigo"] ?>&accionSelec=4"><img src="../images/minus-circle.gif" tppabs="http://www.xooom.pl/work/magicadmin/images/minus-circle.gif" width="16" height="16" alt="not published"></a>
-                                        <a href="editVuelos?vueloEdit=<?php echo $vuelo["codigo"] ?>"><img src="../images/pencil.gif" tppabs="http://www.xooom.pl/work/magicadmin/images/pencil.gif" width="16" height="16" alt="edit" /></a>
+                                    	<input type="checkbox" name="perBorrar[]" value ="<?php echo $noticia["codigo_noticia"] ?>"/>
+                                        <a href="listNoticias?noticiaId=<?php echo $noticia["pkid"] ?>&accionSelec=4"><img src="../images/minus-circle.gif" tppabs="http://www.xooom.pl/work/magicadmin/images/minus-circle.gif" width="16" height="16" alt="not published"></a>
+                                        <a href="editNoticias?noticiaId=<?php echo $noticia["pkid"] ?>"><img src="../images/pencil.gif" tppabs="http://www.xooom.pl/work/magicadmin/images/pencil.gif" width="16" height="16" alt="edit" /></a>
                                     </td>
                                 </tr>
                               <?php } ?>      
-
+                             
                             </tbody>
                         </table>
-                        <a href="editVuelos"><input class="submit-green" type="button" value="Agregar"></a></br></br>
+                        <a href="editNoticias"><input class="submit-green" type="button" value="Agregar"></a></br></br>
                         </form>
                         <div class="pager" id="pager">
                             <form action="">
@@ -102,4 +78,3 @@
                         <div style="clear: both"></div>
                      </div> <!-- End .module-table-body -->
                 </div> <!-- End .module -->
-         </div>

@@ -5,6 +5,12 @@
                 
                 <!-- Example table -->
                 <div class="module">
+                    <?php if (isset($mensajeCorr)){  ?>      
+                    <div>
+                        <span class="notification n-success"><?php echo $mensajeCorr?></span>
+                    </div>
+                    <?php } ?> 
+                    
                 	<h2><span>Listado de Paises</span></h2>
                     
                     <div class="module-table-body">
@@ -20,18 +26,19 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                <?php foreach($paises as $pais){ ?>      
+                                <?php 
+                                   $cont = 0;
+                                ?> 
+                                <?php foreach($paises as $pais){ $cont = $cont + 1;?>      
                                 <tr>
-                                    <td class="align-center">1</td>
+                                    <td class="align-center"><?php echo $cont ?></td>
                                     <td><?php echo $pais["codigo_pais"] ?></td>
                                     <td><?php echo $pais["nombre_pais"] ?></td>
                                     <td><?php echo $pais["nacionalidad"] ?></td>
                                     <td>
-                                    	<input type="checkbox" />
-                                        <a href=""><img src="../images/tick-circle.gif" tppabs="http://www.xooom.pl/work/magicadmin/images/tick-circle.gif" width="16" height="16" alt="published" /></a>
+                                    	<input type="checkbox" name="perBorrar[]" value ="<?php echo $pais["codigo_pais"] ?>"/>
+                                        <a href="listPaises?paisEdit=<?php echo $pais["codigo_pais"] ?>&accionSelec=4"><img src="../images/minus-circle.gif" tppabs="http://www.xooom.pl/work/magicadmin/images/minus-circle.gif" width="16" height="16" alt="not published"></a>
                                         <a href="editPaises?paisEdit=<?php echo $pais["codigo_pais"] ?>"><img src="../images/pencil.gif" tppabs="http://www.xooom.pl/work/magicadmin/images/pencil.gif" width="16" height="16" alt="edit" /></a>
-                                        <a href=""><img src="../images/balloon.gif" tppabs="http://www.xooom.pl/work/magicadmin/images/balloon.gif" width="16" height="16" alt="comments" /></a>
-                                        <a href=""><img src="../images/bin.gif" tppabs="http://www.xooom.pl/work/magicadmin/images/bin.gif" width="16" height="16" alt="delete" /></a>
                                     </td>
                                 </tr>
                               <?php } ?>      

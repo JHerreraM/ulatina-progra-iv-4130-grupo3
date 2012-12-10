@@ -91,7 +91,7 @@
                                 </p>
                                 
                                 <p>
-                                    <label>Medium text area</label>
+                                    <label>Detalles</label>
                                     <textarea rows="7" cols="90" class="input-medium" value="<?php echo $aeropuerto["detalles"] ?>" name="DetallesNuevo"></textarea>
                                 </p>
                             <?php } ?>
