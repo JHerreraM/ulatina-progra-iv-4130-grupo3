@@ -2,7 +2,7 @@
 
 		<article class="col1" style="padding-top: 30px;">
 			<div class="pad_1">
-                                <div>
+				<div>
                                     <table>
                                         <tr>
                                             <td colspan="2">Proceso Reserva</td>
@@ -11,44 +11,43 @@
                                             <td width="80px"></td><td>1. Seleccion Vuelo</td>
                                         </tr>
                                        <tr>
-                                            <td></td><td><b>-> Seleccion Asiento</b></td>
+                                            <td></td><td>2. Seleccion Asiento</td>
                                         </tr>
                                         <tr>
                                             <td></td><td>3. Autenticacion</td>
                                         </tr>
                                         <tr>
-                                            <td></td><td>4. Confirmacion</td>
+                                            <td></td><td><b>-> Confirmacion</b></td>
                                         </tr>
                                     </table>
                                 </div>
-
-					<div class="wrapper pad_bot1" style="margin-top: 35px">
+                            	<div class="wrapper pad_bot1" style="margin-top: 35px">
                                             Detalle Reserva <br/><br/>
-                                            <b>Vuelo:</b> <?php echo  "A" . $_SESSION["codVueloSalida"] ; 
+                                            <b>Vuelo:</b> 
+                                                <?php 
+                                                  echo  "A" . $_SESSION["codVueloSalida"] ; 
                                                   echo  " " . $_SESSION["ciudadSalida"] . " -> " . $_SESSION["ciudadLlegada"];
-                                            ?>
-                                       </div>
-	
+                                                ?>
+                                            <br/>
+                                            <b>Asiento:</b>
+                                                <?php 
+                                                  echo $_SESSION["asientoSalida"] ; 
+                                                ?>
+                                            <br/>
+                                            <b>Nombre:</b>
+                                                <?php 
+                                                  echo $_SESSION["nombreCliente"] ; 
+                                                ?>
+                                </div>
+
 			</div>
 		</article>
 
 		<article class="col2 pad_left1" style="padding-top: 30px;">
-			Asientos Disponibles
+			<h2>Confirmacion</h2>
 			<div class="wrapper" style="padding-top: 20px;">
-                            <form action="auth" method="POST">
-                            <?php
-                                foreach($asientos as $asiento){
-                                    $codAsiento = $asiento["codigo_campo"];
-                                    echo "<input type='radio' name='asiento' value='$codAsiento'>$codAsiento<br>";
-                                }
-                            ?>
-                            <div style="float:right;margin-top: 50px;margin-right: 45px; margin-bottom: 100px;">
-
-                                <input type="submit" value="Siguiente"/>
-                            </div>
+                                Vuelo Reservado con Exito
                         </div>
 		</article>
 
 	</section>
-
-
