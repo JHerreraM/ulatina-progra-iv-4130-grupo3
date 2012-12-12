@@ -39,7 +39,8 @@
                             <?php
                                 foreach($asientos as $asiento){
                                     $codAsiento = $asiento["codigo_campo"];
-                                    echo "<input type='radio' name='asiento' value='$codAsiento'>$codAsiento<br>";
+                                    $costo =  $asiento["costo"];
+                                    echo "<input type='radio' name='asiento' value='$codAsiento'>$codAsiento (USD <b>$costo$</b>) <br>";
                                 }
                             ?>
                             <div style="float:right;margin-top: 50px;margin-right: 45px; margin-bottom: 100px;">

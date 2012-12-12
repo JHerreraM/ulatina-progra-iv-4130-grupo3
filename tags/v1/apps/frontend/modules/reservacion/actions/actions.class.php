@@ -24,6 +24,25 @@ class reservacionActions extends sfActions
         
               $this->setLayout('layoutReservacion');
               $_SESSION["asientoSalida"] = $request->getParameter("asiento");
+              $asiento = $_SESSION["asientoSalida"];
+              $vuelo = $_SESSION["codVueloSalida"];
+                    
+              $db = DB::Instance();
+                    
+              $sql = "select ca.codigo_campo as codigo_campo, co.costo as costo
+                from campos_x_avion ca,
+                     vuelos vu,
+                     costo_x_tipo_campo co
+               where ca.tipo_campo != 'P'
+                 and vu.codigo_vuelo = '$vuelo'
+                 and ca.placa_avion = vu.placa_avion
+                 and ca.tipo_campo = co.tipo_campo
+                 and vu.codigo_vuelo = co.codigo_vuelo
+                 and ca.codigo_campo = '$asiento'
+               order by ca.codigo_campo";
+                  
+              $costo = $db->queryArray($sql);
+              $_SESSION["costo"] = $costo[0]["costo"] ;
               
     }
   
@@ -128,6 +147,7 @@ class reservacionActions extends sfActions
       $this->placa_avion = $db->queryArray($sql);
       $placa =  $this->placa_avion[0]["placa_avion"];
       
+      /*
       $sql2 = "SELECT * 
                     FROM campos_x_avion
                     WHERE tipo_campo !=  'P'
@@ -136,7 +156,24 @@ class reservacionActions extends sfActions
                     IN (
                             SELECT codigo_asiento FROM  `reservacion_tiquete` WHERE codigo_vuelo = $vuelo
                     )";
+     */
       
+      $sql2 = "select ca.codigo_campo as codigo_campo, co.costo as costo
+                from campos_x_avion ca,
+                     vuelos vu,
+                     costo_x_tipo_campo co
+               where ca.tipo_campo != 'P'
+                 and vu.codigo_vuelo = '$vuelo'
+                 and ca.placa_avion = vu.placa_avion
+                 and ca.tipo_campo = co.tipo_campo
+                 and vu.codigo_vuelo = co.codigo_vuelo
+                 and (ca.codigo_campo not in (select rs.codigo_asiento
+                                               from reservacion_tiquete rs
+                                              where rs.codigo_vuelo = vu.codigo_vuelo
+                                                and rs.estado_tiquete = 'V')
+                      )
+               order by ca.codigo_campo";
+
       $this->asientos = $db->queryArray($sql2);
       
   }
@@ -193,7 +230,7 @@ class reservacionActions extends sfActions
       $this->vueloSalida = $_SESSION["codVueloSalida"];
       $this->vueloRegreso = $_SESSION["codVueloRegreso"];
       
-      
+      $this->costo = $_SESSION["costo"];
       
   }
   
