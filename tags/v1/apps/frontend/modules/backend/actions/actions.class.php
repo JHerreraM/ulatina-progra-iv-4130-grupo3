@@ -29,6 +29,12 @@ class backendActions extends sfActions
           
   }
   
+  public function executeAuth(sfWebRequest $request)
+  {
+          $this->setLayout('layoutBackend');
+          
+  }
+  
   public function executePersonal(sfWebRequest $request)
   {
           $this->setLayout('layoutBackend');
@@ -77,12 +83,6 @@ class backendActions extends sfActions
           
   }
   
-  public function executeUsuarios(sfWebRequest $request)
-  {
-          $this->setLayout('layoutBackend');
-          
-  }
-  
   public function executeReservar(sfWebRequest $request)
   {
           $this->setLayout('layoutBackend');
@@ -92,9 +92,78 @@ class backendActions extends sfActions
   public function executePrecios(sfWebRequest $request)
   {
           $this->setLayout('layoutBackend');
-          $sql = "select * from vuelos where hora_salida > NOW( )";
-          echo $sql;
+          
+  }
+  
+  public function executeEditPrecios(sfWebRequest $request)
+  {
+          $this->setLayout('layoutBackend');
+          $db = DB::Instance();
+          
+          $vuelo = $request->getParameter("codVuelo");
+          $tipAsie = $request->getParameter("tipoAsiento");
+          
+          $sql = "select * from vuelos where hora_salida > now()";
+          //echo $sql;
           $this->vuelos = $db->queryArray($sql);
+          
+          $sql = "select * 
+                    from costo_x_tipo_campo
+                   where codigo_vuelo = '$vuelo'
+                     and tipo_campo = '$tipAsie'";
+          //echo $sql;
+          $this->precios = $db->queryArray($sql);
+  }
+  
+  public function executeListPrecios(sfWebRequest $request)
+  {
+          $this->setLayout('layoutBackend');
+          $db = DB::Instance();
+          $accionSel = $request->getParameter("accionSelec");
+          $cantReg = $request->getParameter("cantReg");
+          $vuelo = $request->getParameter("codVuelo");
+          $tipAsie = $request->getParameter("tipoAsiento");
+          $costo = $request->getParameter("costAsiento");
+            //echo $accionSelAsg;
+            if (isset($accionSel))
+            {
+                //Preguntar RT $arrPerBorra[] = $request->getParameter('perBorrar');
+
+                if ($accionSel == '4')
+                {    
+                      $sql = "delete from costo_x_tipo_campo
+                               where codigo_vuelo = '$vuelo'
+                                 and tipo_campo = '$tipAsie'";
+                      $this->clteBor = $db->exec($sql);
+                      $this->mensajeCorr = "Se elimino correctamente el costo del asiento ".$tipAsie." en el vuelo ".$vuelo;
+                }
+            }
+            else
+            {
+              IF (isset($tipAsie) && isset($vuelo))
+               {   
+                IF ($cantReg == 1)
+                {
+                  $sql = "update costo_x_tipo_campo
+                          set costo = '$costo'
+                          where codigo_vuelo = '$vuelo'
+                            and tipo_campo = '$tipAsie'";
+                  $this->mensajeCorr = "Se actualizo correctamente el costo del asiento ".$tipAsie." en el vuelo ".$vuelo;
+                }
+                else 
+                {
+                   $sql = "insert into costo_x_tipo_campo values ('$vuelo','$tipAsie','$costo')"; 
+                   $this->mensajeCorr = "Se grabo correctamente el costo del asiento ".$tipAsie." en el vuelo ".$vuelo;
+                }
+               }
+                
+            }    
+     // echo $sql;
+            $this->costos = $db->exec($sql);
+            
+          $sql = "select * from costo_x_tipo_campo order by codigo_vuelo desc, tipo_campo desc";
+          //echo $sql;
+          $this->precios = $db->queryArray($sql);
           
   }
   
@@ -381,10 +450,20 @@ class backendActions extends sfActions
                 {    
                       $sql = "update reservacion_tiquete 
                                  set identificacion_cliente = '$idClien',
-                                     precio_tiquete = $rePrecio,
-                                     estado_tiquete = '$reEstado'
+                                     precio_tiquete = (select co.costo 
+                                                         from costo_x_tipo_campo co,
+                                                              campos_x_avion ca,
+                                                              vuelos vu
+                                                        where co.codigo_vuelo ='$vuelo'
+                                                          and vu.codigo_vuelo = '$vuelo'
+                                                          and ca.placa_avion = vu.placa_avion
+                                                          and co.tipo_campo = ca.tipo_campo
+                                                          and ca.codigo_campo = '$asiento'),
+                                     estado_tiquete = '$reEstado',
+                                     forma_pago = '$formaPago'
                                where codigo_vuelo = '$vuelo'
                                  and codigo_asiento = '$asiento'";
+                      //echo $sql;
                       $this->resInser = $db->exec($sql);
                       $this->mensajeCorr = "Se grabo correctamente la reserva del asiento ".$asiento;
                 }
@@ -393,7 +472,16 @@ class backendActions extends sfActions
                      {
                        $sql = "insert into reservacion_tiquete values (
 
-                               '$asiento','$vuelo','C','$idClien',$rePrecio,'$formaPago','$reEstado','')";
+                               '$asiento','$vuelo','C','$idClien',(select co.costo 
+                                                                    from costo_x_tipo_campo co,
+                                                                         campos_x_avion ca,
+                                                                         vuelos vu
+                                                                   where co.codigo_vuelo ='$vuelo'
+                                                                     and vu.codigo_vuelo = '$vuelo'
+                                                                     and ca.placa_avion = vu.placa_avion
+                                                                     and co.tipo_campo = ca.tipo_campo
+                                                                     and ca.codigo_campo = '$asiento'),
+                                            '$formaPago','$reEstado','')";
                        //echo $sql;
                        $this->resInser = $db->exec($sql);
                        $this->mensajeCorr = "Se grabo correctamente la reserva del asiento ".$asiento;
@@ -1087,6 +1175,74 @@ echo $sql;
       $this->persxav = $db->exec($sql);
   }
   
+  public function executeListUsuarios(sfWebRequest $request)
+  {
+          $this->setLayout('layoutBackend');
+          
+          $db = DB::Instance();
+          
+          $accionSel = $request->getParameter("accionSelec");
+          
+          $cantR = $request->getParameter("cantReg");
+          $usuario = $request->getParameter("editUsuario");
+          $password = $request->getParameter("usPassw");
+          $tipoUsr = $request->getParameter("usTipo");
+            //echo $accionSelAsg;
+            if (isset($accionSel))
+            {
+                //Preguntar RT $arrPerBorra[] = $request->getParameter('perBorrar');
+                
+                if ($accionSel == '4')
+                {    
+                      $sql = "delete from usuarios
+                               where codigo_usuario = '$usuario'";
+                      $this->notiBor = $db->exec($sql);
+                      $this->mensajeCorr = "Se elimino correctamente el usuario ".$usuario;
+                }
+            }
+            else
+            { 
+              IF (isset($usuario))    
+              {  
+                IF ($cantR == 1)
+                {
+                $sql = "update usuarios
+                        set password = '$password',
+                            tipo_usuario = '$tipoUsr'
+                        where codigo_usuario = '$usuario'";
+                $this->mensajeCorr = "Se actualizo correctamente el usuario ".$usuario;
+                }
+                else 
+                {
+                 $sql = "insert into usuarios values ('$usuario','$password','$tipoUsr')";   
+                 $this->mensajeCorr = "Se grabo correctamente el usuario ".$usuario;
+                }
+            
+                //echo $sql;
+                $this->users = $db->exec($sql);
+            
+                }
+            }
+            
+            
+          $sql = "select * from usuarios order by codigo_usuario";
+          //echo $sql;
+          $this->usuarios = $db->queryArray($sql);
+          
+  }
+  
+  public function executeEditUsuarios(sfWebRequest $request)
+  {
+      $this->setLayout('layoutBackend');
+      $db = DB::Instance();
+      $usuario = $request->getParameter("usuarioEdit");
+      
+      $sql = "select * from usuarios where codigo_usuario = '$usuario'";
+      $this->usuarios = $db->queryArray($sql);
+      
+          
+  }
+  
   public function executeGuardaNoticias(sfWebRequest $request)
   {
       $this->setLayout('layoutBackend');
@@ -1105,7 +1261,7 @@ echo $sql;
         $sql = "update noticias
                 set fecha = '$fecNot',
                     titulo = '$titNot',
-                    titulo = '$contNot'
+                    contenido = '$contNot'
                 where pkid = '$idNot'";
       }
       else 
@@ -1114,5 +1270,52 @@ echo $sql;
       }
 //echo $sql;
       $this->noticias = $db->exec($sql);
+  }
+
+  public function executeRepReserva(sfWebRequest $request)
+  {
+          //$this->setLayout('layoutBackend');
+          
+  }
+  
+  public function executeUsuarios(sfWebRequest $request)
+  {
+          $this->setLayout('layoutBackend');
+          
+  }
+  
+  public function executeLogin(sfWebRequest $request)
+  {
+      
+      $this->setLayout('layoutBackend');
+           
+      $username = $request->getParameter("username");
+      $password = $request->getParameter("password");
+      
+      $db = DB::Instance();
+       
+      $sql = "select count(*) As login from usuarios where codigo_usuario = '$username' AND password = '$password' ant tipo_usuario = 'I';";
+      
+      $login = $db->queryArray($sql);
+      
+      
+      if($login[0]["login"] != 1){
+          
+            $_SESSION["errorMessage"] = "Usuario o Password Invalido";
+            $this->redirect("backend/auth");
+                      
+      } else {
+          
+          $_SESSION["errorMessage"] = "";
+          
+          /*$sql2 = "select identificacion, nombre_completo from clientes where fk_codigo_usuario = '$username'";
+          
+          $clientes = $db->queryArray($sql2);*/
+          $_SESSION["loggedInterno"] = true;
+          
+          $this->redirect("backend/index");
+          
+      }    
+      
   }
 }

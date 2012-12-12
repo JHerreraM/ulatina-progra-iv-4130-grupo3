@@ -22,6 +22,14 @@
                 
 <?php include_stylesheets() ?>
 <?php include_javascripts() ?>
+<?php 
+  /*      session_start();
+        if (!$_SESSION["loggedInterno"])
+        {
+            $this->redirect("backend/index");
+        }*/
+        
+?>
                 
 	<body>
     	<!-- Header -->
