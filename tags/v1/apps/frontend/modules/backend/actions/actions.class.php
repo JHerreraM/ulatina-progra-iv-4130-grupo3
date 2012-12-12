@@ -89,6 +89,15 @@ class backendActions extends sfActions
           
   }
   
+  public function executePrecios(sfWebRequest $request)
+  {
+          $this->setLayout('layoutBackend');
+          $sql = "select * from vuelos where hora_salida > NOW( )";
+          echo $sql;
+          $this->vuelos = $db->queryArray($sql);
+          
+  }
+  
   public function executeListPersonal(sfWebRequest $request)
   {
           $this->setLayout('layoutBackend');
@@ -331,6 +340,79 @@ class backendActions extends sfActions
           $sql = "select * from noticias order by fecha desc, pkid desc";
           
           $this->noticias = $db->queryArray($sql);
+          
+  }
+  
+  public function executeListReservas(sfWebRequest $request)
+  {
+          $this->setLayout('layoutBackend');
+          
+          $db = DB::Instance();
+          //echo "KKKEIEIEIEIE";
+          $cantReg  = $request->getParameter("cantReg");
+          //echo $cantReg;
+          
+          $accionSel = $request->getParameter("accionSelec");
+          $asiento = $request->getParameter("codAsiento");
+          $vuelo = $request->getParameter("codVuelo");
+          $idClien = $request->getParameter("idenClte");
+          $formaPago = $request->getParameter("reFormaP");
+          $reEstado = $request->getParameter("reserEstado");
+          $rePrecio = $request->getParameter("reserPrecio");
+          
+          //$reSecVal = $request->getParameter("noticiaId");
+          
+            //echo $accionSelAsg;
+            if (isset($accionSel))
+            {
+                //Preguntar RT $arrPerBorra[] = $request->getParameter('perBorrar');
+                if ($accionSel == '4')
+                {    
+                      $sql = "delete from reservacion_tiquete
+                               where codigo_vuelo = '$vuelo'
+                                 and codigo_asiento = '$asiento'";
+                      $this->resBor = $db->exec($sql);
+                      $this->mensajeCorr = "Se elimino correctamente la reserva del asiento ".$asiento;
+                }
+                
+            }
+            else {
+                if ($cantReg == '1')
+                {    
+                      $sql = "update reservacion_tiquete 
+                                 set identificacion_cliente = '$idClien',
+                                     precio_tiquete = $rePrecio,
+                                     estado_tiquete = '$reEstado'
+                               where codigo_vuelo = '$vuelo'
+                                 and codigo_asiento = '$asiento'";
+                      $this->resInser = $db->exec($sql);
+                      $this->mensajeCorr = "Se grabo correctamente la reserva del asiento ".$asiento;
+                }
+                else
+                {   if (isset($asiento))
+                     {
+                       $sql = "insert into reservacion_tiquete values (
+
+                               '$asiento','$vuelo','C','$idClien',$rePrecio,'$formaPago','$reEstado','')";
+                       //echo $sql;
+                       $this->resInser = $db->exec($sql);
+                       $this->mensajeCorr = "Se grabo correctamente la reserva del asiento ".$asiento;
+                     }
+                }
+            }
+          $sql = "select re.codigo_vuelo, re.codigo_asiento, re.tipo_id_cliente, 
+                         re.identificacion_cliente, re.precio_tiquete,
+                         re.forma_pago, re.estado_tiquete, re.secuencia_validacion_vuelo,
+                         cl.nombre_completo
+                  from reservacion_tiquete re,
+                       clientes cl      
+                 where re.tipo_id_cliente = cl.tipo_identificacion
+                   and re.identificacion_cliente = cl.identificacion
+                   and re.codigo_vuelo = '$vuelo'
+                 order by re.codigo_asiento";
+          //echo $sql;
+          $this->reservas = $db->queryArray($sql);
+          $this->vueloRes = $vuelo;
           
   }
   
@@ -631,28 +713,63 @@ class backendActions extends sfActions
       $this->varCodVuel = $vuEdit;
   }
   
-  public function executeEditPersonalXVuelo(sfWebRequest $request)
+  public function executeEditReservas(sfWebRequest $request)
   {
       $this->setLayout('layoutBackend');
       $db = DB::Instance();
-      $tipIdentif = $request->getParameter("tipIdEdit");
-      $numIdentif = $request->getParameter("numIdEdit");
-      $codVuelo = $request->getParameter("codVuelo");
-      $sql = "select * from personal_x_vuelo
-              where tipo_id_presonal = '$tipIdentif'
-                and identificacion_personal = '$numIdentif'
-                and codigo_vuelo = '$codVuelo'
-               order by identificacion_personal";
+      $vuelo = $request->getParameter("codVuelo");
+      $asiento = $request->getParameter("codAsiento");
+      
+      $sql = "select * from reservacion_tiquete
+              where codigo_vuelo = '$vuelo'
+                and codigo_asiento = '$asiento'
+               order by codigo_asiento";
 //      echo $sql;      
-$this->personal = $db->queryArray($sql);
+      $this->reservas = $db->queryArray($sql);
       
-      $sql = "select * from personal order by identificacion";
-      $this->personallist = $db->queryArray($sql); 
+      $sql = "select * from clientes order by identificacion";
+      $this->clientelist = $db->queryArray($sql); 
       
+      $sql = "select ca.codigo_campo, co.costo 
+                from campos_x_avion ca,
+                     vuelos vu,
+                     costo_x_tipo_campo co
+               where ca.tipo_campo != 'P'
+                 and vu.codigo_vuelo = '$vuelo'
+                 and ca.placa_avion = vu.placa_avion
+                 and ca.tipo_campo = co.tipo_campo
+                 and vu.codigo_vuelo = co.codigo_vuelo
+                 and (ca.codigo_campo not in (select rs.codigo_asiento
+                                               from reservacion_tiquete rs
+                                              where rs.codigo_vuelo = vu.codigo_vuelo
+                                                and rs.estado_tiquete = 'V')
+                      or ca.codigo_campo = '$asiento')
+               order by ca.codigo_campo";
+      //echo $sql;      
+      $this->asientos = $db->queryArray($sql);
       
-      $this->varCodVuelPer = $codVuelo;
+      $sql = "select ca.codigo_campo, co.costo  
+                from campos_x_avion ca,
+                     vuelos vu,
+                     costo_x_tipo_campo co
+               where ca.tipo_campo != 'P'
+                 and vu.codigo_vuelo = '$vuelo'
+                 and ca.placa_avion = vu.placa_avion
+                 and ca.tipo_campo = co.tipo_campo
+                 and vu.codigo_vuelo = co.codigo_vuelo
+                 and ca.codigo_campo not in (select rs.codigo_asiento
+                                               from reservacion_tiquete rs
+                                              where rs.codigo_vuelo = vu.codigo_vuelo
+                                                and rs.estado_tiquete = 'V')
+               order by ca.codigo_campo";
+      //  echo $sql;      
+      $this->asientosDisp = $db->queryArray($sql);
+      
+      $this->varCodVuel = $vuelo;
       $this->vartipId = "C";
   }
+  
+  
   
   public function executeEditNoticias(sfWebRequest $request)
   {
