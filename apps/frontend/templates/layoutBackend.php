@@ -55,7 +55,7 @@
                                 <li <?php if($this->menuCurrent == "aeropuertos"){ echo 'id="current"';} ?>><a href="aeropuertos">Aeropuertos</a></li>
                                 <li <?php if($this->menuCurrent == "aviones"){ echo 'id="current"';} ?>><a href="aviones">Aviones</a></li>
                                 <li <?php if($this->menuCurrent == "vuelos"){ echo 'id="current"';} ?>><a href="vuelos">Vuelos</a></li>
-                                <li <?php if($this->menuCurrent == "reservar"){ echo 'id="current"';} ?>><a href="reservar">Reservar</a></li>
+                                <li <?php if($this->menuCurrent == "precios"){ echo 'id="current"';} ?>><a href="precios">Precio Tiquetes</a></li>
                                 <li <?php if($this->menuCurrent == "usuarios"){ echo 'id="current"';} ?>><a href="usuarios">Usuarios</a></li>
                                 <li <?php if($this->menuCurrent == "noticias"){ echo 'id="current"';} ?>><a href="noticias">Noticias</a></li>
                                 <li <?php if($this->menuCurrent == "configuracion"){ echo 'id="current"';} ?>><a href="">Configuracion</a></li>

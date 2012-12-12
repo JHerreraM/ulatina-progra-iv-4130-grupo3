@@ -1,30 +1,18 @@
 <?php
 
-
     $this->sublinks = Array( Array("Principal", "vuelos" ), Array("Listado", "listVuelos" ) );
     $this->menuCurrent = "vuelos";
 ?>  
-         <div class="grid_12"> 
-                <div class="bottom-spacing">
+
+                <!-- Example table -->
+                <div class="module">
                     <?php if (isset($mensajeCorr)){  ?>      
                     <div>
                         <span class="notification n-success"><?php echo $mensajeCorr?></span>
                     </div>
-                    <?php } ?>         
-                    <!-- Table records filtering -->
-                    Filtro: 
-                    <select class="input-short">
-                    	<option value="1" selected="selected">Seleccione Filtro</option>
-                        <option value="2">Hoy</option>
-                        <option value="3">Ultima Semana</option>
-                        <option value="4">Ultimo Mes</option>
-                    </select>
+                    <?php } ?> 
                     
-                </div>
-
-                <!-- Example table -->
-                <div class="module">
-                <h2><span>Listado de Vuelos</span></h2>
+                	<h2><span>Listado de Reservas</span></h2>
                     
                     <div class="module-table-body">
                     	<form action="">
@@ -32,43 +20,37 @@
                         	<thead>
                                 <tr>
                                     <th style="width:5%">#</th>
-                                    <th style="width:10%">Codigo</th>
-                                    <th style="width:5%">Origen</th>
-                                    <th style="width:5%">Destino</th>
-                                    <th style="width:5%">Avion</th>
-                                    <th style="width:25%">Salida</th>
-                                    <th style="width:25%">Llegada</th>
-                                    <th style="width:5%">Duracion</th>
-                                    <th style="width:10%">Acciones</th>
+                                    <th style="width:10%">Asiento</th>
+                                    <th style="width:40%">Cliente</th>
+                                    <th style="width:10%">Precio</th>
+                                    <th style="width:5%">Forma Pago</th>
+                                    <th style="width:5%">Estado</th>
+                                    <th style="width:5%">Acciones</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 <?php 
                                    $cont = 0;
-                                ?>  
-                                <?php foreach($vuelos as $vuelo){  $cont = $cont + 1;?>      
+                                ?> 
+                                <?php foreach($reservas as $reserva){ $cont = $cont + 1;?>      
                                 <tr>
                                     <td class="align-center"><?php echo $cont ?></td>
-                                    <td><?php echo $vuelo["codigo"] ?></td>
-                                    <td><?php echo $vuelo["nombreOrigen"] ?></td>
-                                    <td><?php echo $vuelo["nombreDestino"] ?></td>
-                                    <td><?php echo $vuelo["placa_avion"] ?></td>
-                                    <td><?php echo date('d-m-Y H:i',strtotime($vuelo["hora_salida"]));?></td>
-                                    <td><?php echo date('d-m-Y H:i',strtotime($vuelo["hora_llegada"]));?></td>
-                                    <td><?php echo $vuelo["duracion_estimada"] ?></td>
-                                   
+                                    <td><?php echo $reserva["codigo_asiento"] ?></td>
+                                    <td><?php echo $reserva["nombre_completo"] ?></td>
+                                    <td><?php echo $reserva["precio_tiquete"] ?></td>
+                                    <td><?php echo $reserva["forma_pago"] ?></td>
+                                    <td><?php echo $reserva["estado_tiquete"] ?></td>
                                     <td>
-                                    	<input type="checkbox" name="perBorrar[]" value ="<?php echo $per["identificacion"] ?>"/>
-                                        <a href="listVuelos?vueloEdit=<?php echo $vuelo["codigo"] ?>&accionSelec=4"><img src="../images/minus-circle.gif" tppabs="http://www.xooom.pl/work/magicadmin/images/minus-circle.gif" width="16" height="16" alt="not published"></a>
-                                        <a href="editVuelos?vueloEdit=<?php echo $vuelo["codigo"] ?>"><img src="../images/pencil.gif" tppabs="http://www.xooom.pl/work/magicadmin/images/pencil.gif" width="16" height="16" alt="edit" /></a>
-                                        <a href="listReservas?codVuelo=<?php echo $vuelo["codigo"] ?>"><img src="../images/tick-circle.gif" tppabs="http://www.xooom.pl/work/magicadmin/images/tick-circle.gif" alt="published" width="16" height="16">
+                                    	<input type="checkbox" name="perBorrar[]" value ="<?php echo $reserva["codigo_reserva"] ?>"/>
+                                        <a href="listReservas?codVuelo=<?php echo $reserva["codigo_vuelo"] ?>&codAsiento=<?php echo $reserva["codigo_asiento"] ?>&accionSelec=4"><img src="../images/minus-circle.gif" tppabs="http://www.xooom.pl/work/magicadmin/images/minus-circle.gif" width="16" height="16" alt="not published"></a>
+                                        <a href="editReservas?codVuelo=<?php echo $reserva["codigo_vuelo"] ?>&codAsiento=<?php echo $reserva["codigo_asiento"] ?>"><img src="../images/pencil.gif" tppabs="http://www.xooom.pl/work/magicadmin/images/pencil.gif" width="16" height="16" alt="edit" /></a>
                                     </td>
                                 </tr>
                               <?php } ?>      
 
                             </tbody>
                         </table>
-                        <a href="editVuelos"><input class="submit-green" type="button" value="Agregar"></a></br></br>
+                        <a href="editReservas?codVuelo=<?php echo $vueloRes ?>"><input class="submit-green" type="button" value="Agregar"></a></br></br>
                         </form>
                         <div class="pager" id="pager">
                             <form action="">
@@ -103,4 +85,3 @@
                         <div style="clear: both"></div>
                      </div> <!-- End .module-table-body -->
                 </div> <!-- End .module -->
-         </div>

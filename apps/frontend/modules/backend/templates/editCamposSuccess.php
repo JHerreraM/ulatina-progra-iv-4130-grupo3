@@ -45,7 +45,12 @@
                                                       {
                                                           echo "selected";
                                                       }
-                                              ?> value="A">Asiento</option>
+                                              ?> value="A">Asiento Turista</option>
+                                    <option  <?php if ($campo["tipo_campo"] == "E")
+                                                      {
+                                                          echo "selected";
+                                                      }
+                                              ?> value="E">Asiento Ejecutivo</option>
                                     <option  <?php if ($campo["tipo_campo"] == "P")
                                                       {
                                                           echo "selected";
