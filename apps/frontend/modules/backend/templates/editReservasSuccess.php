@@ -22,19 +22,20 @@
                             <p>
                                 <label>Codigo Asiento</label>
                                 
-                                <select class="input-short" name="codAsiento"  >
+                                <select class="input-short" name="codAsiento"  disabled="disabled">
                                       <?php foreach($asientos as $asiento){?>
                                       <option <?php if ($asiento["codigo_campo"] == $reserva["codigo_asiento"])
                                                       {
                                                           echo "selected";
                                                       }
                                               ?>
-                                                      value="<?php echo $asiento["codigo_campo"] ?>"><?php echo $asiento["codigo_campo"]?></option>
+                                                      value="<?php echo $asiento["codigo_campo"] ?>"><?php echo $asiento["codigo_campo"]." Precio: $".$asiento["costo"]?></option>
                                                       
                                       
                                       <?php } ?>
                                   </select>
                             </p>
+                            <input type="hidden"  value="<?php echo $reserva["codigo_asiento"] ?>" name="codAsiento"  maxlength="5"/>
                             
                             <p>
                                 <label>Cliente</label>
@@ -107,7 +108,7 @@
 
                                     <select class="input-short" name="codAsiento"  >
                                           <?php foreach($asientosDisp as $asiento){?>
-                                          <option value="<?php echo $asiento["codigo_campo"] ?>"><?php echo $asiento["codigo_campo"]?></option>
+                                          <option value="<?php echo $asiento["codigo_campo"] ?>"><?php echo $asiento["codigo_campo"]." Precio: $".$asiento["costo"]?></option>
                                           <?php } ?>
                                       </select>
                                 </p>
