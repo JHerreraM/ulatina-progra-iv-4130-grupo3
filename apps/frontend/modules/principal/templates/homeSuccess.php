@@ -96,7 +96,7 @@
 			</div>
 			<div class="wrapper pad_bot2">
 				<a href="#" class="button1">Reservacion</a>
-				<a href="#" class="button2">Flota</a>
+				<a href="charters" class="button2">Flota</a>
 			</div>
 			<div class="wrapper">
 				<article class="cols">
@@ -104,7 +104,7 @@
 					<p>La calidad de nuestro servicio se basa en la profunda especialización. Nuestros clientes confían en la habilidad y experiencia de nuestros profesionales.</p>
 					<p>Nuestro único objetivo es velar por la satisfacción del cliente.</p>
 				</article>
-				<div class="box1">
+				<div class="box1" style="margin-bottom: 100px;">
 					<div class="pad_1">
 						<div class="wrapper">
 							<p class="pad_bot2">Recomiendo seriamente al equipo de Aero Destinos. Muy profesionales, con una gran idoneidad y un excelente trato a nivel personal, no existe ni una sola queja acerca del servicio.</p>

@@ -18,43 +18,47 @@ class reservacionActions extends sfActions
   * @param sfRequest $request A request object
   */
 
-  public function executeAgregar(sfWebRequest $request)
-  {
-  }
+ 
   
-  public function executeList(sfWebRequest $request)
-  {
-  }
+    public function executeAuth(sfWebRequest $request){
+        
+              $this->setLayout('layoutReservacion');
+              $_SESSION["asientoSalida"] = $request->getParameter("asiento");
+              
+    }
   
   public function executeLogin(sfWebRequest $request)
   {
+      
       $this->setLayout('layoutReservacion');
-            
+           
       $username = $request->getParameter("username");
       $password = $request->getParameter("password");
       
       $db = DB::Instance();
-      
+       
       $sql = "select count(*) As login from usuarios where codigo_usuario = '$username' AND password = '$password';";
       
       $login = $db->queryArray($sql);
+      
+      
       if($login[0]["login"] != 1){
           
+            $_SESSION["errorMessage"] = "Usuario o Password Invalido";
+            $this->redirect("reservacion/auth");
+                      
       } else {
           
-          $sql2 = "select identificacion from clientes where fk_codigo_usuario = '$username'";
+          $_SESSION["errorMessage"] = "";
+          
+          $sql2 = "select identificacion, nombre_completo from clientes where fk_codigo_usuario = '$username'";
+          
           $clientes = $db->queryArray($sql2);
-          $idCliente = $clientes[0]["identificacion"];
+          $_SESSION["loggedIn"] = true;
+          $_SESSION["idCliente"] = $clientes[0]["identificacion"];
+          $_SESSION["nombreCliente"] = $clientes[0]["nombre_completo"];
           
-          $asientoSalida = $_SESSION["asientoSalida"];
-          $vueloSalida = $_SESSION["codVueloSalida"];
-          
-          $sql3 = "insert into reservacion_tiquete(codigo_vuelo, codigo_asiento, identificacion_cliente ) 
-              values('$vueloSalida','$asientoSalida','$idCliente')";
-          
-          $db->exec($sql3);
-          
-          $this->reserveFlag = true;
+          $this->redirect("reservacion/confirmacion");
           
       }    
       
@@ -83,7 +87,6 @@ class reservacionActions extends sfActions
       
       $this->ciudadesSalida = $db->queryArray($sql);
       
-      
       $sql2 = "CALL `p_ci_s_cod_ciudad`('$destino') ;";
             
       $this->ciudadesLlegada = $db->queryArray($sql2);
@@ -109,7 +112,7 @@ class reservacionActions extends sfActions
       
       $sql3 = "CALL `p_vu_s_vuelos` ( '$ciudadSalida' , '$cuidadLlegada' , '$fechaSalida2 $horaSalida2' );";
       
-     $this->vuelos = $db->queryArray($sql3);
+      $this->vuelos = $db->queryArray($sql3);
 
   }
   
@@ -184,11 +187,6 @@ class reservacionActions extends sfActions
   public function executeConfirmacion(sfWebRequest $request){
       
       $this->setLayout('layoutReservacion');
-            
-      $_SESSION["asientoSalida"] = $request->getParameter("asiento");
-            
-      $_SESSION["asientoRegreso"] = $request->getParameter("asiento");
-      $confirmacion =  $request->getParameter("confirmacion");
       
       $this->asientoRegreso  = $_SESSION["asientoRegreso"];
       $this->asientoSalida  = $_SESSION["asientoSalida"];
@@ -197,6 +195,24 @@ class reservacionActions extends sfActions
       
       
       
+  }
+  
+  public function executeReservar(sfWebRequest $request){
+      
+            $this->setLayout('layoutReservacion');
+            
+            $vueloSalida  = $_SESSION["codVueloSalida"];
+            $asientoSalida  = $_SESSION["asientoSalida"];
+            $idCliente =   $_SESSION["idCliente"];
+            
+            $db = DB::Instance();
+            $sql3 = "insert into reservacion_tiquete(codigo_vuelo, codigo_asiento, identificacion_cliente ) 
+              values('$vueloSalida','$asientoSalida','$idCliente')";
+          
+            $db->exec($sql3);
+          
+            $this->reserveFlag = true;
+          
   }
          
   

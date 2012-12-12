@@ -1,3 +1,3 @@
-<?php
-    echo "Somos los mejores!";
-?>
+<div style="height: 500px;">
+    
+</div>
