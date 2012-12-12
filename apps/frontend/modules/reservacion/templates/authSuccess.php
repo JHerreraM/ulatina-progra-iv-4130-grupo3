@@ -33,6 +33,12 @@
                                                 <?php 
                                                   echo $_SESSION["asientoSalida"] ; 
                                                 ?>
+                                            <br>
+                                          <b>Total:</b>
+                                                <?php 
+                                                  echo $_SESSION["costo"] . " $"; 
+                                                ?>
+                                            
                                 </div>
 	
 			</div>
