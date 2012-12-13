@@ -47,7 +47,7 @@
                     <div class="grid_12">
                         <div id="logo">
                             <ul id="nav">
-                                <li <?php if($this->menuCurrent == "principal"){ echo 'id="current"';} ?> ><a href="index">Principal</a></li>
+                                
                                 <li <?php if($this->menuCurrent == "paises"){ echo 'id="current"';} ?>><a href="paises">Paises</a></li>
                                 <li <?php if($this->menuCurrent == "ciudades"){ echo 'id="current"';} ?>><a href="ciudades">Ciudades</a></li>
                                 <li <?php if($this->menuCurrent == "personal"){ echo 'id="current"';} ?>><a href="personal">Personal</a></li>
@@ -58,7 +58,7 @@
                                 <li <?php if($this->menuCurrent == "precios"){ echo 'id="current"';} ?>><a href="precios">Precio Tiquetes</a></li>
                                 <li <?php if($this->menuCurrent == "usuarios"){ echo 'id="current"';} ?>><a href="usuarios">Usuarios</a></li>
                                 <li <?php if($this->menuCurrent == "noticias"){ echo 'id="current"';} ?>><a href="noticias">Noticias</a></li>
-                                <li <?php if($this->menuCurrent == "configuracion"){ echo 'id="current"';} ?>><a href="">Configuracion</a></li>
+                                
                             </ul>
                         </div><!-- End. #Logo -->
                     </div><!-- End. .grid_12-->

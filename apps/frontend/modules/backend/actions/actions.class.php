@@ -64,7 +64,7 @@ class backendActions extends sfActions
                 $_SESSION["errorMessage"] = "";
                 $_SESSION["loggedInterno"] = true;
 
-                $this->redirect("backend/index");
+                $this->redirect("backend/paises");
             } 
           
             
@@ -84,19 +84,15 @@ class backendActions extends sfActions
   
   public function executePersonal(sfWebRequest $request)
   {
-        $this->setLayout('layoutBackend');
-        
-        session_start();
-        if (!$_SESSION["loggedInterno"])
-        {
-            $this->redirect("backend/auth");
-        }
+      $this->validateLogin();  
+      $this->setLayout('layoutBackend');
           
   }
   
   public function executeClientes(sfWebRequest $request)
   {
-          $this->setLayout('layoutBackend');
+        $this->validateLogin();    
+        $this->setLayout('layoutBackend');
           
   }
   
@@ -109,49 +105,57 @@ class backendActions extends sfActions
   
   public function executeCiudades(sfWebRequest $request)
   {
-          $this->setLayout('layoutBackend');
+      $this->validateLogin();    
+      $this->setLayout('layoutBackend');
           
   }
   
   public function executeAeropuertos(sfWebRequest $request)
   {
-          $this->setLayout('layoutBackend');
+      $this->validateLogin();    
+      $this->setLayout('layoutBackend');
           
   }
   
   public function executeAviones(sfWebRequest $request)
   {
-          $this->setLayout('layoutBackend');
+      $this->validateLogin();    
+      $this->setLayout('layoutBackend');
           
   }
   
   public function executeVuelos(sfWebRequest $request)
   {
-          $this->setLayout('layoutBackend');
+      $this->validateLogin();    
+      $this->setLayout('layoutBackend');
           
   }
   
   public function executeNoticias(sfWebRequest $request)
   {
-          $this->setLayout('layoutBackend');
+      $this->validateLogin();    
+      $this->setLayout('layoutBackend');
           
   }
   
   public function executeReservar(sfWebRequest $request)
   {
-          $this->setLayout('layoutBackend');
+      $this->validateLogin();    
+      $this->setLayout('layoutBackend');
           
   }
   
   public function executePrecios(sfWebRequest $request)
   {
-          $this->setLayout('layoutBackend');
+      $this->validateLogin();    
+      $this->setLayout('layoutBackend');
           
   }
   
   public function executeEditPrecios(sfWebRequest $request)
   {
-          $this->setLayout('layoutBackend');
+      $this->validateLogin();    
+      $this->setLayout('layoutBackend');
           $db = DB::Instance();
           
           $vuelo = $request->getParameter("codVuelo");
@@ -171,7 +175,8 @@ class backendActions extends sfActions
   
   public function executeListPrecios(sfWebRequest $request)
   {
-          $this->setLayout('layoutBackend');
+      $this->validateLogin();    
+      $this->setLayout('layoutBackend');
           $db = DB::Instance();
           $accionSel = $request->getParameter("accionSelec");
           $cantReg = $request->getParameter("cantReg");
@@ -223,7 +228,8 @@ class backendActions extends sfActions
   
   public function executeListPersonal(sfWebRequest $request)
   {
-          $this->setLayout('layoutBackend');
+      $this->validateLogin();    
+      $this->setLayout('layoutBackend');
           
           $db = DB::Instance();
           
@@ -254,7 +260,8 @@ class backendActions extends sfActions
   
   public function executeListClientes(sfWebRequest $request)
   {
-          $this->setLayout('layoutBackend');
+      $this->validateLogin();    
+      $this->setLayout('layoutBackend');
           
           $db = DB::Instance();
           
@@ -285,7 +292,8 @@ class backendActions extends sfActions
   
   public function executeListPaises(sfWebRequest $request)
   {
-          $this->setLayout('layoutBackend');
+      $this->validateLogin();    
+      $this->setLayout('layoutBackend');
           
           $db = DB::Instance();
           
@@ -314,7 +322,8 @@ class backendActions extends sfActions
   
   public function executeListCiudades(sfWebRequest $request)
   {
-          $this->setLayout('layoutBackend');
+      $this->validateLogin();    
+      $this->setLayout('layoutBackend');
           
           $db = DB::Instance();
           
@@ -345,7 +354,8 @@ class backendActions extends sfActions
   
   public function executeListAeropuertos(sfWebRequest $request)
   {
-            $this->setLayout('layoutBackend');
+      $this->validateLogin();      
+      $this->setLayout('layoutBackend');
             $db = DB::Instance();
             
             $accionSel = $request->getParameter("accionSelec");
@@ -377,7 +387,8 @@ class backendActions extends sfActions
   
   public function executeListAviones(sfWebRequest $request)
   {
-          $this->setLayout('layoutBackend');
+      $this->validateLogin();    
+      $this->setLayout('layoutBackend');
           
           $db = DB::Instance();
           
@@ -405,7 +416,8 @@ class backendActions extends sfActions
   
   public function executeListVuelos(sfWebRequest $request)
   {
-          $this->setLayout('layoutBackend');
+      $this->validateLogin();    
+      $this->setLayout('layoutBackend');
           
           $db = DB::Instance();
           
@@ -439,7 +451,8 @@ class backendActions extends sfActions
   
    public function executeListNoticias(sfWebRequest $request)
   {
-          $this->setLayout('layoutBackend');
+       $this->validateLogin();   
+       $this->setLayout('layoutBackend');
           
           $db = DB::Instance();
           
@@ -468,7 +481,8 @@ class backendActions extends sfActions
   
   public function executeListReservas(sfWebRequest $request)
   {
-          $this->setLayout('layoutBackend');
+      $this->validateLogin();    
+      $this->setLayout('layoutBackend');
           
           $db = DB::Instance();
           //echo "KKKEIEIEIEIE";
@@ -560,6 +574,7 @@ class backendActions extends sfActions
   
   public function executeEditPaises(sfWebRequest $request)
   {
+      $this->validateLogin();
       $this->setLayout('layoutBackend');
       $db = DB::Instance();
       $sql = "select * from paises
@@ -570,6 +585,7 @@ class backendActions extends sfActions
   
   public function executeEditCiudades(sfWebRequest $request)
   {
+      $this->validateLogin();
       $this->setLayout('layoutBackend');
       $db = DB::Instance();
       $codPais = $request->getParameter("paisEdit");
@@ -589,6 +605,7 @@ class backendActions extends sfActions
   
   public function executeEditAeropuertos(sfWebRequest $request)
   {
+      $this->validateLogin();
       $this->setLayout('layoutBackend');
       $db = DB::Instance();
       $codPais = $request->getParameter("paisEdit");
@@ -614,6 +631,7 @@ class backendActions extends sfActions
   
   public function executeEditPersonal(sfWebRequest $request)
   {
+      $this->validateLogin();
       $this->setLayout('layoutBackend');
       $db = DB::Instance();
       $tipIdentif = $request->getParameter("tipIdEdit");
@@ -633,7 +651,9 @@ class backendActions extends sfActions
   
   public function executeEditClientes(sfWebRequest $request)
   {
+      $this->validateLogin();
       $this->setLayout('layoutBackend');
+      
       $db = DB::Instance();
       $tipIdentif = $request->getParameter("tipIdEdit");
       $numIdentif = $request->getParameter("numIdEdit");
@@ -652,6 +672,7 @@ class backendActions extends sfActions
   
   public function executeEditAviones(sfWebRequest $request)
   {
+      $this->validateLogin();
       $this->setLayout('layoutBackend');
       $db = DB::Instance();
       $avEdit = $request->getParameter("avionEdit");
@@ -713,6 +734,7 @@ class backendActions extends sfActions
   
   public function executeEditCampos(sfWebRequest $request)
   {
+      $this->validateLogin();
       $this->setLayout('layoutBackend');
       $db = DB::Instance();
       
@@ -730,6 +752,7 @@ class backendActions extends sfActions
   
   public function executeEditVuelos(sfWebRequest $request)
   {
+      $this->validateLogin();
       $this->setLayout('layoutBackend');
       $db = DB::Instance();
       
@@ -857,6 +880,7 @@ class backendActions extends sfActions
   
   public function executeEditReservas(sfWebRequest $request)
   {
+      $this->validateLogin();
       $this->setLayout('layoutBackend');
       $db = DB::Instance();
       $vuelo = $request->getParameter("codVuelo");
@@ -915,6 +939,7 @@ class backendActions extends sfActions
   
   public function executeEditNoticias(sfWebRequest $request)
   {
+      $this->validateLogin();
       $this->setLayout('layoutBackend');
       $db = DB::Instance();
       
@@ -927,6 +952,7 @@ class backendActions extends sfActions
   
   public function executeGuardaPaises(sfWebRequest $request)
   {
+      $this->validateLogin();
       $this->setLayout('layoutBackend');
       
       $cantPais = $request->getParameter("cantPais");
@@ -955,6 +981,7 @@ class backendActions extends sfActions
   
   public function executeGuardaCiudades(sfWebRequest $request)
   {
+      $this->validateLogin();
       $this->setLayout('layoutBackend');
       
       $cantReg = $request->getParameter("cantReg");
@@ -982,6 +1009,7 @@ class backendActions extends sfActions
   
   public function executeGuardaAeropuertos(sfWebRequest $request)
   {
+      $this->validateLogin();
       $this->setLayout('layoutBackend');
       
       $cantReg = $request->getParameter("cantReg");
@@ -1012,6 +1040,7 @@ class backendActions extends sfActions
   
   public function executeGuardaPersonal(sfWebRequest $request)
   {
+      $this->validateLogin();
       $this->setLayout('layoutBackend');
       
       $cantReg = $request->getParameter("cantReg");
@@ -1061,6 +1090,7 @@ class backendActions extends sfActions
   
   public function executeGuardaClientes(sfWebRequest $request)
   {
+      $this->validateLogin();
       $this->setLayout('layoutBackend');
       
       $cantReg = $request->getParameter("cantReg");
@@ -1108,6 +1138,7 @@ class backendActions extends sfActions
   
   public function executeGuardaAviones(sfWebRequest $request)
   {
+      $this->validateLogin();
       $this->setLayout('layoutBackend');
       
       $cantReg = $request->getParameter("cantReg");
@@ -1145,6 +1176,7 @@ class backendActions extends sfActions
   
   public function executeGuardaVuelos(sfWebRequest $request)
   {
+      $this->validateLogin();
       $this->setLayout('layoutBackend');
       
       $cantReg = $request->getParameter("cantReg");
@@ -1184,6 +1216,7 @@ echo $sql;
   
   public function executeGuardaPersonalXVuelo(sfWebRequest $request)
   {
+      $this->validateLogin();
       $this->setLayout('layoutBackend');
       
       $cantReg = $request->getParameter("cantReg");
@@ -1210,6 +1243,7 @@ echo $sql;
   
   public function executeBorraPerXVuelo(sfWebRequest $request)
   {
+      $this->validateLogin();
       $this->setLayout('layoutBackend');
       
       $cantReg = $request->getParameter("cantReg");
@@ -1231,7 +1265,8 @@ echo $sql;
   
   public function executeListUsuarios(sfWebRequest $request)
   {
-          $this->setLayout('layoutBackend');
+      $this->validateLogin();    
+      $this->setLayout('layoutBackend');
           
           $db = DB::Instance();
           
@@ -1287,18 +1322,19 @@ echo $sql;
   
   public function executeEditUsuarios(sfWebRequest $request)
   {
+      $this->validateLogin();
       $this->setLayout('layoutBackend');
       $db = DB::Instance();
       $usuario = $request->getParameter("usuarioEdit");
       
       $sql = "select * from usuarios where codigo_usuario = '$usuario'";
       $this->usuarios = $db->queryArray($sql);
-      
-          
+                
   }
   
   public function executeGuardaNoticias(sfWebRequest $request)
   {
+      $this->validateLogin();
       $this->setLayout('layoutBackend');
       
       $cantR = $request->getParameter("cantReg");
@@ -1326,50 +1362,12 @@ echo $sql;
       $this->noticias = $db->exec($sql);
   }
 
-  public function executeRepReserva(sfWebRequest $request)
-  {
-          //$this->setLayout('layoutBackend');
-          
-  }
-  
   public function executeUsuarios(sfWebRequest $request)
   {
-          $this->setLayout('layoutBackend');
+      $this->validateLogin();    
+      $this->setLayout('layoutBackend');
           
   }
   
-  public function executeLogin(sfWebRequest $request)
-  {
-      
-      $this->setLayout('layoutBackend');
-           
-      $username = $request->getParameter("username");
-      $password = $request->getParameter("password");
-      
-      $db = DB::Instance();
-       
-      $sql = "select count(*) As login from usuarios where codigo_usuario = '$username' AND password = '$password' ant tipo_usuario = 'I';";
-      
-      $login = $db->queryArray($sql);
-      
-      
-      if($login[0]["login"] != 1){
-          
-            $_SESSION["errorMessage"] = "Usuario o Password Invalido";
-            $this->redirect("backend/auth");
-                      
-      } else {
-          
-          $_SESSION["errorMessage"] = "";
-          
-          /*$sql2 = "select identificacion, nombre_completo from clientes where fk_codigo_usuario = '$username'";
-          
-          $clientes = $db->queryArray($sql2);*/
-          $_SESSION["loggedInterno"] = true;
-          
-          $this->redirect("backend/index");
-          
-      }    
-      
-  }
+  
 }
