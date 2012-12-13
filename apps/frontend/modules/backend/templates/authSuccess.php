@@ -19,6 +19,7 @@
                                             Usuario 
                                             </td>
                                             <td valign="left">
+                                                
                                             <input type="text" name="username" style="width:150px"/>
                                             </td>    
                                         </tr>
