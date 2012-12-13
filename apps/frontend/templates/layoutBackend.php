@@ -33,7 +33,7 @@
 					&nbsp;
                     </div>
                     <div class="grid_4">
-                        <a href="" id="logout">
+                        <a href="logout" id="logout">
                         Logout
                         </a>
                     </div>
