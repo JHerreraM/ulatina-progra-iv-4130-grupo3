@@ -5,7 +5,7 @@
 			 Autenticacion
 			<div class="wrapper">
                             <center>
-                            <form action="login" method="POST">
+                            <form action="index" method="POST">
                                <?php 
                                     if( isset( $_SESSION["errorMessage"] )){
                                         echo "<b style=\"color:red\">" .  $_SESSION["errorMessage"] . "</b>";
