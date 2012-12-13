@@ -19,7 +19,7 @@
     $sf_response->addJavascript('jquery.pstrength-min.1.2.js');
     $sf_response->addJavascript('thickbox');
 ?>
-                
+<link rel="shortcut icon" href="../images/favicon.png" />                
 <?php include_stylesheets() ?>
 <?php include_javascripts() ?>
                 

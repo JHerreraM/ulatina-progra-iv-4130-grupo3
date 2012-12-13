@@ -6,11 +6,11 @@ class Email {
     private $SMTPSecure = "ssl";
     private $host = "smtp.gmail.com";
     private $port = 465;
-    private $username = "paintballwarriorscostarica@gmail.com";
-    private $password = "Qwerty2012";
+    private $username = "airlines.progra4@gmail.com";
+    private $password = "progra4123";
     
-    private $from = "paintballwarriorscostarica@gmail.com";
-    private $fromName = "Paintball Warriors";
+    private $from = "airlines.progra4@gmail.com";
+    private $fromName = "AirLines CR";
   
     
     public function __construct()

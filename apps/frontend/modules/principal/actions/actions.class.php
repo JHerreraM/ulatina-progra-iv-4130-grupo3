@@ -161,4 +161,14 @@ class principalActions extends sfActions
       }
   }  
   
+   public function executeLogout(sfWebRequest $request){
+      
+         $_SESSION["loggedExterno"] = false;
+         unset( $_SESSION["loggedExterno"]  );
+         $this->redirect("principal/reservacion");
+         
+  }
+  
 }
+
+

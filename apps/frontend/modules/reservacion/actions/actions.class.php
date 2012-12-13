@@ -9,6 +9,10 @@
  * @version    SVN: $Id: actions.class.php 23810 2009-11-12 11:07:44Z Kris.Wallsmith $
  */
 require_once 'include/DB.class.php';
+require_once 'include/Email.class.php';
+require_once "include/class.phpmailer.php";
+require_once "include/class.smtp.php";
+require_once "include/Email.class.php";
 
 class reservacionActions extends sfActions
 {
@@ -70,12 +74,13 @@ class reservacionActions extends sfActions
           
           $_SESSION["errorMessage"] = "";
           
-          $sql2 = "select identificacion, nombre_completo from clientes where fk_codigo_usuario = '$username'";
+          $sql2 = "select identificacion, nombre_completo, email from clientes where fk_codigo_usuario = '$username'";
           
           $clientes = $db->queryArray($sql2);
           $_SESSION["loggedIn"] = true;
           $_SESSION["idCliente"] = $clientes[0]["identificacion"];
           $_SESSION["nombreCliente"] = $clientes[0]["nombre_completo"];
+           $_SESSION["emailCliente"] = $clientes[0]["email"];
           
           $this->redirect("reservacion/confirmacion");
           
@@ -231,7 +236,10 @@ class reservacionActions extends sfActions
             
             $vueloSalida  = $_SESSION["codVueloSalida"];
             $asientoSalida  = $_SESSION["asientoSalida"];
+            
             $idCliente =   $_SESSION["idCliente"];
+            $nombreCliente = $_SESSION["nombreCliente"];
+            $emailCliente = $_SESSION["emailCliente"];
             
             $db = DB::Instance();
             $sql3 = "insert into reservacion_tiquete(codigo_vuelo, codigo_asiento, identificacion_cliente, estado_tiquete ) 
@@ -239,6 +247,27 @@ class reservacionActions extends sfActions
           
             $db->exec($sql3);
           
+            $email = new Email();
+            $subject = "Reservacion de Vuelo $vueloSalida";
+            $longName = "$nombreCliente";
+            $message = "<p>Estimado Cliente:</p>
+                            <p>Adjunto los datos de la Reservacion:</p>
+                            <p><table>
+                                <tr>
+                                    <td>Nombre</td><td>$nombreCliente</td>
+                                </tr>
+                                <tr>
+                                    <td>Numero Vuelo</td>$vueloSalida<td></td>
+                                </tr>
+                                <tr>
+                                    <td>Asiento</td>$asientoSalida<td></td>
+                                </tr>  
+ 
+                            </table></p>
+                            ";
+
+            $email->send( $subject, $message, $emailCliente, $longName );
+            
             $this->reserveFlag = true;
           
   }
