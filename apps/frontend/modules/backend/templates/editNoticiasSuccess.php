@@ -14,7 +14,7 @@
                         <?php foreach($noticias as $noticia){ $vcantReg=1?>
                             <p>
                                 <label>Fecha</label>
-                                <input type="date" class="input-short" value="<?php echo $noticia["fecha"] ?>" name="noFecha" maxlength="5"/>
+                                <input type="date" class="input-short" value="<?php echo $noticia["fecha"] ?>" name="noFecha" maxlength="10"/>
                                 
                                 <input type="hidden" class="input-short" value="<?php echo $noticia["pkid"] ?>" name="noticiaId"/>
                                 <!-- Form elements <span class="notification-input ni-correct">This is correct, thanks!</span>--> 
@@ -41,7 +41,7 @@
                             ?>
                                 <p>
                                 <label>Fecha</label>
-                                <input type="date" class="input-short" value="<?php echo $noticia["fecha"] ?>" name="noFecha" maxlength="5"/>
+                                <input type="date" class="input-short" value="<?php echo $noticia["fecha"] ?>" name="noFecha" maxlength="10"/>
                                 
                                 <input type="hidden" class="input-short" value="<?php echo $noticia["pkid"] ?>" name="noticiaId"/>
                                 <!-- Form elements <span class="notification-input ni-correct">This is correct, thanks!</span>--> 

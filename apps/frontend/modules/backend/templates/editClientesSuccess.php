@@ -88,6 +88,24 @@
                             </p>
                             
                             <p>
+                                  <label>Codigo Usuario</label>
+
+                                  <select class="input-short" name="codUsr" maxlength="10" >
+                                      <?php foreach($usuarios as $usuario){?>
+                                      <option <?php if ($usuario["codigo_usuario"] == $cliente["fk_codigo_usuario"])
+                                                      {
+                                                          echo "selected";
+                                                      }
+                                              ?>
+                                                      value="<?php echo $usuario["codigo_usuario"] ?>"><?php echo $usuario["codigo_usuario"]?></option>
+                                                      
+                                      
+                                      <?php } ?>
+                                  </select>
+                                  <!--<input type="text" class="input-short" name="codPaisAnt" maxlength="5"/>
+                                   Form elements <span class="notification-input ni-correct">This is correct, thanks!</span>--> 
+                            </p>
+                            <p>
                                 <label>Direccion</label>
                                 <textarea rows="7" cols="90" class="input-medium"  name="direcEsp" >
                                 <?php echo $cliente["direccion"] ?>
@@ -173,7 +191,20 @@
                                     <input type="text" class="input-short" name="tipoSangre" maxlength="3"/>
                                     <!-- Form elements <span class="notification-input ni-correct">This is correct, thanks!</span>--> 
                                 </p>
+                                
+                                <p>
+                                    <label>Codigo Usuario</label>
 
+                                    <select class="input-short" name="codUsr" maxlength="10" >
+                                        <?php foreach($usuarios as $usuario){?>
+                                        <option value="<?php echo $usuario["codigo_usuario"] ?>"><?php echo $usuario["codigo_usuario"]?></option>
+
+                                        <?php } ?>
+                                    </select>
+                                    <!--<input type="text" class="input-short" name="codPaisAnt" maxlength="5"/>
+                                     Form elements <span class="notification-input ni-correct">This is correct, thanks!</span>--> 
+                              </p>
+                                
                                 <p>
                                     <label>Direccion</label>
                                     <textarea rows="7" cols="90" class="input-medium"  name="direcEsp" >
