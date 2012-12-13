@@ -50,8 +50,7 @@
 						<ul id="menu">
 							<li id="menu_active"><a href="home">Home</a></li>
 							<li><a href="nosotros">Nosotros</a></li>
-							<li><a href="seguridad">Seguridad</a></li>
-							<li><a href="charters">Charters</a></li>
+							<li><a href="reservacion">Reservaciones</a></li>
 							<li><a href="contacto">Contacto</a></li>
 						</ul>
 					</nav>

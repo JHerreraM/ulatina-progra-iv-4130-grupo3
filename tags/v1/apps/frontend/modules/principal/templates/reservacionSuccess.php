@@ -1,53 +1,57 @@
-        <section id="content">
+<div style="float: right">
+   <?php 
+                                        if(sizeOf($reservaciones) > 0 ){
+                                            foreach($reservaciones as $reservacion){ ?>
+                                        <tr>
+                                            <td>
+                                            <table style="border-spacing: 10px;border-style: solid;" width="500px">
+                                                <tr style="background: lightskyblue;">
+                                                    <td>
+                                                        NUMERO DE VUELO<br>
 
-		<article class="col1">
-			<div class="pad_1">
-				<h2>Planificador Vuelo</h2>
-				<form name="reservacion" id="form_1" action="reservacion" method="post">
-					<div class="wrapper pad_bot1">
-						<div class="radio marg_right1">
-							<input type="radio" name="sentido" value="roundtrip">Ida y Vuelta<br>
-							<input type="radio" name="sentido" value="oneleg">Unico Sentido
-						</div>
-						<div class="radio">
-						</div>
-					</div>
-					<div class="wrapper">
-						Salida:
-						<div class="bg"><input type="text" name="salida" class="input input1" value="Digite una Ciudad" onblur="if(this.value=='') this.value='Digite una Ciudad'" onFocus="if(this.value =='Digite una Ciudad' ) this.value=''"></div>
-					</div>
-					<div class="wrapper">
-						Destino:
-						<div class="bg"><input type="text" name="destino"  class="input input1" value="Digite una Ciudad" onblur="if(this.value=='') this.value='Digite una Ciudad'" onFocus="if(this.value =='Digite una Ciudad' ) this.value=''"></div>
-					</div>
-					<div class="wrapper">
-						Fecha y Hora de Salida:
-						<div class="wrapper">
-							<div class="bg left"><input type="text" name="fechaSalida"  class="input input2" value="mm/dd/yyyy " onblur="if(this.value=='') this.value='mm/dd/yyyy '" onFocus="if(this.value =='mm/dd/yyyy ' ) this.value=''"></div>
-							<div class="bg right"><input type="text" name="horaSalida" class="input input2" value="12:00am" onblur="if(this.value=='') this.value='12:00am'" onFocus="if(this.value =='12:00am' ) this.value=''"></div>
-						</div>
-					</div>
-					<div class="wrapper">
-						Fecha y Hora de Regreso:
-						<div class="wrapper">
-							<div class="bg left"><input type="text" name="fechaRegreso"  class="input input2" value="mm/dd/yyyy " onblur="if(this.value=='') this.value='mm/dd/yyyy '" onFocus="if(this.value =='mm/dd/yyyy ' ) this.value=''"></div>
-							<div class="bg right"><input type="text" name="horaRegreso"  class="input input2" value="12:00am" onblur="if(this.value=='') this.value='12:00am'" onFocus="if(this.value =='12:00am' ) this.value=''"></div>
-						</div>
-					</div>
-					<div class="wrapper">
-						<p>Pasajero(s):</p>
-						<div class="bg left"><input type="text" name="numPasajeros" class="input input2" value="# Pasajeros" onblur="if(this.value=='') this.value='# Pasajeros'" onFocus="if(this.value =='# Pasajeros' ) this.value=''"></div>
-						<a href="javascript:submitReservacion();" class="button2" onClick="document.getElementById('form_1').submit()">go!</a>
-					</div>
-				</form>
+                                                    </td>
+                                                    <td colspan="2">SALIDA</td>
+                                                    <td>LLEGADA</td>
+                                                </tr>
+                                                <tr style="height: 30px;border-style: solid;border-width: 1px;">
+                                                    <td rowspan="3">
+                                                        <?php echo "A" . $reservacion["vuelo"] ?> ->
+                                                        <?php echo "A" . $reservacion["asiento"] ?> 
+                                                        <br>
+                                                        <?php echo button_to('Cancelar Reservacion', 'reservacionCancelar/vuelo?titulo=Economia_en_Francia') ?>
+                                                    </td>
+                                                    <td colspan="2"><?php echo $reservacion["salida"] ?></td>
+                                                    <td><?php echo $reservacion["llegada"] ?></td>
+                                                </tr>
+                                                <tr style="margin-top: 100px;">
+                                                    <td>ORIGEN</td>
+                                                    <td>DESTINO</td>
+                                                    <td>DURACION</td>
+                                                </tr>
+                                                <tr>
+                                                    <td><?php echo $reservacion["origen"] ?></td>
+                                                    <td><?php echo $reservacion["destino"] ?></td>
+                                                    <td><?php echo $reservacion["duracion"] ?> Minutos</td>
+                                                </tr>
+                                            </table>
 
-			</div>
-		</article>
+                                            </td>
+                                        </tr> 
+                                    <?php }
+                                        
+                                        } else {
+                                            $this->noResultadosFlag = true;
+                                            echo "No se Encontraron Resultados.";
+                                        }
+                                        
+                                        ?> 
+   
+    
+    
+</div>
+<div style="width:300px; heigth: 500px; background: lightgrey; padding-top: 25px; padding-bottom: 25px; padding-left: 25px; padding-right: 25px; height: 300px;">
 
-		<article class="col2 pad_left1">
-			<h2>Resultados</h2>
-			
-
-		</article>
-
-	</section>
+   Bienvenido <br><?php  echo $_SESSION["nombreCliente"]; ?>
+   
+    
+</div>
