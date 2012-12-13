@@ -22,26 +22,30 @@
 		</article>
 		<article class="col2 pad_left1">
 			<h2>Formulario Contacto</h2>
-			<form id="ContactForm" action="contacto" method="GET">
-				<div>
-                                        <input type="hidden" name="accion" value="insertar"/>
-					<div class="wrapper">
-						<div class="bg"><input type="text" class="input"  name="nombre"/></div>
-						Nombre:<br />
-					</div>
-					<div class="wrapper">
-						<div class="bg"><input type="text" class="input" name="email"/></div>
-						E-mail:<br />
-					</div>
-					<div class="wrapper">
-						<div class="bg">
-							<textarea name="textarea" cols="1" rows="1" name="mensaje"></textarea>
-						</div>
-						Mensaje:<br />
-					</div>
-					<a href="#" class="button1" onClick="document.getElementById('ContactForm').submit()">Enviar</a>
-					<a href="#" class="button1" onClick="document.getElementById('ContactForm').reset()">Limpiar</a>
-				</div>
-			</form>
+                        <?php if(!$contactoInsertado){ ?>
+                            <form id="ContactForm" action="contacto" method="GET">
+                                    <div>
+                                            <input type="hidden" name="accion" value="insertar"/>
+                                            <div class="wrapper">
+                                                    <div class="bg"><input type="text" class="input"  name="nombre"/></div>
+                                                    Nombre:<br />
+                                            </div>
+                                            <div class="wrapper">
+                                                    <div class="bg"><input type="text" class="input" name="email"/></div>
+                                                    E-mail:<br />
+                                            </div>
+                                            <div class="wrapper">
+                                                    <div class="bg">
+                                                            <textarea name="mensaje" cols="1" rows="1" ></textarea>
+                                                    </div>
+                                                    Mensaje:<br />
+                                            </div>
+                                            <a href="#" class="button1" onClick="document.getElementById('ContactForm').submit()">Enviar</a>
+                                            <a href="#" class="button1" onClick="document.getElementById('ContactForm').reset()">Limpiar</a>
+                                    </div>
+                            </form>
+                       <?php } if(!$contactoInsertado) { 
+                                echo "<h1>Su Solicitud ha sido Registrada con Exito</h1>";
+                             } ?>
 		</article>
 	</section>
