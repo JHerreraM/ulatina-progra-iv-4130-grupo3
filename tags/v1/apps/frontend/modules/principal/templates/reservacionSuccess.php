@@ -58,6 +58,9 @@
 <div style="width:300px; heigth: 500px; background: lightgrey; padding-top: 25px; padding-bottom: 25px; padding-left: 25px; padding-right: 25px; height: 300px;">
 
    Bienvenido <br><?php  echo $_SESSION["nombreCliente"]; ?>
+   <div style="margin-top: 100px; float: right">
+      <?php echo link_to('Logout', "principal/logout", 'post=true') ;  ?>
+   </div>
    
     
 </div>
