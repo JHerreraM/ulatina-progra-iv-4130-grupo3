@@ -123,7 +123,7 @@ class principalActions extends sfActions
       
       $db = DB::Instance();
                   
-      $sql = "SELECT a.codigo_vuelo as vuelo, a.codigo_asiento as asiento, 
+      $sql = "SELECT pkid, a.codigo_vuelo as vuelo, a.codigo_asiento as asiento, 
                     b.hora_salida as salida, b.hora_llegada as llegada, 
                     b.codigo_aeropuerto_origen as origen, b.codigo_aeropuerto_destino as destino, 
                     b.duracion_estimada as duracion
@@ -135,6 +135,22 @@ class principalActions extends sfActions
       
       $this->reservaciones = $db->queryArray($sql);
       
+      
+  }
+  
+   public function executeCancelarReservacion(sfWebRequest $request){
+      
+      $this->setLayout('layout');
+      $this->validateLogin();
+      
+      $pkidVuelo = $request->getParameter("id");
+      
+      $db = DB::Instance();
+      
+      $sql = "update reservacion_tiquete set estado_tiquete = 'A' where pkid = $pkidVuelo";
+      
+      $db->exec($sql);
+      $this->redirect("principal/reservacion");
       
   }
   

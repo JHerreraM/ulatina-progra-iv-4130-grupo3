@@ -130,6 +130,7 @@ class reservacionActions extends sfActions
       $_SESSION["fechaLlegada"] = $fechaRegreso2 . " " . $horaRegreso2;
       
       $sql3 = "CALL `p_vu_s_vuelos` ( '$ciudadSalida' , '$cuidadLlegada' , '$fechaSalida2 $horaSalida2' );";
+      echo $sql3;
       
       $this->vuelos = $db->queryArray($sql3);
 
@@ -146,17 +147,7 @@ class reservacionActions extends sfActions
       $sql = "SELECT placa_avion FROM vuelos WHERE codigo_vuelo =  '$vuelo'";
       $this->placa_avion = $db->queryArray($sql);
       $placa =  $this->placa_avion[0]["placa_avion"];
-      
-      /*
-      $sql2 = "SELECT * 
-                    FROM campos_x_avion
-                    WHERE tipo_campo !=  'P'
-                    AND placa_avion =  '$placa'
-                    AND codigo_campo NOT 
-                    IN (
-                            SELECT codigo_asiento FROM  `reservacion_tiquete` WHERE codigo_vuelo = $vuelo
-                    )";
-     */
+     
       
       $sql2 = "select ca.codigo_campo as codigo_campo, co.costo as costo
                 from campos_x_avion ca,
@@ -243,8 +234,8 @@ class reservacionActions extends sfActions
             $idCliente =   $_SESSION["idCliente"];
             
             $db = DB::Instance();
-            $sql3 = "insert into reservacion_tiquete(codigo_vuelo, codigo_asiento, identificacion_cliente ) 
-              values('$vueloSalida','$asientoSalida','$idCliente')";
+            $sql3 = "insert into reservacion_tiquete(codigo_vuelo, codigo_asiento, identificacion_cliente, estado_tiquete ) 
+              values('$vueloSalida','$asientoSalida','$idCliente', 'V')";
           
             $db->exec($sql3);
           
