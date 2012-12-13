@@ -41,18 +41,25 @@ class principalActions extends sfActions
   
   public function executeContacto(sfWebRequest $request)
   {
+      $this->setLayout('layout');
       $accion = $request->getParameter("accion");
       if($accion == "insertar"){
-          $test = new Test();
-          $test::message();
+          
+          $nombre  =  $request->getParameter("nombre") ;
+          $email =  $request->getParameter("email") ;
+          $mensaje = $request->getParameter("mensaje") ;
+          
+         $db = DB::Instance();
+         $sql = "insert into contactos(nombre, correo, mensaje, fecha) values ( '$nombre', '$email', '$mensaje', NOW() )";
+         
+         $db->exec($sql);
+         $this->contactoInsertado = true;
+         
       }
-      $this->setLayout('layout');
-  }
-  
-  public function executeInsertContacto(){
       
   }
   
+
   public function executeLogin(sfWebRequest $request)
   {
       $this->setLayout('layout');
