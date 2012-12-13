@@ -95,6 +95,7 @@
                                 <label>Tipo Campo</label>
                                 <select class="input-short" name="caTipoCam">
                                     <option  value="A">Asiento</option>
+                                    <option  value="E">Asiento Ejecutivo</option>
                                     <option  value="P">Pasillo</option>
                                 </select>
                                 <!-- Form elements <span class="notification-input ni-correct">This is correct, thanks!</span>--> 

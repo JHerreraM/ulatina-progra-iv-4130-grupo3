@@ -538,7 +538,7 @@ class backendActions extends sfActions
                 else
                 {   if (isset($asiento))
                      {
-                       $sql = "insert into reservacion_tiquete values (
+                       $sql = "insert into reservacion_tiquete values (null,
 
                                '$asiento','$vuelo','C','$idClien',(select co.costo 
                                                                     from costo_x_tipo_campo co,
@@ -667,7 +667,10 @@ class backendActions extends sfActions
       $sql = "select * from paises order by codigo_pais";
           
       $this->paises = $db->queryArray($sql);
+      
+      $sql = "select * from usuarios order by codigo_usuario";
           
+      $this->usuarios = $db->queryArray($sql);    
   }
   
   public function executeEditAviones(sfWebRequest $request)
@@ -787,10 +790,13 @@ class backendActions extends sfActions
       //de lo contrario lo inserta
       else 
       {
+         if (isset($avPlaca))
+         {
          $sql = "insert into vuelos values (null,'$aeOr'
                 ,'$aeDs','$avPlaca','$hrSalida','$hrLLegada'
                 ,$durEst)";
          $this->mensajeCorr = "Se agrego correctamente el vuelo ";
+         }  
       }
         //echo $sql;
       $this->vuelos = $db->exec($sql);
@@ -1105,6 +1111,7 @@ class backendActions extends sfActions
       $telSec = $request->getParameter("telSecundario");
       $tipSang = $request->getParameter("tipoSangre");
       $dirEsp = $request->getParameter("direcEsp");
+      $usuarioClte = $request->getParameter("codUsr");
       $detallesN = $request->getParameter("DetallesNuevo");
       $codPais = $request->getParameter("codPais");
       
@@ -1122,13 +1129,14 @@ class backendActions extends sfActions
                     tipo_sangre = '$tipSang',
                     direccion = '$dirEsp',
                     codigo_pais = '$codPais',
-                    detalles = '$detallesN'
+                    detalles = '$detallesN',
+                    fk_codigo_usuario = '$usuarioClte'
                 where tipo_identificacion = '$tipoId'
                   and identificacion = '$numId'";
       }
       else 
       {
-         $sql = "insert into clientes values ('$tipoId','$numId'
+         $sql = "insert into clientes values ('$tipoId','$numId','$usuarioClte'
                 ,'$fecNac','$genero','$nomComp','$dirEsp','$email'
                 ,'$telPrin','$telSec','$codPais','$tipSang','$detallesN')";   
       }

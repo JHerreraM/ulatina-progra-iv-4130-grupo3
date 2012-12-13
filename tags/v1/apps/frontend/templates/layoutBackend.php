@@ -36,6 +36,9 @@
                         <a href="logout" id="logout">
                         Logout
                         </a>
+                        <a href="../principal/home" id="logout">
+                        Home
+                        </a>
                     </div>
                 </div>
                 <div style="clear:both;"></div>

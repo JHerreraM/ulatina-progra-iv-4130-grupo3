@@ -41,7 +41,7 @@
 				<div class="right">
 					<nav>
 						<ul id="top_nav">
-							<li><a href="../backend/auth"><img src="../images/img1.gif" alt=""></a></li>
+							<li><a href="../backend/auth"><img src="../images/backEnd.jpg"  width="25" height="25" alt=""></a></li>
 							<li><a href="contacto"><img src="../images/img2.gif" alt=""></a></li>
 							<li class="bg_none"><a href="login"><img src="../images/img3.gif" alt=""></a></li>
 						</ul>
