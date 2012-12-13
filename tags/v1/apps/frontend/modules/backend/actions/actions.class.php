@@ -17,54 +17,69 @@ class backendActions extends sfActions
   *
   * @param sfRequest $request A request object
   */
+  public function validateLogin(){
+      if(  !(isset( $_SESSION["loggedInterno"]) && $_SESSION["loggedInterno"] == true) ){
+          $_SESSION["errorMessage"] = "Error de Authentication. Por favor Authenticarse.";
+          $this->redirect("backend/auth");
+      }
+  }  
+    
   public function executeSample(sfWebRequest $request)
   {
-          $this->setLayout('layoutBackend');
-          
+          $this->setLayout('layoutBackend');    
   }
   
   public function executeIndex(sfWebRequest $request)
   {
+          $this->validateLogin();
           $this->setLayout('layoutBackend');
-          //$this->setLayout('layoutBackend');
-      
-          $db = DB::Instance();
-          
-      $username = $request->getParameter("username");
-      $password = $request->getParameter("password");
-       
-      $sql = "select count(*) As login from usuarios where codigo_usuario = '$username' AND password = '$password' AND tipo_usuario = 'I';";
-      echo $sql;
-      
-      $login = $db->queryArray($sql);
-      
-      print_r ($login);
-      
-      if($login[0]["login"] != 1){
-          
-            $_SESSION["errorMessage"] = "Usuario o Password Invalido";
-            //$this->redirect("backend/auth");
-            
-                      
-      } else {
-          
-          $_SESSION["errorMessage"] = "";
-          
-          /*$sql2 = "select identificacion, nombre_completo from clientes where fk_codigo_usuario = '$username'";
-          
-          $clientes = $db->queryArray($sql2);*/
-          $_SESSION["loggedInterno"] = true;
-          
-          $this->redirect("backend/index");
-          
-      }    
           
   }
   
   public function executeAuth(sfWebRequest $request)
   {
           $this->setLayout('layoutBackend');
+
+          if( $request->getParameter("login") == "true"){
+
+            $db = DB::Instance();
+
+            $username = $request->getParameter("username");
+            $password = $request->getParameter("password");
+
+            $sql = "select count(*) As login from usuarios where codigo_usuario = '$username' AND password = '$password' AND tipo_usuario = 'I';";
+
+            $login = $db->queryArray($sql);
+
+            print_r ($login);
+
+            if($login[0]["login"] != 1){
+
+                    $_SESSION["errorMessage"] = "Usuario o Password Invalido";
+                    $this->redirect("backend/auth");
+
+
+            } else {
+
+                $_SESSION["errorMessage"] = "";
+                $_SESSION["loggedInterno"] = true;
+
+                $this->redirect("backend/index");
+            } 
           
+            
+          }
+          
+          
+          
+  }
+  
+  public function executeLogout(sfWebRequest $request){
+      
+         $_SESSION["loggedInterno"] = false;
+         unset( $_SESSION["loggedInterno"]  );
+         $this->redirect("backend/auth");
+         
   }
   
   public function executePersonal(sfWebRequest $request)
@@ -87,6 +102,7 @@ class backendActions extends sfActions
   
   public function executePaises(sfWebRequest $request)
   {
+          $this->validateLogin();
           $this->setLayout('layoutBackend');
           
   }

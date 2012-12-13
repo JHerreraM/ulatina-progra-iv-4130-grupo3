@@ -5,7 +5,7 @@
 			 Autenticacion
 			<div class="wrapper">
                             <center>
-                            <form action="index" method="POST">
+                            <form action="auth" method="POST">
                                <?php 
                                     if( isset( $_SESSION["errorMessage"] )){
                                         echo "<b style=\"color:red\">" .  $_SESSION["errorMessage"] . "</b>";
@@ -41,7 +41,7 @@
                                 
                                 
                                 </div>
-                                
+                                <input type="hidden" name="login" value="true">
                             </form>
                             </center>  
                         </div>
