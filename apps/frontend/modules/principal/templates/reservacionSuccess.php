@@ -1,4 +1,4 @@
-<div style="float: right">
+<div style="float: right; padding-top: 50px; padding-right: 5px;">
    <?php 
                                         if(sizeOf($reservaciones) > 0 ){
                                             foreach($reservaciones as $reservacion){ ?>
@@ -18,7 +18,13 @@
                                                         <?php echo "A" . $reservacion["vuelo"] ?> ->
                                                         <?php echo "A" . $reservacion["asiento"] ?> 
                                                         <br>
-                                                        <?php echo button_to('Cancelar Reservacion', 'reservacionCancelar/vuelo?titulo=Economia_en_Francia') ?>
+                                                        <div style="font:red">
+                                                        <?php
+                                                            $pkidVuelo = $reservacion["pkid"];
+                                                            
+                                                            echo link_to('Cancelar Reservacion', "principal/cancelarReservacion?id=$pkidVuelo", 'post=true') ;
+                                                        ?>
+                                                        </div>
                                                     </td>
                                                     <td colspan="2"><?php echo $reservacion["salida"] ?></td>
                                                     <td><?php echo $reservacion["llegada"] ?></td>
