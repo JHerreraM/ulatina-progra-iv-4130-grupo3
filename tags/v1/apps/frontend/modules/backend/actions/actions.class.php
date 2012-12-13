@@ -26,6 +26,38 @@ class backendActions extends sfActions
   public function executeIndex(sfWebRequest $request)
   {
           $this->setLayout('layoutBackend');
+          //$this->setLayout('layoutBackend');
+      
+          $db = DB::Instance();
+          
+      $username = $request->getParameter("username");
+      $password = $request->getParameter("password");
+       
+      $sql = "select count(*) As login from usuarios where codigo_usuario = '$username' AND password = '$password' AND tipo_usuario = 'I';";
+      echo $sql;
+      
+      $login = $db->queryArray($sql);
+      
+      print_r ($login);
+      
+      if($login[0]["login"] != 1){
+          
+            $_SESSION["errorMessage"] = "Usuario o Password Invalido";
+            //$this->redirect("backend/auth");
+            
+                      
+      } else {
+          
+          $_SESSION["errorMessage"] = "";
+          
+          /*$sql2 = "select identificacion, nombre_completo from clientes where fk_codigo_usuario = '$username'";
+          
+          $clientes = $db->queryArray($sql2);*/
+          $_SESSION["loggedInterno"] = true;
+          
+          $this->redirect("backend/index");
+          
+      }    
           
   }
   
@@ -37,7 +69,13 @@ class backendActions extends sfActions
   
   public function executePersonal(sfWebRequest $request)
   {
-          $this->setLayout('layoutBackend');
+        $this->setLayout('layoutBackend');
+        
+        session_start();
+        if (!$_SESSION["loggedInterno"])
+        {
+            $this->redirect("backend/auth");
+        }
           
   }
   
